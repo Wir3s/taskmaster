@@ -25,8 +25,10 @@ const taskListSchema = new Schema({
 
 });
 
-
-taskListSchema.tasks.filter(task => task.taskComplete === true);
+taskListSchema.methods.countTasks = function() {
+  const filteredList = taskListSchema.tasks.filter(task => task.taskComplete === true);
+  return filteredList.length;
+};
 
 const Tasklist = model("Tasklist", taskListSchema);
 
