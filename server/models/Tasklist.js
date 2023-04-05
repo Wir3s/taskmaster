@@ -25,7 +25,7 @@ const taskListSchema = new Schema({
 
 });
 
-taskList.methods.countTasks = function() {
+taskListSchema.methods.countTasks = function() {
   const filteredList = taskListSchema.tasks.filter(task => task.taskComplete === true);
   return filteredList.length;
 };
