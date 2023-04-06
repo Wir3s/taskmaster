@@ -29,14 +29,7 @@ const taskSchema = new Schema(
         ref: "User",
       },
     ],
-
-    subTasks: [
-      // array of subtasks; can be empty
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Task",
-      },
-    ],
+    subTasks: [ Task ],
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: "User",
@@ -61,8 +54,8 @@ const taskSchema = new Schema(
 taskSchema.pre("save", async function (next) {
   this.dueDate =
     this.repeatInterval > 0
-      ? this.createdAt + 24
-      : this.createdAt + this.repeatInterval; // hours
+      ? this.createdAt + this.repeatInterval
+      : this.createdAt + 24 // hours
   next();
 });
 
