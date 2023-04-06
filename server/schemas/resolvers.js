@@ -23,6 +23,20 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
+        tasks: async () => {
+            return Task.find();
+        },
+
+        task: async (parent, { taskId }) => {
+            return Task.findOne({ _id: taskId });
+        },
+        lists: async () => {
+            return List.find();
+        },
+
+        list: async (parent, { listId }) => {
+            return List.findOne({ _id: listId });
+        },
     },
 
     Mutation: {
@@ -44,6 +58,38 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
+
+        updateUserEmail: async (parent, { newEmail }, context) => {
+            // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
+            if (context.user) {
+              return User.findOneAndUpdate(
+                { email: newEmail },
+                {
+                // Not sure if new needed?    
+                //   new: true,
+                  runValidators: true,
+                }
+              );
+            }
+            // If user attempts to execute this mutation and isn't logged in, throw an error
+            throw new AuthenticationError('You need to be logged in!');
+          },
+
+          updateUserUsername: async (parent, { newUsername }, context) => {
+            // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
+            if (context.user) {
+              return User.findOneAndUpdate(
+                { username: newUsername },
+                {
+                // Not sure if new needed?    
+                //   new: true,
+                  runValidators: true,
+                }
+              );
+            }
+            // If user attempts to execute this mutation and isn't logged in, throw an error
+            throw new AuthenticationError('You need to be logged in!');
+          },
 
         // How to make login accept either email or username?
         login: async (parent, { email, password }) => {
