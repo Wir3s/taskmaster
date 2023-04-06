@@ -2,41 +2,34 @@ const { Schema, model } = require("mongoose");
 
 const taskSchema = new Schema(
   {
-    taskTitle: {
+    title: {
       type: String,
       required: true,
     },
-    taskDesc: {
+    desc: {
       // task description
       type: String,
       trim: true,
     },
-    taskPriority: {
+    priority: {
       type: Number, // very high, high, medium, low, very low
       min: 1,
       max: 5,
       required: true,
       default: 1,
     },
-    taskComplete: {
+    complete: {
         type: Boolean,
         required: true,
         default: false,
     },
-    taskAssignees: [
+    assignees: [
       {
         type: Schema.Types.ObjectId,
         ref: "User",
       },
     ],
-
-    subTasks: [
-      // array of subtasks; can be empty
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Task",
-      },
-    ],
+    subTasks: [ Task ],
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: "User",
@@ -61,8 +54,8 @@ const taskSchema = new Schema(
 taskSchema.pre("save", async function (next) {
   this.dueDate =
     this.repeatInterval > 0
-      ? this.createdAt + 24
-      : this.createdAt + this.repeatInterval; // hours
+      ? this.createdAt + this.repeatInterval
+      : this.createdAt + 24 // hours
   next();
 });
 
