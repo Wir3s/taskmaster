@@ -25,8 +25,7 @@ const taskSchema = new Schema(
     },
     assignees: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "User",
+        type: String
       },
     ],
     subTasks: [{
@@ -53,8 +52,7 @@ const taskSchema = new Schema(
       },
       assignees: [
         {
-          type: Schema.Types.ObjectId,
-          ref: "User",
+          type: String
         },
       ],
     },
