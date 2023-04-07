@@ -14,10 +14,11 @@
     "author": "Salahuddin Imdad, Garrett Winter, Karl Hubig, Andre Bessette",
     "license": "MIT",
     "devDependencies": {
-      "concurrently": "^5.1.0"
+        "concurrently": "^5.1.0"
     },
     "dependencies": {
-      "apollo-server-express": "^3.12.0",
-      "graphql": "15.8.0"
+        "@apollo/client": "^3.7.11",
+        "apollo-server-express": "^3.12.0",
+        "graphql": "15.8.0"
     }
-  }
+}
