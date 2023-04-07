@@ -1,0 +1,151 @@
+[
+    {
+        "_id": "642fa2c9bc3eb07e98aa8a0f",
+        "title": "Clean Bathroom",
+        "desc": "Clean Bathroom Decription",
+        "priority": 1,
+        "complete": false,
+        "assignees": [
+            "Garrett"
+        ],
+        "createdBy": "642f8b9361968c78806c0e73",
+        "dueDate": "04/21/2023",
+        "subTasks": [
+            {
+                "title": "Scrub Toliet",
+                "desc": "Scrub Toliet",
+                "priority": 1,
+                "complete": false,
+                "assignees": [
+                    "Bob"
+                ],
+                "dueDate": "04/21/2023"
+            },
+            {
+                "title": "Clean Mirror",
+                "priority": 2,
+                "complete": false,
+                "assignees": [
+                    "Garrett"
+                ],
+                "dueDate": "04/21/2023"
+            },
+            {
+                "title": "Scrub Bathtub",
+                "desc": "clean the tub",
+                "priority": 3,
+                "complete": false,
+                "dueDate": "04/21/2023"
+            }
+        ]
+    },
+    {
+        "_id": "642fa2c9bc3eb07e98aa8a13",
+        "title": "Clean Kitchen",
+        "desc": "Make it spotless",
+        "priority": 2,
+        "complete": false,
+        "assignees": [
+            "Joe"
+        ],
+        "createdBy": "642f8b9361968c78806c0e73",
+        "subTasks": [
+            {
+                "title": "Clean Counter",
+                "priority": 1,
+                "complete": false,
+                "dueDate": "04/21/2023"
+            },
+            {
+                "title": "Clean Fridge",
+                "priority": 2,
+                "complete": false
+            },
+            {
+                "title": "Clean Microwave",
+                "priority": 3,
+                "complete": false
+            },
+            {
+                "title": "Sweep Floor",
+                "priority": 3,
+                "complete": true,
+                "assignees": ["Garrett"]
+            }
+        ]
+    },
+    {
+        "_id": "642fa2c9bc3eb07e98aa8a18",
+        "title": "Living Room",
+        "priority": 3,
+        "complete": false,
+        "createdBy": "642f8b9361968c78806c0e73",
+        "dueDate": "",
+        "subTasks": [
+            {
+                "title": "Dust",
+                "desc": "",
+                "priority": 1,
+                "complete": false,
+                "dueDate": "04/21/2023"
+            },
+            {
+                "title": "Vacuum",
+                "desc": "",
+                "priority": 2,
+                "complete": false,
+                "dueDate": "04/21/2023"
+            }
+        ]
+    },
+    {
+        "_id": "642fa2c9bc3eb07e98aa8a1b",
+        "title": "Target Shopping List",
+        "desc": "",
+        "priority": 3,
+        "complete": false,
+        "createdBy": "642f8b9361968c78806c0e73",
+        "dueDate": "",
+        "subTasks": [
+            {
+                "title": "Headphones",
+                "desc": "",
+                "priority": 5,
+                "complete": false,
+                "dueDate": "04/21/2023"
+            },
+            {
+                "title": "Games",
+                "desc": "",
+                "priority": 4,
+                "complete": false,
+                "dueDate": "04/21/2023"
+            }
+        ]
+    },
+    {
+        "_id": "642fa2c9bc3eb07e98aa8a1e",
+        "title": "Food",
+        "desc": "",
+        "priority": "1",
+        "complete": false,
+        "createdBy": "642f8b9361968c78806c0e73",
+        "dueDate": "",
+        "subTasks": [
+            {
+                "title": "Eggs",
+                "desc": "",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "04/21/2023"
+            },
+            {
+                "title": "Bread",
+                "desc": "",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "04/21/2023"
+            }
+        ]
+    }
+]
