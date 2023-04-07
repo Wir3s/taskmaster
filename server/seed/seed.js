@@ -4,7 +4,7 @@ const { User, Task, List } = require('../models');
 
 const userSeeds = require('./userSeedData.json');
 const listSeeds = require('./listSeedData.json');
-// const taskSeeds = require('./profileSeeds.json');
+const taskSeeds = require('./taskSeedData.json');
 
 function seeds (){
 
@@ -25,14 +25,14 @@ db.once('open', async () => {
         throw err;
     }
 
-//     try {
-//         await Task.deleteMany({});
-//         await Task.create(taskSeeds);
-//         console.log('all done!');
-//         process.exit(0);
-//     } catch (err) {
-//         throw err;
-//     }
+    try {
+        await Task.deleteMany({});
+        await Task.create(taskSeeds);
+        console.log('Task Seed all done!');
+        process.exit(0);
+    } catch (err) {
+        throw err;
+    }
 
 });
 
