@@ -1,8 +1,31 @@
 [
     {
-        "listName": "List1",
-        "tasks": ["TBD_id"],
-        "createdBy": "TBD",
-        "users": ["TBD_id"]
+        "_id": "642f8fdafb864a7af0f13f97",
+        "listName": "House Chores",
+        "tasks": [],
+        "createdBy": "642f8b9361968c78806c0e73",
+        "users": [
+            "642f8b9361968c78806c0e73",
+            "642f8b9361968c78806c0e71"
+        ]
+    },
+    {
+        "_id": "642f8fdafb864a7af0f13f98",
+        "listName": "Grocery List",
+        "tasks": [],
+        "createdBy": "642f8b9361968c78806c0e73",
+        "users": [
+            "642f8b9361968c78806c0e73",
+            "642f8b9361968c78806c0e71"
+        ]
+    },
+    {
+        "_id": "642f8fdafb864a7af0f13f99",
+        "listName": "Target List",
+        "tasks": [],
+        "createdBy": "642f8b9361968c78806c0e73",
+        "users": [
+            "642f8b9361968c78806c0e73"
+        ]
     }
 ]
