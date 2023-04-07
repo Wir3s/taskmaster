@@ -35,18 +35,34 @@ type List {
     users: [User]
 }
 
-
-
 type Query {
+    user(_id:ID!): User
+    users: [User]
     me: User
-    tasks: [Task]
     task(_id:ID!): Task
+    tasks: [Task]
     list(_id:ID!): List
     lists: [List]
 }
 
 
-# type Mutation {
+type Mutation {
+    login(email: String!, password: String!): Auth
+    addUser(username: String! email: String! password: String!): User
+    removeUser(id: ID!): User
+    updateUserEmail(id: ID!, email: String!): User
+    updateUserUsername(id: ID!, username: String!): User
+
+
+
+    # Need login authentication to work
+    # removeUser(password: String!): Auth
+    # updateUserEmail(email: String!, password: String!): Auth
+    # updateUserUsername(username: String!, password: String!): Auth
+
+
+
+
 #     # addUser(username: String!, email: String!, password: String!): Auth
 #     # login(email: String!, password: String!): Auth
 #     # addTask(title: String!, desc: String, priority: Int!, complete: Boolean!, 
@@ -56,7 +72,7 @@ type Query {
 # #  TO DO   createList()
 # #  TO DO   deleteList()
 
-# }
+}
 
 `;
 
