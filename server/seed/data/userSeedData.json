@@ -1,0 +1,16 @@
+[{
+    "_id": "642f8b9361968c78806c0e73",
+    "email": "useremail3@email.com",
+    "username": "user3",
+    "password": "123123123"
+  },{
+    "_id": "642f8b9361968c78806c0e71",
+    "email": "useremail1@email.com",
+    "username": "user1",
+    "password": "123123123"
+  },{
+    "_id": "642f8b9361968c78806c0e72",
+    "email": "useremail2@email.com",
+    "username": "user2",
+    "password": "123123123"
+  }]
