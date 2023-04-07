@@ -11,7 +11,7 @@ const listSchema = new Schema(
       // Remember to call a .populate whenever you actually want to use these.
       {
         type: Schema.Types.ObjectId,
-        ref: "Tasks",
+        ref: "Task",
       },
     ],
     createdBy: {

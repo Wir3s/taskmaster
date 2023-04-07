@@ -19,9 +19,9 @@ const taskSchema = new Schema(
       default: 1,
     },
     complete: {
-        type: Boolean,
-        required: true,
-        default: false,
+      type: Boolean,
+      required: true,
+      default: false,
     },
     assignees: [
       {
@@ -29,7 +29,36 @@ const taskSchema = new Schema(
         ref: "User",
       },
     ],
-    subTasks: [ Task ],
+    subTasks: [{
+      title: {
+        type: String,
+        trim: true,
+      },
+      desc: {
+        // task description
+        type: String,
+        trim: true,
+      },
+      priority: {
+        type: Number, // very high, high, medium, low, very low
+        min: 1,
+        max: 5,
+        required: true,
+        default: 1,
+      },
+      complete: {
+        type: Boolean,
+        required: true,
+        default: false,
+      },
+      assignees: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+        },
+      ],
+    },
+    ],
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: "User",
@@ -38,7 +67,7 @@ const taskSchema = new Schema(
       type: Date,
       default: Date.now,
     },
-    dueDate: Date, 
+    dueDate: Date,
 
     // Uncomment for repeated task joy
     // repeatInterval: Number, // In hours? set to 0 for non-repeating?
@@ -59,6 +88,6 @@ taskSchema.pre("save", async function (next) {
   next();
 });
 
-const Tasks = model("Tasks", taskSchema);
+const Task = model("Task", taskSchema);
 
-module.exports = Tasks;
+module.exports = Task;
