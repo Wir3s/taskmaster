@@ -2,9 +2,9 @@ const { model } = require('mongoose');
 const db = require('../config/connection');
 const { User, Task, List } = require('../models');
 
-const userSeeds = require('./userSeedData.json');
-const listSeeds = require('./listSeedData.json');
-const taskSeeds = require('./taskSeedData.json');
+const userSeeds = require('./data/userSeedData.json');
+const listSeeds = require('./data/listSeedData.json');
+const taskSeeds = require('./data/taskSeedData.json');
 
 function seeds (){
 
