@@ -9,6 +9,11 @@ type User {
     password: String!
 }
 
+type Auth {
+    token: ID!
+    user: User
+}
+
 type Task {
     _id: ID
     title: String!
@@ -18,8 +23,8 @@ type Task {
     assignees: [User]
     subTasks: [Task]
     createdBy: [User]
-    createdAt: Date
-    dueDate: Date
+    createdAt: String
+    dueDate: String
 }
 
 type List {
@@ -33,21 +38,25 @@ type List {
 
 
 type Query {
-    user(username: String, email: String): User
+    me: User
+    tasks: [Task]
+    task(_id:ID!): Task
+    list(_id:ID!): List
+    lists: [List]
 }
 
 
-type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
-    addTask(title: String!, desc: String, priority: Int!, complete: Boolean!, 
-    assignees: [User], subTasks: [Task], createdBy: [User], createdAt: Date
-    dueDate: Date)
-#  TO DO  deleteTask()
-#  TO DO   createList()
-#  TO DO   deleteList()
+# type Mutation {
+#     # addUser(username: String!, email: String!, password: String!): Auth
+#     # login(email: String!, password: String!): Auth
+#     # addTask(title: String!, desc: String, priority: Int!, complete: Boolean!, 
+#     # assignees: [User], subTasks: [Task], createdBy: [User], createdAt: String
+#     # dueDate: String): [User]
+# #  TO DO  deleteTask()
+# #  TO DO   createList()
+# #  TO DO   deleteList()
 
-}
+# }
 
 `;
 
