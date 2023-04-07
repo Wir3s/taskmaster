@@ -5,17 +5,18 @@
 
 const { AuthenticationError } = require('apollo-server-express');
 const { User, List, Task } = require('../models');
-const { now } = require('mongoose');
 // const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
 
-        user: async (parent, args) => 
-            await User.findById(args._id),
+        user: async (parent, args) => {
+            return User.findById(args._id)
+        },
 
-        users: async () => 
-            await User.find({}),
+        users: async () => {
+            return User.find({})
+        },
 
         // By adding context to our query, we can retrieve the logged in user without specifically searching for them
         me: async (parent, args, context) => {
@@ -25,17 +26,21 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
 
-        task: async (parent, args) => 
-        await Task.findById(args._id),
+        task: async (parent, args) => {
+        return Task.findById(args._id)
+        },
 
-        tasks: async () => 
-            await Task.find({}),
+        tasks: async () => {
+            return Task.find({})
+        },
 
-        list: async (parent,args) => 
-            await List.findById(args._id),
+        list: async (parent,args) => {
+            return List.findById(args._id)
+        },
 
-        lists: async () =>
-            await List.find({}),
+        lists: async () => {
+            return List.find({})
+        },
     },
 
     Mutation: {
