@@ -67,7 +67,7 @@ const taskSchema = new Schema(
     },
     dueDate: Date,
 
-    // Uncomment for repeated task joy
+    // Uncomment for repeated tasks
     // repeatInterval: Number, // In hours? set to 0 for non-repeating?
   },
   {
