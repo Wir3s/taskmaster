@@ -4,11 +4,11 @@
     "description": "Change the filter!",
     "main": "server/server.js",
     "scripts": {
-      "start": "node server/server.js",
-      "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-      "install": "cd server && npm i && cd ../client && npm i",
-      "seed": "cd server && npm run seed",
-      "build": "cd client && npm run build"
+        "start": "node server/server.js",
+        "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+        "install": "cd server && npm i && cd ../client && npm i",
+        "seed": "cd server && npm run seed",
+        "build": "cd client && npm run build"
     },
     "keywords": [],
     "author": "Salahuddin Imdad, Garrett Winter, Karl Hubig, Andre Bessette",
@@ -19,6 +19,8 @@
     "dependencies": {
         "@apollo/client": "^3.7.11",
         "apollo-server-express": "^3.12.0",
-        "graphql": "15.8.0"
+        "graphql": "15.8.0",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1"
     }
 }
