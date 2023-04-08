@@ -2,137 +2,159 @@
 // do a Task.populate(WithSomeTasksInHere) so you get the full task data
 // https://www.bezkoder.com/mongoose-one-to-many-relationship/
 
-
-const { AuthenticationError } = require('apollo-server-express');
-const { User, List, Task } = require('../models');
-// const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require("apollo-server-express");
+const { User, List, Task } = require("../models");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
-    Query: {
-
-        user: async (parent, args) => {
-            return User.findById(args._id)
-        },
-
-        users: async () => {
-            return User.find({})
-        },
-
-        // By adding context to our query, we can retrieve the logged in user without specifically searching for them
-        me: async (parent, args, context) => {
-            if (context.user) {
-                return User.findOne({ _id: context.user._id });
-            }
-            throw new AuthenticationError('You need to be logged in!');
-        },
-
-        task: async (parent, args) => {
-        return Task.findById(args._id)
-        },
-
-        tasks: async () => {
-            return Task.find({})
-        },
-
-        list: async (parent,args) => {
-            return List.findById(args._id)
-        },
-
-        lists: async () => {
-            return List.find({})
-        },
+  Query: {
+    user: async (parent, args) => {
+      return User.findById(args._id);
     },
 
-    Mutation: {
-        // How to make login accept either email or username?
-        login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
-
-            if (!user) {
-                throw new AuthenticationError('No user with this email found!');
-            }
-
-            const correctPw = await user.isCorrectPassword(password);
-
-            if (!correctPw) {
-                throw new AuthenticationError('Incorrect password!');
-            }
-
-            //After JWT works
-            //const token = signToken(profile);
-            return {
-                //token, 
-                user
-            };
-        },
-
-        addUser: async (parent, { email, username, password }) => {
-            const user = await User.create({ email, username, password });
-            //After JWT works
-            //const token = signToken(user);
-
-            return user        
-        },
-
-        removeUser: async (parent, { id }) => {
-            return User.findOneAndDelete({ _id: id });
-        },
-
-        updateUserEmail: async (parent, args) => {
-            const { id } = args;
-            const result = await User.findByIdAndUpdate(id, args)
-            return result;
-        },
-
-        updateUserUsername: async (parent, args) => {
-            const { id } = args;
-            const result = await User.findByIdAndUpdate(id, args)
-            return result;
-        },
-
-
-
-        // This requires login Authentication. Cannot be checked now
-        // Uncomment when context.user works
-
-        // // Set up mutation so a logged in user can only remove their account and no one else's
-        // removeUser: async (parent, args, context) => {
-        //     if (context.user) {
-        //         return User.findOneAndDelete({ _id: context.user._id }, args, { new: true });
-        //     }
-        //     throw new AuthenticationError('You need to be logged in!');
-        // },
-
-        // updateUserEmail: async (parent, { newEmail }, context) => {
-        //     // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-        //     if (context.user) {
-        //         return User.findOneAndUpdate(
-        //             { email: newEmail },
-        //             {
-        //                 new: true,
-        //                 runValidators: true,
-        //             }
-        //         );
-        //     }
-        //     // If user attempts to execute this mutation and isn't logged in, throw an error
-        //     throw new AuthenticationError('You need to be logged in!');
-        // },
-
-        // updateUserUsername: async (parent, { newUsername }, context) => {
-        //     // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-        //     if (context.user) {
-        //         return User.findOneAndUpdate(
-        //             { username: newUsername },
-        //             {
-        //                 new: true,
-        //                 runValidators: true,
-        //             }
-        //         );
-        //     }
-        //     // If user attempts to execute this mutation and isn't logged in, throw an error
-        //     throw new AuthenticationError('You need to be logged in!');
-        // },
+    users: async () => {
+      return User.find({});
     },
+
+    // By adding context to our query, we can retrieve the logged in user without specifically searching for them
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    task: async (parent, args) => {
+      return Task.findById(args._id);
+    },
+
+    tasks: async () => {
+      return Task.find({});
+    },
+
+    list: async (parent, args) => {
+      return List.findById(args._id);
+    },
+
+    lists: async () => {
+      return List.find({});
+    },
+  },
+
+  Mutation: {
+    // USERS:
+    // How to make login accept either email or username?
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError("No user with this email found!");
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect password!");
+      }
+
+      const token = signToken(user);
+      return { token, user };
+    },
+
+    addUser: async (parent, { email, username, password }) => {
+      const user = await User.create({ email, username, password });
+
+      const token = signToken(user);
+      return { token, user };
+    },
+
+    // These user functions need Auth and token references added?
+
+    removeUser: async (parent, { id }) => {
+      return User.findOneAndDelete({ _id: id });
+    },
+
+    updateUserEmail: async (parent, args) => {
+      const { id } = args;
+      const result = await User.findByIdAndUpdate(id, args);
+      return result;
+    },
+
+    updateUserUsername: async (parent, args) => {
+      const { id } = args;
+      const result = await User.findByIdAndUpdate(id, args);
+      return result;
+    },
+
+    // TASKS:
+
+    // addTask: async (parent, { TaskInput }) => {
+    //   const task = await Task.create({ TaskInput });
+
+    //   await List.findOneAndUpdate(
+    //     { listname: TaskInput.list._id },
+    //     { $addToSet: { tasks: task._id } }
+    //   );
+    //   return task;
+    // },
+
+    // LISTS:
+
+    // createList: async (parent, { createdBy, listName }) => {
+    //     const list = await List.create({ listName });
+
+    //     await User.findOneAndUpdate(
+    //         { username: createdBy },
+    //         { $addToSet: { lists: list._id }}
+    //     );
+
+    //     return list;
+    // }
+
+
+
+
+    // This requires login Authentication. Cannot be checked now
+    // Uncomment when context.user works
+
+    // // Set up mutation so a logged in user can only remove their account and no one else's
+    // removeUser: async (parent, args, context) => {
+    //     if (context.user) {
+    //         return User.findOneAndDelete({ _id: context.user._id }, args, { new: true });
+    //     }
+    //     throw new AuthenticationError('You need to be logged in!');
+    // },
+
+    // updateUserEmail: async (parent, { newEmail }, context) => {
+    //     // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
+    //     if (context.user) {
+    //         return User.findOneAndUpdate(
+    //             { email: newEmail },
+    //             {
+    //                 new: true,
+    //                 runValidators: true,
+    //             }
+    //         );
+    //     }
+    //     // If user attempts to execute this mutation and isn't logged in, throw an error
+    //     throw new AuthenticationError('You need to be logged in!');
+    // },
+
+    // updateUserUsername: async (parent, { newUsername }, context) => {
+    //     // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
+    //     if (context.user) {
+    //         return User.findOneAndUpdate(
+    //             { username: newUsername },
+    //             {
+    //                 new: true,
+    //                 runValidators: true,
+    //             }
+    //         );
+    //     }
+    //     // If user attempts to execute this mutation and isn't logged in, throw an error
+    //     throw new AuthenticationError('You need to be logged in!');
+    // },
+  },
 };
 
 module.exports = resolvers;
