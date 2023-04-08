@@ -9,11 +9,11 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     user: async (parent, args) => {
-      return User.findById(args._id);
+      return User.findById(args._id).populate('lists');
     },
 
     users: async () => {
-      return User.find({});
+      return User.find({}).populate('lists');
     },
 
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
@@ -25,19 +25,19 @@ const resolvers = {
     },
 
     task: async (parent, args) => {
-      return Task.findById(args._id);
+      return Task.findById(args._id).populate('createdBy'); //Createdby doesn't work yet.
     },
 
     tasks: async () => {
-      return Task.find({});
+      return Task.find({}).populate('createdBy'); //Createdby doesn't work yet.
     },
 
     list: async (parent, args) => {
-      return List.findById(args._id);
+      return List.findById(args._id).populate('users').populate('tasks');
     },
 
     lists: async () => {
-      return List.find({});
+      return List.find({}).populate('users').populate('tasks');
     },
   },
 
