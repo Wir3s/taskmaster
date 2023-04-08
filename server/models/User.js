@@ -20,7 +20,12 @@ const userSchema = new Schema(
             required: true
         },
 
-        // tasks: [Tasks.schema] ???
+        tasks: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Task'
+            }
+        ] 
 
     },
     {
