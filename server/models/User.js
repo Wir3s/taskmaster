@@ -20,10 +20,10 @@ const userSchema = new Schema(
             required: true
         },
 
-        tasks: [
+        lists: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'Task'
+                ref: 'List'
             }
         ] 
 
