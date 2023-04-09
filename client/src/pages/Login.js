@@ -7,6 +7,16 @@ const Login = (props) => {
     const [formState, setFormState] = useState({ email: '', password: ''});
     // const [login, { error, data }] = useMutation(LOGIN);
 
+    // update form state
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    };
+
      return (
         <div>
             <h1>Login</h1>
