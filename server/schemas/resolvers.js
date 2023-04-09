@@ -67,7 +67,6 @@ const resolvers = {
       return { token, user };
     },
 
-
     removeUser: async (parent, { id }) => {
       return User.findOneAndDelete({ _id: id });
     },
@@ -125,8 +124,6 @@ const resolvers = {
     },
 
     // removeTask with Context:
-
-
 
     updateTask: async (parent, args) => {
       const { id } = args;
@@ -191,11 +188,11 @@ const resolvers = {
     //                 new: true,
     //                 runValidators: true,
     //             }
-    //         );
-    //     }
-    //     // If user attempts to execute this mutation and isn't logged in, throw an error
-    //     throw new AuthenticationError('You need to be logged in!');
-    // },
+    //           );
+    //         }
+    //         // If user attempts to execute this mutation and isn't logged in, throw an error
+    //         throw new AuthenticationError('You need to be logged in!');
+    //       },
   },
 };
 
