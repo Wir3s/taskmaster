@@ -39,6 +39,27 @@ const Login = (props) => {
     return (
         <div>
             <h1>Login</h1>
+            <form onSubmit={handleFormSubmit}>
+                <input
+                    placeholder="Enter email..."
+                    name="email"
+                    type="email"
+                    value={formState.email}
+                    onChange={handleChange}
+                />
+                <input
+                    placeholder="Enter password..."
+                    name="password"
+                    type="password"
+                    value={formState.password}
+                    onChange={handleChange}
+                />
+                <button
+                    type="submit"
+                >
+                    Submit
+                </button>  
+            </form>
         </div>
     )
 
