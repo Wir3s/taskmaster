@@ -41,21 +41,21 @@ const Signup = () => {
                 <h1>Signup</h1>
                 <form onSubmit={handleFormSubmit}>
                     <input
-                        placeholder="Enter your username..."
+                        placeholder="Enter username..."
                         name="username"
                         type="text"
                         value={formState.username}
                         onChange={handleChange}
                     />
                     <input
-                        placeholder="Enter your email..."
+                        placeholder="Enter email..."
                         name="email"
                         type="email"
                         value={formState.email}
                         onChange={handleChange}
                     />
                     <input
-                        placeholder="Enter your password..."
+                        placeholder="Enter password..."
                         name="password"
                         type="password"
                         value={formState.password}
