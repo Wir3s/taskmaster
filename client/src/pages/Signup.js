@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { useMutation } from '@apollo/client';
+
+import Auth from '../utils/auth';
 
 const Signup = () => {
     const [formState, setFormState] = useState({
@@ -21,9 +24,9 @@ const Signup = () => {
         event.preventDefault();
         
         try {
-            const { data } = await addUser({
-                variables: { ...formState },
-            });
+            // const { data } = await addUser({
+            //     variables: { ...formState },
+            // });
 
             // Auth.login(data.addUser.token);
         } catch (err) {
