@@ -94,8 +94,7 @@ const typeDefs = gql`
     # updateUserEmail(email: String!, password: String!): Auth
     # updateUserUsername(username: String!, password: String!): Auth
 
-    # #  TO DO  deleteTask()
-    # #  TO DO   deleteList()
+
   }
 `;
 

@@ -43,7 +43,6 @@ const resolvers = {
 
   Mutation: {
     // USERS:
-    // How to make login accept either email or username?
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -68,7 +67,6 @@ const resolvers = {
       return { token, user };
     },
 
-    // These user functions need Auth and token references added?
 
     removeUser: async (parent, { id }) => {
       return User.findOneAndDelete({ _id: id });
@@ -89,7 +87,6 @@ const resolvers = {
     // TASKS:
 
     addTask: async (parent, { title, desc, priority, complete, dueDate }) => {
-      console.log("a");
       const task = await Task.create({
         title,
         desc,
@@ -97,18 +94,39 @@ const resolvers = {
         complete,
         dueDate,
       });
-      console.log("b");
       await List.findByIdAndUpdate(
         { _id: "642f8fdafb864a7af0f13f97" },
         { $addToSet: { tasks: task._id } }
       );
-      console.log("ALMOST THERE");
       return task;
     },
+
+    // addTask with Context:
+    // addTask: async (parent, { title, desc, priority, complete, dueDate }, context) => {
+    //   if (context.user) {
+    //   const task = await Task.create({
+    //     title,
+    //     desc,
+    //     priority,
+    //     complete,
+    //     dueDate,
+    //   });
+    //   await List.findByIdAndUpdate(
+    //     { _id: listId },
+    //     { $addToSet: { tasks: task._id } }
+    //   );
+    //   return task;
+    // }
+    // throw new AuthenticationError('You need to be logged in!');
+    // },
 
     removeTask: async (parent, { id }) => {
       return Task.findOneAndDelete({ _id: id });
     },
+
+    // removeTask with Context:
+
+
 
     updateTask: async (parent, args) => {
       const { id } = args;
