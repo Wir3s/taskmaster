@@ -19,24 +19,24 @@ const typeDefs = gql`
     desc: String
     priority: Int
     complete: Boolean!
-    assignees: [User]
+    assignees: [String]
     subTasks: [Task]
     createdBy: [User]
     createdAt: String
     dueDate: String
   }
 
-  input TaskInput {
-    title: String!
-    desc: String
-    priority: Int
-    complete: Boolean!
-    # assignees: [User]
-    # subTasks: [Task]
-    createdBy: String
-    createdAt: String
-    dueDate: String
-  }
+  # input TaskInput {
+  #   title: String!
+  #   desc: String
+  #   priority: Int
+  #   complete: Boolean!
+  #   assignees: [String]
+  #   subTasks: [String]
+  #   createdBy: String
+  #   createdAt: String
+  #   dueDate: String
+  # }
 
   type List {
     _id: ID
@@ -66,22 +66,33 @@ const typeDefs = gql`
     updateUserEmail(id: ID!, email: String!): User
     updateUserUsername(id: ID!, username: String!): User
 
-
     # LISTS:
-    # createList(listName: String!, createdBy: String): List
-    # deleteList
+    createList(listName: String!): List
+    removeList(id: ID!): List
+    updateList(id: ID!, listName: String!): List
 
     # TASKS:
-
-    # addTask(input: TaskInput): List
-    # addTask(title: String!, desc: String, priority: Int!, complete: Boolean!,
-    #  createdAt: String, dueDate: String): List
+    addTask(
+      title: String!
+      desc: String
+      priority: Int
+      complete: Boolean!
+      dueDate: String
+    ): Task
+    removeTask(id: ID!): Task
+    updateTask(
+      id: ID!
+      title: String
+      desc: String
+      priority: Int
+      complete: Boolean
+      dueDate: String
+    ): Task
 
     # Need:
     # removeUser(password: String!): Auth
     # updateUserEmail(email: String!, password: String!): Auth
     # updateUserUsername(username: String!, password: String!): Auth
-
 
     # #  TO DO  deleteTask()
     # #  TO DO   deleteList()

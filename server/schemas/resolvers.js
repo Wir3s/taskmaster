@@ -9,11 +9,11 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     user: async (parent, args) => {
-      return User.findById(args._id).populate('lists');
+      return User.findById(args._id).populate("lists");
     },
 
     users: async () => {
-      return User.find({}).populate('lists');
+      return User.find({}).populate("lists");
     },
 
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
@@ -25,19 +25,19 @@ const resolvers = {
     },
 
     task: async (parent, args) => {
-      return Task.findById(args._id).populate('createdBy'); //Createdby doesn't work yet.
+      return Task.findById(args._id).populate("createdBy"); //Createdby doesn't work yet.
     },
 
     tasks: async () => {
-      return Task.find({}).populate('createdBy'); //Createdby doesn't work yet.
+      return Task.find({}).populate("createdBy"); //Createdby doesn't work yet.
     },
 
     list: async (parent, args) => {
-      return List.findById(args._id).populate('users').populate('tasks');
+      return List.findById(args._id).populate("users").populate("tasks");
     },
 
     lists: async () => {
-      return List.find({}).populate('users').populate('tasks');
+      return List.find({}).populate("users").populate("tasks");
     },
   },
 
@@ -88,31 +88,55 @@ const resolvers = {
 
     // TASKS:
 
-    // addTask: async (parent, { TaskInput }) => {
-    //   const task = await Task.create({ TaskInput });
+    addTask: async (parent, { title, desc, priority, complete, dueDate }) => {
+      console.log("a");
+      const task = await Task.create({
+        title,
+        desc,
+        priority,
+        complete,
+        dueDate,
+      });
+      console.log("b");
+      await List.findByIdAndUpdate(
+        { _id: "642f8fdafb864a7af0f13f97" },
+        { $addToSet: { tasks: task._id } }
+      );
+      console.log("ALMOST THERE");
+      return task;
+    },
 
-    //   await List.findOneAndUpdate(
-    //     { listname: TaskInput.list._id },
-    //     { $addToSet: { tasks: task._id } }
-    //   );
-    //   return task;
-    // },
+    removeTask: async (parent, { id }) => {
+      return Task.findOneAndDelete({ _id: id });
+    },
+
+    updateTask: async (parent, args) => {
+      const { id } = args;
+      const result = await Task.findByIdAndUpdate(id, args);
+      return result;
+    },
 
     // LISTS:
 
-    // createList: async (parent, { createdBy, listName }) => {
-    //     const list = await List.create({ listName });
+    createList: async (parent, { listName }) => {
+      const list = await List.create({ listName });
 
-    //     await User.findOneAndUpdate(
-    //         { username: createdBy },
-    //         { $addToSet: { lists: list._id }}
-    //     );
+      // { $addToSet: {users: "642f8b9361968c78806c0e73"} }
 
-    //     return list;
-    // }
+      // users.push("642f8b9361968c78806c0e73");
 
+      return list;
+    },
 
+    removeList: async (parent, { id }) => {
+      return List.findOneAndDelete({ _id: id });
+    },
 
+    updateList: async (parent, args) => {
+      const { id } = args;
+      const result = await List.findByIdAndUpdate(id, args);
+      return result;
+    },
 
     // This requires login Authentication. Cannot be checked now
     // Uncomment when context.user works
