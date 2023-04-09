@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 const TaskList = () => {
     return (
       <Container maxWidth="full" disableGutters={true}>
-        Task List
+        <p>Task List</p>
       </Container>
     );
   };
