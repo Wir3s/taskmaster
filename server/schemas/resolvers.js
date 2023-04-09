@@ -33,7 +33,7 @@ const resolvers = {
         },
     },
 
-    // Mutation: {
+    Mutation: {
     //     addUser: async (parent, { email, username, password }) => {
     //         const user = await User.create({ email, username, password });
     //         //After JWT works
@@ -85,28 +85,28 @@ const resolvers = {
     //         throw new AuthenticationError('You need to be logged in!');
     //       },
 
-    //     // How to make login accept either email or username?
-    //     login: async (parent, { email, password }) => {
-    //         const user = await User.findOne({ email });
+        // How to make login accept either email or username?
+        login: async (parent, { email, password }) => {
+            const user = await User.findOne({ email });
 
-    //         if (!user) {
-    //             throw new AuthenticationError('No user with this email found!');
-    //         }
+            if (!user) {
+                throw new AuthenticationError('No user with this email found!');
+            }
 
-    //         const correctPw = await user.isCorrectPassword(password);
+            const correctPw = await user.isCorrectPassword(password);
 
-    //         if (!correctPw) {
-    //             throw new AuthenticationError('Incorrect password!');
-    //         }
+            if (!correctPw) {
+                throw new AuthenticationError('Incorrect password!');
+            }
 
-    //         //After JWT works
-    //         //const token = signToken(profile);
-    //         return {
-    //             //token, 
-    //             user
-    //         };
-    //     },
-    // },
+            //After JWT works
+            const token = signToken(profile);
+            return {
+                token, 
+                user
+            };
+        },
+    },
 };
 
 module.exports = resolvers;
