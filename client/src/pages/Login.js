@@ -24,13 +24,15 @@ const Login = (props) => {
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        console.log("submitting login");
         try {
             const { data } = await login({
                 variables: { ...formState },
             });
-
+            console.log(data);
             Auth.login(data.login.token);
         } catch (error) {
+            console.log("This error:");
             console.error(error);
         }
 
