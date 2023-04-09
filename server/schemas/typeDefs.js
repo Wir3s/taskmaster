@@ -1,63 +1,101 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-
-type User {
+  type User {
     _id: ID
     email: String!
     username: String!
     password: String!
-}
+  }
 
-type Auth {
+  type Auth {
     token: ID!
     user: User
-}
+  }
 
-type Task {
+  type Task {
     _id: ID
     title: String!
     desc: String
     priority: Int
     complete: Boolean!
-    assignees: [User]
+    assignees: [String]
     subTasks: [Task]
     createdBy: [User]
     createdAt: String
     dueDate: String
-}
+  }
 
-type List {
+  # input TaskInput {
+  #   title: String!
+  #   desc: String
+  #   priority: Int
+  #   complete: Boolean!
+  #   assignees: [String]
+  #   subTasks: [String]
+  #   createdBy: String
+  #   createdAt: String
+  #   dueDate: String
+  # }
+
+  type List {
     _id: ID
     listName: String!
     tasks: [Task]
-    createdBy: [User]
+    createdBy: String!
     users: [User]
-}
+  }
 
-
-
-type Query {
+  type Query {
+    user(_id: ID!): User
+    users: [User]
     me: User
+    task(_id: ID!): Task
     tasks: [Task]
-    task(_id:ID!): Task
-    list(_id:ID!): List
+    list(_id: ID!): List
     lists: [List]
-}
+  }
+
+  type Mutation {
+    # USERS:
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+
+    # These need AUTH added
+    removeUser(id: ID!): User
+    updateUserEmail(id: ID!, email: String!): User
+    updateUserUsername(id: ID!, username: String!): User
+
+    # LISTS:
+    createList(listName: String!): List
+    removeList(id: ID!): List
+    updateList(id: ID!, listName: String!): List
+
+    # TASKS:
+    addTask(
+      title: String!
+      desc: String
+      priority: Int
+      complete: Boolean!
+      dueDate: String
+    ): Task
+    removeTask(id: ID!): Task
+    updateTask(
+      id: ID!
+      title: String
+      desc: String
+      priority: Int
+      complete: Boolean
+      dueDate: String
+    ): Task
+
+    # Need:
+    # removeUser(password: String!): Auth
+    # updateUserEmail(email: String!, password: String!): Auth
+    # updateUserUsername(username: String!, password: String!): Auth
 
 
-# type Mutation {
-#     # addUser(username: String!, email: String!, password: String!): Auth
-#     # login(email: String!, password: String!): Auth
-#     # addTask(title: String!, desc: String, priority: Int!, complete: Boolean!, 
-#     # assignees: [User], subTasks: [Task], createdBy: [User], createdAt: String
-#     # dueDate: String): [User]
-# #  TO DO  deleteTask()
-# #  TO DO   createList()
-# #  TO DO   deleteList()
-
-# }
-
+  }
 `;
 
 module.exports = typeDefs;
