@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Settings from './pages/Settings';
+import PageWrapper from './components/pageWrapper';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -32,7 +33,9 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
+function renderPage() {
+  // if page page is home, return <Home />
+  // etc
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -63,6 +66,12 @@ function App() {
       </Router>
     </ApolloProvider>
   );
+}
+
+function App() {
+  return (
+    <PageWrapper>{renderPage()}</PageWrapper>
+  )
 }
 
 export default App;
