@@ -17,7 +17,27 @@ const Login = (props) => {
         });
     };
 
-     return (
+    // submit form
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const { data } = await Login({
+                variables: { ...formState },
+            });
+
+            // Auth.login(data.login.token);
+        } catch (error) {
+            console.error(error);
+        }
+
+        // reset form state after submit
+        setFormState({
+            email: '',
+            password: '',
+        });
+    };
+
+    return (
         <div>
             <h1>Login</h1>
         </div>
