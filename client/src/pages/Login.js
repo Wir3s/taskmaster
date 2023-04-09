@@ -37,7 +37,7 @@ const Login = (props) => {
     };
 
     return (
-        <div>
+        <main>
             <h1>Login</h1>
             <form onSubmit={handleFormSubmit}>
                 <input
@@ -59,10 +59,9 @@ const Login = (props) => {
                 >
                     Submit
                 </button>  
-            </form>
-        </div>
+            </form> 
+        </main>
     )
-
 };
 
 export default Login;
