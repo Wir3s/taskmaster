@@ -60,7 +60,11 @@ const Signup = () => {
                         value={formState.password}
                         onChange={handleChange}
                     />
-                    
+                    <button
+                        type="submit"
+                    >
+                        Signup
+                    </button>
                 </form>
             </div>
         </main>
