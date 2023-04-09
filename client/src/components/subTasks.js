@@ -13,7 +13,20 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Container from '@mui/material/Container';
 
+const styles = {
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  main: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+}
 
 //Test Data
 function createData(details, priority, taskName, dueDate, assignee, actions) {
@@ -78,7 +91,7 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableBody>
                   {row.subTasks.map((subTask) => (
-                    <TableRow key={subTask.taskName}> {/*This should be updated to the subTask ID*/}
+                    <TableRow key={subTask.taskName}>{/*This should be updated to the subTask ID*/}
                       <TableCell align="right">{subTask.details}</TableCell>
                       <TableCell align="left">{subTask.priority}</TableCell>
                       <TableCell align="left">{subTask.taskName}</TableCell>
@@ -127,17 +140,30 @@ Row.propTypes = {
 };
 
 const rows = [
-  createData('🔍', 1, "Clean Bathroom", "Date Due - XX/XX/XXXX", "Assignee", 'Complete / Delete / Save Changes'),
+  createData('🔍', 1, "Clean Bathroom", "Date Due - XX/XX/XXXX", "Assignee", '✓ / 🗑 / 🖫'),
   createData('🔍', 2, "Clean Kitchen", "XX/XX/XXXX", "Assignee", '✓ / 🗑 / 🖫'),
   createData('🔍', 3, "Clean Livingroom", "XX/XX/XXXX", "Assignee", '✓ / 🗑 / 🖫'),
 ];
 
 export default function subTasks() {
   return (
-    <TableContainer component={Paper} contenteditable='true'> {/* This conentedotable tag makes this able to be edited on screen...  */}
+    <Container>
+      <Container>
+    <div style={styles.header}>
+    <div>
+      <h3>ACTIVE LIST NAME</h3>
+      <p>Task Count</p>
+    </div>
+    <div>
+      <p>Add New Task BTN</p>
+      <p>Hide / Show Completed Toggle</p>
+    </div>
+  </div>
+  </Container>
+    <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
         <TableHead>
-          {/* <TableRow>
+          <TableRow>
             <TableCell align="left">Hide / Show Subtasks</TableCell>
             <TableCell align="left">Details</TableCell>
             <TableCell align="left">Priority</TableCell>
@@ -145,14 +171,15 @@ export default function subTasks() {
             <TableCell align="left">Due Date</TableCell>
             <TableCell align="left">Assignee</TableCell>
             <TableCell align="left">Actions</TableCell>
-          </TableRow> */}
+          </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <Row key={row.taskName} row={row} />
+            <Row key={row.taskName} row={row}/>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+    </Container>
   );
 }
