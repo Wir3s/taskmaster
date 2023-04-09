@@ -2,6 +2,9 @@ import React, { useState } from "react";
 // import { useMutation } from '@apollo/client';
 // import { LOGIN } from '../utils/mutations';
 
+// Commented portions relate to code that isn't developed yet.
+// Might need to change the import name of the LOGIN mutation later.
+
 const Login = (props) => {
     const [formState, setFormState] = useState({ email: '', password: ''});
     // const [login, { error, data }] = useMutation(LOGIN);
@@ -20,7 +23,7 @@ const Login = (props) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
-            const { loginData } = await Login({
+            const { data } = await Login({
                 variables: { ...formState },
             });
 
