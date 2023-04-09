@@ -70,7 +70,9 @@ const Signup = () => {
             </div>
             <div>
                 <Link to="/login">
-                    Click here to log in.
+                    <button>
+                        Back to login.
+                    </button>
                 </Link>
             </div>
         </main>
