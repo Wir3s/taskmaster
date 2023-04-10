@@ -119,18 +119,50 @@ const resolvers = {
     // throw new AuthenticationError('You need to be logged in!');
     // },
 
+    addSubTask: async (parent, { taskId, title, desc, priority, complete }) => {
+      return Task.findByIdAndUpdate(
+        { _id: taskId },
+        { $addToSet: { subTasks: { title, desc, priority, complete } } }
+      );
+    },
+
     removeTask: async (parent, { id }) => {
       return Task.findOneAndDelete({ _id: id });
     },
 
     // removeTask with Context:
 
-    updateTask: async (parent, args) => {
+    // updateTask: async (parent, args) => {
+    //   const { id } = args;
+    //   const result = await Task.findByIdAndUpdate(id, args);
+    //   return result;
+    // },
+
+    updateTaskTitle: async (parent, args) => {
       const { id } = args;
       const result = await Task.findByIdAndUpdate(id, args);
       return result;
     },
-
+    updateTaskDesc: async (parent, args) => {
+      const { id } = args;
+      const result = await Task.findByIdAndUpdate(id, args);
+      return result;
+    },
+    updateTaskPriority: async (parent, args) => {
+      const { id } = args;
+      const result = await Task.findByIdAndUpdate(id, args);
+      return result;
+    },
+    updateTaskComplete: async (parent, args) => {
+      const { id } = args;
+      const result = await Task.findByIdAndUpdate(id, args);
+      return result;
+    },
+    updateTaskDueDate: async (parent, args) => {
+      const { id } = args;
+      const result = await Task.findByIdAndUpdate(id, args);
+      return result;
+    },
     // LISTS:
 
     createList: async (parent, { listName }) => {
