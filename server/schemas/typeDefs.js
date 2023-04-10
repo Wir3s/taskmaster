@@ -20,10 +20,19 @@ const typeDefs = gql`
     priority: Int
     complete: Boolean!
     assignees: [String]
-    subTasks: [Task]
+    subTasks: [Subtask]
     createdBy: [User]
     createdAt: String
     dueDate: String
+  }
+
+  type Subtask {
+    _id: ID
+    title: String!
+    desc: String
+    priority: Int!
+    complete: Boolean!
+    assignees: String
   }
 
   # input TaskInput {
@@ -80,21 +89,32 @@ const typeDefs = gql`
       dueDate: String
     ): Task
     removeTask(id: ID!): Task
-    updateTask(
-      id: ID!
+    # updateTask(
+    #   id: ID!
+    #   title: String
+    #   desc: String
+    #   priority: Int
+    #   complete: Boolean
+    #   dueDate: String
+    # ): Task
+    updateTaskTitle(id: ID!, title: String!): Task
+    updateTaskDesc(id: ID!, desc: String!): Task
+    updateTaskPriority(id: ID!, priority: Int!): Task
+    updateTaskComplete(id: ID!, complete: Boolean!): Task
+    updateTaskDueDate(id: ID!, dueDate: String!): Task
+    # SUBTASKS
+    addSubTask(
+      taskId: ID!
       title: String
       desc: String
       priority: Int
       complete: Boolean
-      dueDate: String
     ): Task
 
     # Need:
     # removeUser(password: String!): Auth
     # updateUserEmail(email: String!, password: String!): Auth
     # updateUserUsername(username: String!, password: String!): Auth
-
-
   }
 `;
 
