@@ -7,7 +7,6 @@ export const LOGIN = gql`
     user {
       email
       username
-      password
     }
   }
 }
@@ -21,7 +20,6 @@ mutation AddUser($username: String!, $email: String!, $password: String!) {
       _id
       email
       username
-      password
     }
   }
 }
