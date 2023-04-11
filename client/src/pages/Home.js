@@ -22,7 +22,12 @@ const styles = {
 
 const Home = () => {
   if (!Auth.loggedIn()) {
-    return <Navigate to='/login' />
+    return (
+      <div>
+        {console.log("Not logged in. Redirecting...")}
+        <Navigate to='/login' />
+      </div>
+    )
   }
   return (
     <div>
