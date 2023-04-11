@@ -4,14 +4,11 @@ import Auth from "../utils/auth";
 
 const Settings = () => {
     if (!Auth.loggedIn()) {
-        
         return (
             <div>
                 {console.log("Not logged in. Redirecting...")}
                 <Navigate to='/login' />
             </div>
-
-
         )
     }
     return (
@@ -19,7 +16,6 @@ const Settings = () => {
             <h1>Settings</h1>
         </div>
     )
-
 };
 
 export default Settings;
