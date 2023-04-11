@@ -6,6 +6,7 @@ const typeDefs = gql`
     email: String!
     username: String!
     password: String!
+    lists: [List]
   }
 
   type Auth {
@@ -52,7 +53,7 @@ const typeDefs = gql`
     listName: String!
     tasks: [Task]
     createdBy: String!
-    users: [User]
+    # users: [User]
   }
 
   type Query {
