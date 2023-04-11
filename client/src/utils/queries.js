@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const LISTS = gql`
+export const GET_LISTS = gql`
 query Lists {
   lists {
     _id
@@ -18,7 +18,7 @@ query Lists {
 }
 `;
 
-export const LIST = gql `
+export const GET_LIST = gql `
 query List($id: ID!) {
   list(_id: $id) {
     _id
@@ -48,7 +48,7 @@ query List($id: ID!) {
 }
 `;
 
-export const TASKS = gql`
+export const GET_TASKS = gql`
 query Tasks {
   tasks {
     _id
@@ -69,7 +69,7 @@ query Tasks {
 }
 `;
 
-export const TASK = gql `
+export const GET_TASK = gql `
 query Task($id: ID!) {
   task(_id: $id) {
     _id
@@ -90,7 +90,7 @@ query Task($id: ID!) {
 }
 `;
 
-export const USERS = gql`
+export const GET_USERS = gql`
 query Users {
   users {
     _id
@@ -101,7 +101,7 @@ query Users {
 }
 `;
 
-export const USER = gql `
+export const GET_USER = gql `
 query User($id: ID!) {
   user(_id: $id) {
     _id
@@ -112,13 +112,26 @@ query User($id: ID!) {
 }
 `;
 
-export const ME = gql `
-query ME {
+export const QUERY_ME = gql `
+query me {
   me {
     _id
     email
     username
-    password
+  }
+}
+`;
+
+export const QUERY_MELIST = gql`
+query MeList($id: ID!) {
+  meList(_id: $id) {
+    listName
+    _id
+    users {
+      _id
+      email
+      username
+    }
   }
 }
 `;

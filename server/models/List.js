@@ -18,12 +18,12 @@ const listSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-    users: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      }
-    ],
+    // users: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "User",
+    //   }
+    // ],
   });
 
 listSchema.methods.countTasks = function () {
