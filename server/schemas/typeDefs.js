@@ -59,6 +59,7 @@ const typeDefs = gql`
     user(_id: ID!): User
     users: [User]
     me: User
+    meList(_id:ID!): List
     task(_id: ID!): Task
     tasks: [Task]
     list(_id: ID!): List

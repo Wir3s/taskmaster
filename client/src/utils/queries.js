@@ -121,3 +121,17 @@ query me {
   }
 }
 `;
+
+export const QUERY_MELIST = gql`
+query MeList($id: ID!) {
+  meList(_id: $id) {
+    listName
+    _id
+    users {
+      _id
+      email
+      username
+    }
+  }
+}
+`;

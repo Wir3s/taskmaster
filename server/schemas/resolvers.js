@@ -24,6 +24,14 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
+    meList: async (parent, args, context) => {
+      if (context.user) {
+        const findOne =  await User.findOne({ _id: context.user._id })
+        return List.findById(findOne) ;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
     task: async (parent, args) => {
       return Task.findById(args._id).populate("createdBy"); //Createdby doesn't work yet.
     },
