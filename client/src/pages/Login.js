@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -40,10 +40,12 @@ const Login = (props) => {
         });
     };
 
+    if (Auth.loggedIn()) {
+        return <Navigate to='/home' />
+    }
     return (
         <main>
             <div>
-                {Auth.loggedIn() ? (<p>You are logged in.</p>) : (<p>You are logged out.</p>) }
                 { data
                 ? (<p>Logging in...</p>)
                 : (
