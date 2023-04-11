@@ -1,4 +1,6 @@
 import React from "react";
+import Auth from "../utils/auth";
+import { Navigate } from "react-router-dom";
 
 import Container from '@mui/material/Container';
 
@@ -19,6 +21,14 @@ const styles = {
 }
 
 const Home = () => {
+  if (!Auth.loggedIn()) {
+    return (
+      <div>
+        {console.log("Not logged in. Redirecting...")}
+        <Navigate to='/login' />
+      </div>
+    )
+  }
   return (
     <div>
       <Container>
