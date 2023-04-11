@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import Auth from '../utils/auth';
 
@@ -33,6 +33,10 @@ const Signup = () => {
         } catch (err) {
             console.log(err)
         }
+    }
+
+    if (Auth.loggedIn()) {
+        return <Navigate to='/home' />
     }
 
     return (
