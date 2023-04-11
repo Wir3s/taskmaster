@@ -41,7 +41,12 @@ const Login = (props) => {
     };
 
     if (Auth.loggedIn()) {
-        return <Navigate to='/home' />
+        return (
+            <div>
+                {console.log("Already logged in. Redirecting...")}
+                <Navigate to='/home' />
+            </div>
+        )
     }
     return (
         <main>
