@@ -50,11 +50,6 @@ const taskSchema = new Schema(
         required: true,
         default: false,
       },
-      assignees: [
-        {
-          type: String
-        },
-      ],
     },
     ],
     createdBy: {

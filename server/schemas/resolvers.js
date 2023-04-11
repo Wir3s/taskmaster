@@ -20,7 +20,6 @@ const resolvers = {
         path: 'lists',
         populate: 'tasks'
       });
-      console.log(user)
       return user;
       // return User.find({}).populate("lists");
     },
