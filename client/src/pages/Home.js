@@ -23,7 +23,6 @@ const styles = {
 const Home = () => {
   if (!Auth.loggedIn()) {
     return <Navigate to='/login' />
-    // return Navigate('/Login');
   }
   return (
     <div>
