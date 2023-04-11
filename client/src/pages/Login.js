@@ -43,8 +43,9 @@ const Login = (props) => {
     return (
         <main>
             <div>
+                {Auth.loggedIn() ? (<p>You are logged in.</p>) : (<p>You are logged out.</p>) }
                 { data
-                ? (<p>There is data</p>)
+                ? (<p>Logging in...</p>)
                 : (
                 <div>
                     <h1>Login</h1>
