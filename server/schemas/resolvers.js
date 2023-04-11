@@ -9,11 +9,17 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     user: async (parent, args) => {
-      return User.findById(args._id).populate("lists");
+      return User.findById(args._id).populate("lists").populate({
+        path: 'lists',
+        populate: 'tasks'
+      });
     },
 
     users: async () => {
-      const user = await User.find({}).populate("lists");
+      const user = await User.find({}).populate("lists").populate({
+        path: 'lists',
+        populate: 'tasks'
+      });
       console.log(user)
       return user;
       // return User.find({}).populate("lists");
@@ -23,17 +29,11 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         // return User.findOne({ _id: context.user._id });
-        const findOne = await User.findById({_id: context.user._id}).populate('lists');
-        console.log(findOne)
+        const findOne = await User.findById({_id: context.user._id}).populate('lists').populate({
+          path: 'lists',
+          populate: 'tasks'
+        });
         return findOne;
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
-
-    meList: async (parent, args, context) => {
-      if (context.user) {
-        const findOne =  await User.findOne({ _id: context.user._id })
-        return List.findById(findOne) ;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
@@ -47,11 +47,11 @@ const resolvers = {
     },
 
     list: async (parent, args) => {
-      return List.findById(args._id).populate("users").populate("tasks");
+      return List.findById(args._id).populate("tasks");
     },
 
     lists: async () => {
-      return List.find({}).populate("users").populate("tasks");
+      return List.find({}).populate("tasks");
     },
   },
 

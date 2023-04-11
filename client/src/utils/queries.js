@@ -6,11 +6,6 @@ query Lists {
     _id
     listName
     createdBy
-    users {
-      _id
-      username
-      email
-    }
     tasks {
       _id
     }
@@ -23,11 +18,6 @@ query List($id: ID!) {
   list(_id: $id) {
     _id
     listName
-    users {
-      _id
-      email
-      username
-    }
     tasks {
       _id
       title
@@ -96,7 +86,6 @@ query Users {
     _id
     email
     username
-    password
   }
 }
 `;
@@ -107,30 +96,36 @@ query User($id: ID!) {
     _id
     username
     email
-    password
   }
 }
 `;
 
 export const QUERY_ME = gql `
-query me {
+query Me {
   me {
     _id
     email
     username
-  }
-}
-`;
-
-export const QUERY_MELIST = gql`
-query MeList($id: ID!) {
-  meList(_id: $id) {
-    listName
-    _id
-    users {
+    lists {
       _id
-      email
-      username
+      listName
+      createdBy
+      tasks {
+        _id
+        title
+        desc
+        priority
+        complete
+        createdAt
+        dueDate
+        subTasks {
+          _id
+          title
+          desc
+          priority
+          complete
+        }
+      }
     }
   }
 }
