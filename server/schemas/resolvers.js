@@ -134,10 +134,16 @@ const resolvers = {
       );
     },
 
-    // removeSubTask: async (parent, { id }) => {
-    //   return Task.findOneAndDelete({ _id: id });
-    // },
-
+    updateSubTask: async (parent, { taskId, id, title, desc, priority, complete }) => {
+      await Task.findByIdAndUpdate(
+        { _id: taskId },
+        { $pull: { subTasks: {_id: id} } },
+      );
+      await Task.findByIdAndUpdate(
+        { _id: taskId },
+        { $addToSet: { subTasks: { _id: id, title, desc, priority, complete } } }
+      )
+    },
     // removeTask with Context:
 
     updateTask: async (parent, args) => {

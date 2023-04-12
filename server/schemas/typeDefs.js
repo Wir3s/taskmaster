@@ -106,6 +106,14 @@ const typeDefs = gql`
       taskId: ID!
       id: ID!
     ): Task
+    updateSubTask(
+      taskId: ID!
+      id: ID!
+      title: String
+      desc: String
+      priority: Int
+      complete: Boolean
+    ): Task
   }
 `;
 

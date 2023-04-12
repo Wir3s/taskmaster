@@ -125,3 +125,12 @@ mutation UpdateTask($updateTaskId: ID!, $title: String, $desc: String, $priority
   }
 }
 `;
+
+export const UPDATE_SUB_TASK =gql `
+mutation UpdateSubTask($taskId: ID!, $subTaskId: ID!, $title: String, $desc: String, $priority: Int, $complete: Boolean) {
+  updateSubTask(taskId: $taskId, id: $subTaskId, title: $title, desc: $desc, priority: $priority, complete: $complete) {
+    _id
+    title
+  }
+}
+`;
