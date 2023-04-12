@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -15,6 +14,10 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Container from '@mui/material/Container';
 
+
+import { useQuery } from '@apollo/client';
+import { GET_SINGLE_LIST } from '../utils/queries';
+
 const styles = {
   header: {
     display: 'flex',
@@ -28,130 +31,27 @@ const styles = {
   },
 }
 
-//Test Data
-function createData(details, priority, taskName, dueDate, assignee, actions) {
-  return {
-    details,
-    priority,
-    taskName,
-    dueDate,
-    assignee,
-    actions,
-    subTasks: [
-      {
-        details: '🔍',
-        priority: 1,
-        taskName: 'Scrub Toliet',
-        dueDate: 'Date Due - XX/XX/XXXX',
-        assignee: 'Assignee',
-        actions: '✓ / 🗑 / 🖫'
-      },
-      {
-        details: '🔍',
-        priority: 2,
-        taskName: 'Clean Mirror',
-        dueDate: 'XX/XX/XXXX',
-        assignee: 'Assignee',
-        actions: '✓ / 🗑 / 🖫'
-      },
-    ],
-  };
-}
-
-function Row(props) {
-  const { row } = props;
+export default function SubTasks() {
   const [open, setOpen] = React.useState(false);
 
-  return (
-    <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-        <TableCell align="left">
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
-        <TableCell align="left">{row.details}</TableCell>
-        <TableCell align="left">{row.priority}</TableCell>
-        <TableCell align="left">{row.taskName}</TableCell>
-        <TableCell align="left">{row.dueDate}</TableCell>
-        <TableCell align="left">{row.assignee}</TableCell>
-        <TableCell align="left">{row.actions}</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                Sub-Tasks
-              </Typography>
-              <Table size="small" aria-label="purchases">
-                <TableBody>
-                  {row.subTasks.map((subTask) => (
-                    <TableRow key={subTask.taskName}>{/*This should be updated to the subTask ID*/}
-                      <TableCell align="right">{subTask.details}</TableCell>
-                      <TableCell align="left">{subTask.priority}</TableCell>
-                      <TableCell align="left">{subTask.taskName}</TableCell>
-                      <TableCell align="left">{subTask.dueDate}</TableCell>
-                      <TableCell align="left">{subTask.assignee}</TableCell>
-                      <TableCell align="left">{subTask.actions}</TableCell>
-                    </TableRow>
-                  ))}
-                  <TableRow>
-                    <TableCell align="right">+</TableCell>
-                    <TableCell align="left">Priority</TableCell>
-                    <TableCell align="left">Task Name</TableCell>
-                    <TableCell align="left">Due Date</TableCell>
-                    <TableCell align="left">Assignee</TableCell>
-                    <TableCell align="left">Save Icon</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRow>
-    </React.Fragment>
-  );
-}
+  const id = "642f8fdafb864a7af0f13f97"; // This is the list ID
+  const { loading, error, data } = useQuery(GET_SINGLE_LIST,
+    { variables: { id } }
+  )
 
-Row.propTypes = {
-  row: PropTypes.shape({
-    details: PropTypes.string.isRequired,
-    priority: PropTypes.number.isRequired,
-    taskName: PropTypes.string.isRequired,
-    dueDate: PropTypes.string.isRequired,
-    assignee: PropTypes.string.isRequired,
-    actions: PropTypes.string.isRequired,
-    subTasks: PropTypes.arrayOf(
-      PropTypes.shape({
-        details: PropTypes.string.isRequired,
-        priority: PropTypes.number.isRequired,
-        taskName: PropTypes.string.isRequired,
-        dueDate: PropTypes.string.isRequired,
-        assignee: PropTypes.string.isRequired,
-        actions: PropTypes.string.isRequired,
-      }),
-    ).isRequired,
-  }).isRequired,
-};
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error</p>;
 
-const rows = [
-  createData('🔍', 1, "Clean Bathroom", "Date Due - XX/XX/XXXX", "Assignee", '✓ / 🗑 / 🖫'),
-  createData('🔍', 2, "Clean Kitchen", "XX/XX/XXXX", "Assignee", '✓ / 🗑 / 🖫'),
-  createData('🔍', 3, "Clean Livingroom", "XX/XX/XXXX", "Assignee", '✓ / 🗑 / 🖫'),
-];
+  const listData = data?.list;
 
-export default function subTasks() {
+  console.log(listData)
+
   return (
     <Container>
       <Container>
     <div style={styles.header}>
     <div>
-      <h3>ACTIVE LIST NAME</h3>
+      <h3>{listData.listName}</h3>
       <p>Task Count</p>
     </div>
     <div>
@@ -169,13 +69,58 @@ export default function subTasks() {
             <TableCell align="left">Priority</TableCell>
             <TableCell align="left">Task Name</TableCell>
             <TableCell align="left">Due Date</TableCell>
-            <TableCell align="left">Assignee</TableCell>
             <TableCell align="left">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <Row key={row.taskName} row={row}/>
+          {listData.tasks.map((row) => (
+            <React.Fragment> 
+            <TableRow key={row._id} sx={{ '& > *': { borderBottom: 'unset' } }}>
+            <TableCell align="left">
+              <IconButton
+                aria-label="expand row"
+                size="small"
+                onClick={() => setOpen(!open)}
+              >
+                {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+              </IconButton>
+            </TableCell>
+            <TableCell align="left">🔍</TableCell>
+            <TableCell align="left">{row.priority}</TableCell>
+            <TableCell align="left">{row.title}</TableCell>
+            <TableCell align="left">{row.dueDate}</TableCell>
+            <TableCell align="left">✓ / 🗑 / 🖫</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+              <Collapse in={open} timeout="auto" unmountOnExit>
+                <Box sx={{ margin: 1 }}>
+                  <Typography variant="h6" gutterBottom component="div">
+                    Sub-Tasks
+                  </Typography>
+                  <Table size="small" aria-label="purchases">
+                    <TableBody>
+                      {row.subTasks.map((subTask) => (
+                        <TableRow key={subTask._id}>
+                          <TableCell align="right">🔍</TableCell>
+                          <TableCell align="left">{subTask.priority}</TableCell>
+                          <TableCell align="left">{subTask.title}</TableCell>
+                          <TableCell align="left">✓ / 🗑 / 🖫</TableCell>
+                        </TableRow>
+                      ))}
+                      <TableRow>
+                        <TableCell align="right">+</TableCell>
+                        <TableCell align="left">Priority</TableCell>
+                        <TableCell align="left">Task Name</TableCell>
+                        <TableCell align="left">Save Icon</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </Box>
+              </Collapse>
+            </TableCell>
+          </TableRow>
+          </React.Fragment>
           ))}
         </TableBody>
       </Table>
