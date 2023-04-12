@@ -27,7 +27,7 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         // return User.findOne({ _id: context.user._id });
-        const findOne = await User.findById({_id: context.user._id}).populate('lists').populate({
+        const findOne = await User.findById({ _id: context.user._id }).populate('lists').populate({
           path: 'lists',
           populate: 'tasks'
         });
@@ -75,14 +75,14 @@ const resolvers = {
     addUser: async (parent, { email, username, password, listName, title }) => {
       const user = await User.create({ email, username, password });
       const token = signToken(user);
-      const list = await List.create( {listName: "My First List"} );
+      const list = await List.create({ listName: "My First List" });
       await User.findByIdAndUpdate(
         { _id: user._id },
         { $addToSet: { lists: list._id } }
-      ); 
+      );
       const task = await Task.create({ title: "My First Task" })
       await List.findByIdAndUpdate(
-        { _id: list._id},
+        { _id: list._id },
         { $addToSet: { tasks: task._id } }
       );
       return { token, user, list, task };
@@ -127,17 +127,21 @@ const resolvers = {
       );
     },
 
+    removeTask: async (parent, { id }) => {
+      return Task.findOneAndDelete({ _id: id });
+    },
+
     removeSubTask: async (parent, { taskId, id }) => {
       await Task.findByIdAndUpdate(
         { _id: taskId },
-        { $pull: { subTasks: {_id: id} } }
+        { $pull: { subTasks: { _id: id } } }
       );
     },
 
     updateSubTask: async (parent, { taskId, id, title, desc, priority, complete }) => {
       await Task.findByIdAndUpdate(
         { _id: taskId },
-        { $pull: { subTasks: {_id: id} } },
+        { $pull: { subTasks: { _id: id } } },
       );
       await Task.findByIdAndUpdate(
         { _id: taskId },
