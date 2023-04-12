@@ -16,12 +16,10 @@ const resolvers = {
     },
 
     users: async () => {
-      const user = await User.find({}).populate("lists").populate({
+      return User.find({}).populate("lists").populate({
         path: 'lists',
         populate: 'tasks'
       });
-      return user;
-      // return User.find({}).populate("lists");
     },
 
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
@@ -97,8 +95,7 @@ const resolvers = {
     },
 
     // TASKS:
-
-    addTask: async (parent, { title, desc, priority, complete, dueDate }) => {
+    addTask: async (parent, { title, desc, priority, complete, dueDate, id }, context) => {
       const task = await Task.create({
         title,
         desc,
@@ -107,30 +104,11 @@ const resolvers = {
         dueDate,
       });
       await List.findByIdAndUpdate(
-        { _id: "642f8fdafb864a7af0f13f97" },
+        { _id: id },
         { $addToSet: { tasks: task._id } }
       );
       return task;
     },
-
-    // addTask with Context:
-    // addTask: async (parent, { title, desc, priority, complete, dueDate }, context) => {
-    //   if (context.user) {
-    //   const task = await Task.create({
-    //     title,
-    //     desc,
-    //     priority,
-    //     complete,
-    //     dueDate,
-    //   });
-    //   await List.findByIdAndUpdate(
-    //     { _id: listId },
-    //     { $addToSet: { tasks: task._id } }
-    //   );
-    //   return task;
-    // }
-    // throw new AuthenticationError('You need to be logged in!');
-    // },
 
     addSubTask: async (parent, { taskId, title, desc, priority, complete }) => {
       return Task.findByIdAndUpdate(
@@ -145,37 +123,37 @@ const resolvers = {
 
     // removeTask with Context:
 
-    // updateTask: async (parent, args) => {
+    updateTask: async (parent, args) => {
+      const { id } = args;
+      const result = await Task.findByIdAndUpdate(id, args);
+      return result;
+    },
+
+    // updateTaskTitle: async (parent, args) => {
     //   const { id } = args;
     //   const result = await Task.findByIdAndUpdate(id, args);
     //   return result;
     // },
-
-    updateTaskTitle: async (parent, args) => {
-      const { id } = args;
-      const result = await Task.findByIdAndUpdate(id, args);
-      return result;
-    },
-    updateTaskDesc: async (parent, args) => {
-      const { id } = args;
-      const result = await Task.findByIdAndUpdate(id, args);
-      return result;
-    },
-    updateTaskPriority: async (parent, args) => {
-      const { id } = args;
-      const result = await Task.findByIdAndUpdate(id, args);
-      return result;
-    },
-    updateTaskComplete: async (parent, args) => {
-      const { id } = args;
-      const result = await Task.findByIdAndUpdate(id, args);
-      return result;
-    },
-    updateTaskDueDate: async (parent, args) => {
-      const { id } = args;
-      const result = await Task.findByIdAndUpdate(id, args);
-      return result;
-    },
+    // updateTaskDesc: async (parent, args) => {
+    //   const { id } = args;
+    //   const result = await Task.findByIdAndUpdate(id, args);
+    //   return result;
+    // },
+    // updateTaskPriority: async (parent, args) => {
+    //   const { id } = args;
+    //   const result = await Task.findByIdAndUpdate(id, args);
+    //   return result;
+    // },
+    // updateTaskComplete: async (parent, args) => {
+    //   const { id } = args;
+    //   const result = await Task.findByIdAndUpdate(id, args);
+    //   return result;
+    // },
+    // updateTaskDueDate: async (parent, args) => {
+    //   const { id } = args;
+    //   const result = await Task.findByIdAndUpdate(id, args);
+    //   return result;
+    // },
     // LISTS:
 
     createList: async (parent, { listName }) => {
