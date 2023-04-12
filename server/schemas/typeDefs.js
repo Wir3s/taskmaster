@@ -58,7 +58,7 @@ const typeDefs = gql`
   type Mutation {
     # USERS:
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!, listName: String, title: String): Auth
 
     # These need AUTH added
     removeUser(id: ID!): User
@@ -97,6 +97,18 @@ const typeDefs = gql`
     # SUBTASKS
     addSubTask(
       taskId: ID!
+      title: String
+      desc: String
+      priority: Int
+      complete: Boolean
+    ): Task
+    removeSubTask(
+      taskId: ID!
+      id: ID!
+    ): Task
+    updateSubTask(
+      taskId: ID!
+      id: ID!
       title: String
       desc: String
       priority: Int

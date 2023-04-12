@@ -5,6 +5,7 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, List, Task } = require("../models");
 const { signToken } = require("../utils/auth");
+const { findByIdAndUpdate } = require("../models/User");
 
 const resolvers = {
   Query: {
@@ -71,11 +72,20 @@ const resolvers = {
       return { token, user };
     },
 
-    addUser: async (parent, { email, username, password }) => {
+    addUser: async (parent, { email, username, password, listName, title }) => {
       const user = await User.create({ email, username, password });
-
       const token = signToken(user);
-      return { token, user };
+      const list = await List.create( {listName: "My First List"} );
+      await User.findByIdAndUpdate(
+        { _id: user._id },
+        { $addToSet: { lists: list._id } }
+      ); 
+      const task = await Task.create({ title: "My First Task" })
+      await List.findByIdAndUpdate(
+        { _id: list._id},
+        { $addToSet: { tasks: task._id } }
+      );
+      return { token, user, list, task };
     },
 
     removeUser: async (parent, { id }) => {
@@ -117,10 +127,23 @@ const resolvers = {
       );
     },
 
-    removeTask: async (parent, { id }) => {
-      return Task.findOneAndDelete({ _id: id });
+    removeSubTask: async (parent, { taskId, id }) => {
+      await Task.findByIdAndUpdate(
+        { _id: taskId },
+        { $pull: { subTasks: {_id: id} } }
+      );
     },
 
+    updateSubTask: async (parent, { taskId, id, title, desc, priority, complete }) => {
+      await Task.findByIdAndUpdate(
+        { _id: taskId },
+        { $pull: { subTasks: {_id: id} } },
+      );
+      await Task.findByIdAndUpdate(
+        { _id: taskId },
+        { $addToSet: { subTasks: { _id: id, title, desc, priority, complete } } }
+      )
+    },
     // removeTask with Context:
 
     updateTask: async (parent, args) => {

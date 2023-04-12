@@ -18,7 +18,6 @@ mutation AddUser($username: String!, $email: String!, $password: String!) {
     user {
       _id
       email
-      username
     }
     token
   }
@@ -107,9 +106,29 @@ mutation RemoveTask($removeTaskId: ID!) {
 }
 `;
 
+export const REMOVE_SUB_TASK = gql `
+mutation RemoveSubTask($taskId: ID!, $subTaskId: ID!) {
+  removeSubTask(taskId: $taskId, id: $subTaskId) {
+    subTasks {
+      _id
+      title
+    }
+  }
+}
+`;
+
 export const UPDATE_TASK = gql `
 mutation UpdateTask($updateTaskId: ID!, $title: String, $desc: String, $priority: Int, $complete: Boolean) {
   updateTask(id: $updateTaskId, title: $title, desc: $desc, priority: $priority, complete: $complete) {
+    _id
+    title
+  }
+}
+`;
+
+export const UPDATE_SUB_TASK =gql `
+mutation UpdateSubTask($taskId: ID!, $subTaskId: ID!, $title: String, $desc: String, $priority: Int, $complete: Boolean) {
+  updateSubTask(taskId: $taskId, id: $subTaskId, title: $title, desc: $desc, priority: $priority, complete: $complete) {
     _id
     title
   }
