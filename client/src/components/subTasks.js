@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -18,6 +18,8 @@ import Container from '@mui/material/Container';
 import { useQuery } from '@apollo/client';
 import { GET_SINGLE_LIST } from '../utils/queries';
 
+import ListContext from './listContext';
+
 const styles = {
   header: {
     display: 'flex',
@@ -34,6 +36,8 @@ const styles = {
 export default function SubTasks() {
   const [open, setOpen] = React.useState(false);
 
+  const { activeList, setData } = useContext(ListContext);
+
   const id = "642f8fdafb864a7af0f13f97"; // This is the list ID
   const { loading, error, data } = useQuery(GET_SINGLE_LIST,
     { variables: { id } }
@@ -49,6 +53,7 @@ export default function SubTasks() {
   return (
     <Container>
       <Container>
+        <p>{activeList}</p>
     <div style={styles.header}>
     <div>
       <h3>{listData.listName}</h3>
