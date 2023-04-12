@@ -7,6 +7,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
+import { useMutation } from '@apollo/client';
+import { CREATE_LIST } from '../utils/mutations';
+
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
 
@@ -19,8 +22,29 @@ export default function FormDialog() {
   };
 
   
-  const createNewList = () => {
+  const CreateNewList = () => {
+    console.log('in create list');
+    const listName = document.getElementById('listName').value
+
+    const userId = "642f8b9361968c78806c0e71"; /// THIS NEEDS TO BE UPDATED TO PULL IN ACTIVE USER
+    console.log('set the vars');
+
+
+    /// THis is where the code is failing
+    const { loading, error, data } = useMutation(CREATE_LIST,
+        { variables: { listName, userId } }
+      )
+
+
+
+    console.log('after mutation');
+      if (loading) return <p>Creating List...</p>;
+      if (error) return <p>Error creating your tasks list</p>;
+      console.log('after ifs');
+    
     console.log(document.getElementById('listName').value)
+        return data
+
   }
 
   return (
@@ -46,7 +70,7 @@ export default function FormDialog() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={createNewList}>Create New List</Button>
+          <Button onClick={CreateNewList}>Create New List</Button>
         </DialogActions>
       </Dialog>
     </div>
