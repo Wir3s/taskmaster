@@ -53,8 +53,8 @@ mutation UpdateUserUsername($updateUserUsernameId: ID!, $username: String!) {
 `;
 
 export const CREATE_LIST = gql `
-mutation CreateList($listName: String!, $UserId: ID!) {
-  createList(listName: $listName, id: $UserId) {
+mutation CreateList($listName: String!, $userId: ID!) {
+  createList(listName: $listName, id: $userId) {
     _id
     listName
   }

@@ -9,7 +9,7 @@ import TaskList from "../components/taskList"
 
 import ListContext from '../components/listContext';
 
-import NewListModal from '../components/newListModal'
+import NewListDialog from '../components/newListDialog'
 
 const styles = {
   header: {
@@ -50,7 +50,7 @@ const Home = () => {
 
       <div style={styles.main}>
         <Container >
-          <NewListModal />
+          <NewListDialog />
           <h3>Your Task Lists</h3>
           <ListContext.Provider value={{ activeList, setData }}>
             <TaskList />
