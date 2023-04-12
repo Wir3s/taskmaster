@@ -127,9 +127,16 @@ const resolvers = {
       );
     },
 
-    removeTask: async (parent, { id }) => {
-      return Task.findOneAndDelete({ _id: id });
+    removeSubTask: async (parent, { taskId, id }) => {
+      await Task.findByIdAndUpdate(
+        { _id: taskId },
+        { $pull: { subTasks: {_id: id} } }
+      );
     },
+
+    // removeSubTask: async (parent, { id }) => {
+    //   return Task.findOneAndDelete({ _id: id });
+    // },
 
     // removeTask with Context:
 

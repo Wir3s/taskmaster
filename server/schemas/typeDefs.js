@@ -102,6 +102,10 @@ const typeDefs = gql`
       priority: Int
       complete: Boolean
     ): Task
+    removeSubTask(
+      taskId: ID!
+      id: ID!
+    ): Task
   }
 `;
 
