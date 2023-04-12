@@ -28,6 +28,7 @@ const TaskList = () => {
       {lists.map((list) => (
       <div key={list._id} style={styles.flex}>
         <div>{list.listName}</div>
+        <button id={list._id} >EDIT</button>
         <button id={list._id} >🗑</button>
       </div>
       ))}
