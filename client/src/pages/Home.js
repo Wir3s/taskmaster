@@ -31,6 +31,14 @@ const styles = {
 
 const Home = () => {
 
+  if (!Auth.loggedIn()) {
+    return (
+      <div>
+        {console.log("Not logged in. Redirecting...")}
+        <Navigate to='/login' />
+      </div>
+    )
+  }
 
   const [activeList, setData] = useState('default');
   const [activeUser, setUser] = useState('None');
@@ -48,14 +56,6 @@ const Home = () => {
   console.log (activeUserDetails.me.username)
   console.log(activeUser)
 
-  if (!Auth.loggedIn()) {
-    return (
-      <div>
-        {console.log("Not logged in. Redirecting...")}
-        <Navigate to='/login' />
-      </div>
-    )
-  }
   return (
     <ActiveUserContext.Provider value={{ activeUser, setUser }}>
     <div>

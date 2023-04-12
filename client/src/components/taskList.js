@@ -6,6 +6,8 @@ import { GET_ME_LISTS } from '../utils/queries';
 
 import ListContext from './listContext';
 
+import UpdateListDialog from './updateListDialog';
+
 const styles = {
   flex: {
     display: 'flex',
@@ -40,9 +42,8 @@ const TaskList = () => {
     <Container maxWidth="full">
       {lists.map((list) => (
         <div key={list._id} style={styles.flex}>
-          <div>{list.listName}</div>
           <button data-listid={list._id} onClick={handleClick}>{list.listName}</button>
-          <button id={list._id} >EDIT</button>
+          <UpdateListDialog listId={list._id} listName={list.listName}/>
           <button id={list._id} >🗑</button>
         </div>
       ))}
