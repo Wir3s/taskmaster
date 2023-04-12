@@ -45,7 +45,7 @@ export default function UpdateListDialog(props) {
 
 
     console.log('after mutation');
-      if (loading) return <p>Updating the list nam ...</p>;
+      if (loading) return <p>Updating the list name ...</p>;
       if (error) return <p>Error updating your lists name.</p>;
       console.log('after ifs');
     
@@ -55,7 +55,7 @@ export default function UpdateListDialog(props) {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Update List Name
+        Edit List
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Update List</DialogTitle>

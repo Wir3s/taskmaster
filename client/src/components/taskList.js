@@ -7,6 +7,7 @@ import { GET_ME_LISTS } from '../utils/queries';
 import ListContext from './listContext';
 
 import UpdateListDialog from './updateListDialog';
+import DeleteListDialog from './deleteListDialog';
 
 const styles = {
   flex: {
@@ -44,7 +45,7 @@ const TaskList = () => {
         <div key={list._id} style={styles.flex}>
           <button data-listid={list._id} onClick={handleClick}>{list.listName}</button>
           <UpdateListDialog listId={list._id} listName={list.listName}/>
-          <button id={list._id} >🗑</button>
+          <DeleteListDialog listId={list._id} listName={list.listName}/>
         </div>
       ))}
     </Container>
