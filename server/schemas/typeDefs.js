@@ -77,6 +77,7 @@ const typeDefs = gql`
       priority: Int
       complete: Boolean!
       dueDate: String
+      id: String
     ): Task
     removeTask(id: ID!): Task
     updateTask(

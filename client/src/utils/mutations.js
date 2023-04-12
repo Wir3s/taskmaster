@@ -80,3 +80,38 @@ mutation UpdateList($updateListId: ID!, $listName: String!) {
 }
 `;
 
+export const ADD_TASK = gql`
+mutation AddTask($title: String!, $complete: Boolean!, $addTaskId: String, $priority: Int, $desc: String) {
+  addTask(title: $title, complete: $complete, id: $addTaskId, priority: $priority, desc: $desc) {
+    _id
+    title
+  }
+}
+`;
+
+export const ADD_SUBTASK = gql `
+mutation AddSubTask($taskId: ID!, $title: String, $desc: String, $priority: Int, $complete: Boolean) {
+  addSubTask(taskId: $taskId, title: $title, desc: $desc, priority: $priority, complete: $complete) {
+    _id
+    title
+  }
+}
+`;
+
+export const REMOVE_TASK = gql `
+mutation RemoveTask($removeTaskId: ID!) {
+  removeTask(id: $removeTaskId) {
+    _id
+    title
+  }
+}
+`;
+
+export const UPDATE_TASK = gql `
+mutation UpdateTask($updateTaskId: ID!, $title: String, $desc: String, $priority: Int, $complete: Boolean) {
+  updateTask(id: $updateTaskId, title: $title, desc: $desc, priority: $priority, complete: $complete) {
+    _id
+    title
+  }
+}
+`;

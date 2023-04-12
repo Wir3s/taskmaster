@@ -95,7 +95,7 @@ const resolvers = {
     },
 
     // TASKS:
-    addTask: async (parent, { title, desc, priority, complete, dueDate, listId }, context) => {
+    addTask: async (parent, { title, desc, priority, complete, dueDate, id }, context) => {
       const task = await Task.create({
         title,
         desc,
@@ -104,7 +104,7 @@ const resolvers = {
         dueDate,
       });
       await List.findByIdAndUpdate(
-        { _id: listId },
+        { _id: id },
         { $addToSet: { tasks: task._id } }
       );
       return task;
