@@ -38,7 +38,7 @@ export default function SubTasks() {
 
   const { activeList, setData } = useContext(ListContext);
 
-  const id = "642f8fdafb864a7af0f13f97"; // This is the list ID
+  const id = activeList; // This is the list ID
   const { loading, error, data } = useQuery(GET_SINGLE_LIST,
     { variables: { id } }
   )
@@ -53,83 +53,82 @@ export default function SubTasks() {
   return (
     <Container>
       <Container>
-        <p>{activeList}</p>
-    <div style={styles.header}>
-    <div>
-      <h3>{listData.listName}</h3>
-      <p>Task Count</p>
-    </div>
-    <div>
-      <p>Add New Task BTN</p>
-      <p>Hide / Show Completed Toggle</p>
-    </div>
-  </div>
-  </Container>
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="left">Hide / Show Subtasks</TableCell>
-            <TableCell align="left">Details</TableCell>
-            <TableCell align="left">Priority</TableCell>
-            <TableCell align="left">Task Name</TableCell>
-            <TableCell align="left">Due Date</TableCell>
-            <TableCell align="left">Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {listData.tasks.map((row) => (
-            <React.Fragment> 
-            <TableRow key={row._id} sx={{ '& > *': { borderBottom: 'unset' } }}>
-            <TableCell align="left">
-              <IconButton
-                aria-label="expand row"
-                size="small"
-                onClick={() => setOpen(!open)}
-              >
-                {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-              </IconButton>
-            </TableCell>
-            <TableCell align="left">🔍</TableCell>
-            <TableCell align="left">{row.priority}</TableCell>
-            <TableCell align="left">{row.title}</TableCell>
-            <TableCell align="left">{row.dueDate}</TableCell>
-            <TableCell align="left">✓ / 🗑 / 🖫</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-              <Collapse in={open} timeout="auto" unmountOnExit>
-                <Box sx={{ margin: 1 }}>
-                  <Typography variant="h6" gutterBottom component="div">
-                    Sub-Tasks
-                  </Typography>
-                  <Table size="small" aria-label="purchases">
-                    <TableBody>
-                      {row.subTasks.map((subTask) => (
-                        <TableRow key={subTask._id}>
-                          <TableCell align="right">🔍</TableCell>
-                          <TableCell align="left">{subTask.priority}</TableCell>
-                          <TableCell align="left">{subTask.title}</TableCell>
-                          <TableCell align="left">✓ / 🗑 / 🖫</TableCell>
-                        </TableRow>
-                      ))}
-                      <TableRow>
-                        <TableCell align="right">+</TableCell>
-                        <TableCell align="left">Priority</TableCell>
-                        <TableCell align="left">Task Name</TableCell>
-                        <TableCell align="left">Save Icon</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </Box>
-              </Collapse>
-            </TableCell>
-          </TableRow>
-          </React.Fragment>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+        <div style={styles.header}>
+          <div>
+            <h3>{listData.listName}</h3>
+            <p>Task Count</p>
+          </div>
+          <div>
+            <p>Add New Task BTN</p>
+            <p>Hide / Show Completed Toggle</p>
+          </div>
+        </div>
+      </Container>
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="left">Hide / Show Subtasks</TableCell>
+              <TableCell align="left">Details</TableCell>
+              <TableCell align="left">Priority</TableCell>
+              <TableCell align="left">Task Name</TableCell>
+              <TableCell align="left">Due Date</TableCell>
+              <TableCell align="left">Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {listData.tasks.map((row) => (
+              <React.Fragment>
+                <TableRow key={row._id} sx={{ '& > *': { borderBottom: 'unset' } }}>
+                  <TableCell align="left">
+                    <IconButton
+                      aria-label="expand row"
+                      size="small"
+                      onClick={() => setOpen(!open)}
+                    >
+                      {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    </IconButton>
+                  </TableCell>
+                  <TableCell align="left">🔍</TableCell>
+                  <TableCell align="left">{row.priority}</TableCell>
+                  <TableCell align="left">{row.title}</TableCell>
+                  <TableCell align="left">{row.dueDate}</TableCell>
+                  <TableCell align="left">✓ / 🗑 / 🖫</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                      <Box sx={{ margin: 1 }}>
+                        <Typography variant="h6" gutterBottom component="div">
+                          Sub-Tasks
+                        </Typography>
+                        <Table size="small" aria-label="purchases">
+                          <TableBody>
+                            {row.subTasks.map((subTask) => (
+                              <TableRow key={subTask._id}>
+                                <TableCell align="right">🔍</TableCell>
+                                <TableCell align="left">{subTask.priority}</TableCell>
+                                <TableCell align="left">{subTask.title}</TableCell>
+                                <TableCell align="left">✓ / 🗑 / 🖫</TableCell>
+                              </TableRow>
+                            ))}
+                            <TableRow>
+                              <TableCell align="right">+</TableCell>
+                              <TableCell align="left">Priority</TableCell>
+                              <TableCell align="left">Task Name</TableCell>
+                              <TableCell align="left">Save Icon</TableCell>
+                            </TableRow>
+                          </TableBody>
+                        </Table>
+                      </Box>
+                    </Collapse>
+                  </TableCell>
+                </TableRow>
+              </React.Fragment>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Container>
   );
 }

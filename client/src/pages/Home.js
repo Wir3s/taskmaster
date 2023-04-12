@@ -23,7 +23,7 @@ const styles = {
 }
 
 const Home = () => {
-  const [activeList, setData] = useState('Default List(in Home)');
+  const [activeList, setData] = useState('default');
 
   if (!Auth.loggedIn()) {
     return (
