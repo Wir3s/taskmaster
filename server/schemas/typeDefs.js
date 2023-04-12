@@ -66,7 +66,7 @@ const typeDefs = gql`
     updateUserUsername(id: ID!, username: String!): User
 
     # LISTS:
-    createList(listName: String!): List
+    createList(listName: String!, id: ID!): List
     removeList(id: ID!): List
     updateList(id: ID!, listName: String!): List
 
