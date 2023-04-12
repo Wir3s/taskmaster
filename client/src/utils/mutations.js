@@ -18,6 +18,7 @@ mutation AddUser($username: String!, $email: String!, $password: String!) {
     user {
       _id
       email
+      username
     }
     token
   }
@@ -46,8 +47,8 @@ mutation UpdateUserEmail($updateUserEmailId: ID!, $email: String!) {
 export const UPDATE_USERNAME =gql `
 mutation UpdateUserUsername($updateUserUsernameId: ID!, $username: String!) {
   updateUserUsername(id: $updateUserUsernameId, username: $username) {
-    username
     _id
+    username
   }
 }
 `;
