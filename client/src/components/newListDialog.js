@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -10,7 +10,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useMutation } from '@apollo/client';
 import { CREATE_LIST } from '../utils/mutations';
 
+import ActiveUserContext from './activeUserContext';
+
 export default function FormDialog() {
+  const { activeUser, setUser } = useContext(ActiveUserContext);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -21,12 +24,12 @@ export default function FormDialog() {
     setOpen(false);
   };
 
-  
+
   const CreateNewList = () => {
     console.log('in create list');
     const listName = document.getElementById('listName').value
 
-    const userId = "642f8b9361968c78806c0e71"; /// THIS NEEDS TO BE UPDATED TO PULL IN ACTIVE USER
+    const userId = activeUser;
     console.log('set the vars');
 
 

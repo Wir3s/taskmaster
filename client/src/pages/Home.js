@@ -9,6 +9,11 @@ import TaskList from "../components/taskList"
 
 import ListContext from '../components/listContext';
 
+import ActiveUserContext from '../components/activeUserContext';
+import { useQuery } from '@apollo/client';
+import { GET_ME_LISTS } from '../utils/queries';
+
+
 import NewListDialog from '../components/newListDialog'
 
 const styles = {
@@ -25,7 +30,23 @@ const styles = {
 }
 
 const Home = () => {
+
+
   const [activeList, setData] = useState('default');
+  const [activeUser, setUser] = useState('None');
+
+  const { loading, error, data } = useQuery(GET_ME_LISTS);
+
+  if (loading) return <p>Setting Active User...</p>;
+  if (error) return <p>Error setting active user</p>;
+
+  const activeUserDetails = data
+  if (activeUser === 'None') {
+    setUser(activeUserDetails.me._id)
+  }
+  console.log (activeUserDetails.me._id)
+  console.log (activeUserDetails.me.username)
+  console.log(activeUser)
 
   if (!Auth.loggedIn()) {
     return (
@@ -36,12 +57,13 @@ const Home = () => {
     )
   }
   return (
+    <ActiveUserContext.Provider value={{ activeUser, setUser }}>
     <div>
       <Container>
         <header style={styles.header}>
           <h1>TaskMaster</h1>
           <div>
-            <div>Welcome USERNAME</div>
+            <div>Welcome {activeUserDetails.me.username}</div>
             <div>DATE</div>
           </div>
           <div>Settings BTN</div>
@@ -64,6 +86,7 @@ const Home = () => {
         </Container>
       </div>
     </div>
+    </ActiveUserContext.Provider>
   );
 };
 
