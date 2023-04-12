@@ -9,6 +9,8 @@ import TaskList from "../components/taskList"
 
 import ListContext from '../components/listContext';
 
+import NewListModal from '../components/newListModal'
+
 const styles = {
   header: {
     display: 'flex',
@@ -48,7 +50,7 @@ const Home = () => {
 
       <div style={styles.main}>
         <Container >
-          <button>Add New Task List</button>
+          <NewListModal />
           <h3>Your Task Lists</h3>
           <ListContext.Provider value={{ activeList, setData }}>
             <TaskList />
