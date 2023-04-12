@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Auth from "../utils/auth";
 import { Navigate } from "react-router-dom";
 
@@ -6,6 +6,10 @@ import Container from '@mui/material/Container';
 
 import SubTasks from "../components/subTasks"
 import TaskList from "../components/taskList"
+
+import ListContext from '../components/listContext';
+
+import NewListModal from '../components/newListModal'
 
 const styles = {
   header: {
@@ -21,6 +25,8 @@ const styles = {
 }
 
 const Home = () => {
+  const [activeList, setData] = useState('default');
+
   if (!Auth.loggedIn()) {
     return (
       <div>
@@ -44,13 +50,17 @@ const Home = () => {
 
       <div style={styles.main}>
         <Container >
-          <button>Add New Task List</button>
+          <NewListModal />
           <h3>Your Task Lists</h3>
-          <TaskList />
+          <ListContext.Provider value={{ activeList, setData }}>
+            <TaskList />
+          </ListContext.Provider>
         </Container>
 
         <Container>
-          <SubTasks />
+          <ListContext.Provider value={{ activeList, setData }}>
+            <SubTasks />
+          </ListContext.Provider>
         </Container>
       </div>
     </div>

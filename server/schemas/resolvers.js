@@ -156,13 +156,12 @@ const resolvers = {
     // },
     // LISTS:
 
-    createList: async (parent, { listName }) => {
+    createList: async (parent, { listName, id }) => {
       const list = await List.create({ listName });
-
-      // { $addToSet: {users: "642f8b9361968c78806c0e73"} }
-
-      // users.push("642f8b9361968c78806c0e73");
-
+      await User.findByIdAndUpdate(
+        { _id: id },
+        { $addToSet: { lists: list._id } }
+      );
       return list;
     },
 
