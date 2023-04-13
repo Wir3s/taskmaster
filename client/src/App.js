@@ -5,11 +5,14 @@ import {  ApolloClient,
           createHttpLink } from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
+
 import Dashboard from './pages/Dashboard';
 import Splash from './pages/Splash';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Settings from './pages/Settings';
+
+import Footer from './components/Footer';
 import PageWrapper from './components/pageWrapper';
 
 const httpLink = createHttpLink({
@@ -73,7 +76,11 @@ function renderPage() {
 
 function App() {
   return (
-    <PageWrapper>{renderPage()}</PageWrapper>
+    <div>
+      <PageWrapper>{renderPage()}</PageWrapper>
+      <Footer />
+    </div>
+    
   )
 }
 
