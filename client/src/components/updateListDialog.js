@@ -1,17 +1,28 @@
-import React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import React from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import { styled } from '@mui/material/styles';
+import Tooltip, {tooltipClasses} from "@mui/material/Tooltip";
 
-import { useMutation } from '@apollo/client';
-import { UPDATE_LIST } from '../utils/mutations';
+import { useMutation } from "@apollo/client";
+import { UPDATE_LIST } from "../utils/mutations";
 
 export default function UpdateListDialog(props) {
   const [open, setOpen] = React.useState(false);
+
+  // state var for updateListId
+  // state var for listName
+  const [updateListId, setUpdateListId] = React.useState("");
+  const [listName, setListName] = React.useState("");
+
+  const [updateList, { error, loading, data }] = useMutation(UPDATE_LIST, {
+    variables: { updateListId, listName },
+  });
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -21,42 +32,52 @@ export default function UpdateListDialog(props) {
     setOpen(false);
   };
 
-  const UpdateList = () => {
-    console.log('in update list');
+  const UpdateList = async () => {
+    console.log("in update list");
     //Setting listName for use in mutation
-    let listName = ''
-    if (document.getElementById('updateListName').value === '' ){
-      listName = document.getElementById('updateListName').placeholder
+    if ((await document.getElementById("updateListName").value) === "") {
+      console.log("setting to placeholder value");
+      setListName(document.getElementById("updateListName").placeholder);
     } else {
-      listName = document.getElementById('updateListName').value
+      setListName(document.getElementById("updateListName").value);
+      console.log("setting to  value");
     }
     console.log("list Name after if");
-    console.log(listName)
+    console.log(listName);
 
     //Setting userId for use in mutation
-    const updateListId = props.listId;
-    console.log('set all vars for mutation');
+    setUpdateListId(props.listId);
+    console.log("set all vars for mutation");
 
     /// THis is where the code is failing
-    const { loading, error } = useMutation(UPDATE_LIST, // THIS NEEDS TO BE UPDATED TO THE UPDATE LIST
-        { variables: { updateListId, listName } } //UPDATE THESE VARIABLES
-      )
+    updateList(updateListId, listName);
 
+    console.log("after mutation");
+    if (loading) return <p>Updating the list name ...</p>;
+    if (error) return <p>Error updating your lists name.</p>;
+    console.log("after ifs");
 
-
-    console.log('after mutation');
-      if (loading) return <p>Updating the list name ...</p>;
-      if (error) return <p>Error updating your lists name.</p>;
-      console.log('after ifs');
-    
     handleClose();
-  }
+  };
+
+  const BootstrapTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.black,
+    },
+  }));
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Edit List
-      </Button>
+      <BootstrapTooltip title="Change list name" placement="top-start">
+        <Button variant="outlined" onClick={handleClickOpen}>
+          Edit List
+        </Button>
+      </BootstrapTooltip>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Update List</DialogTitle>
         <DialogContent>
