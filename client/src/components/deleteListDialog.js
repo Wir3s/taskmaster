@@ -13,6 +13,12 @@ import { REMOVE_LIST } from '../utils/mutations';
 export default function DeleteListDialog(props) {
     const [open, setOpen] = React.useState(false);
 
+    const [removeListId, setListId] = React.useState('');
+
+    const [removeList, { error, loading, data }] = useMutation(REMOVE_LIST, 
+    { variables: { removeListId } } 
+)
+
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -22,28 +28,29 @@ export default function DeleteListDialog(props) {
     };
 
 
-    const DeleteList = () => {
+    const DeleteList = async() => {
         console.log('in delete list');
 
-        if (document.getElementById('deleteConfirm').value !== props.listName) {
+        if (await document.getElementById('deleteConfirm').value !== props.listName) {
             document.getElementById('deleteConfirm').value = ""
             document.getElementById('deleteConfirm').placeholder = "Name does not match, unable to delete"
+            return
         } 
             console.log("delete list after if");
 
             //Setting userId for use in mutation
-            const removeListId = props.listId;
-            console.log('set all vars for mutation');
+            console.log(props.listId)
 
-            /// THis is where the code is failing
-            const { loading, error } = useMutation(REMOVE_LIST, // THIS NEEDS TO BE UPDATED TO THE UPDATE LIST
-                { variables: { removeListId } } //UPDATE THESE VARIABLES
-            )
+            console.log('set all vars for mutation');
 
             console.log('after mutation');
             if (loading) return <p>Deleting the list name...</p>;
             if (error) return <p>Error deleting the lists.</p>;
             console.log('after ifs');
+            console.log(props.listId)
+            setListId (props.listId);
+            console.log(removeListId)
+            removeList(removeListId)
 
             handleClose();
        }
@@ -64,7 +71,7 @@ export default function DeleteListDialog(props) {
                         autoFocus
                         margin="dense"
                         id="deleteConfirm"
-                        placeholder='"Confirm Task Name'
+                        placeholder='Confirm Task Name'
                         type="name"
                         fullWidth
                         variant="standard"
