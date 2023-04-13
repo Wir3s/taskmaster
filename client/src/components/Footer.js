@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <footer>
-            <p>Test Footer</p>
+            <h3>Lovely footer designed by all of us here at TaskMaster ♥</h3>
         </footer>
     )
 };
