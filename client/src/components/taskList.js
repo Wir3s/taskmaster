@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
 import Container from '@mui/material/Container';
+import Button from "@mui/material/Button";
+import { styled } from '@mui/material/styles';
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 
 import { useQuery } from '@apollo/client';
 import { GET_ME_LISTS } from '../utils/queries';
@@ -39,11 +42,24 @@ const TaskList = () => {
   console.log("testing")
   console.log(data.me.lists[0]._id)
 
+  const BootstrapTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.black,
+    },
+  }));
+
   return (
     <Container maxWidth="full">
       {lists.map((list) => (
         <div key={list._id} style={styles.flex}>
-          <button data-listid={list._id} onClick={handleClick}>{list.listName}</button>
+          <BootstrapTooltip title="View List" placement="left">
+          <Button variant="contained" data-listid={list._id} onClick={handleClick}>{list.listName}</Button>
+          </BootstrapTooltip>
           <UpdateListDialog listId={list._id} listName={list.listName}/>
           <DeleteListDialog listId={list._id} listName={list.listName}/>
         </div>
