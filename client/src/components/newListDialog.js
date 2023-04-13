@@ -13,8 +13,15 @@ import { CREATE_LIST } from '../utils/mutations';
 import ActiveUserContext from './activeUserContext';
 
 export default function FormDialog() {
-  const { activeUser, setUser } = useContext(ActiveUserContext);
+  const { activeUser } = useContext(ActiveUserContext);
   const [open, setOpen] = React.useState(false);
+
+  const [listName, setListName] = React.useState('');
+  const [userId, setUserId] = React.useState('');
+
+    const [createList, { error, loading }] = useMutation(CREATE_LIST,
+      { variables: { listName, userId } }
+    )
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,28 +32,23 @@ export default function FormDialog() {
   };
 
 
-  const CreateNewList = () => {
+  const CreateNewList = async() => {
     console.log('in create list');
-    const listName = document.getElementById('listName').value
+    setListName(await document.getElementById('listName').value)
 
-    const userId = activeUser;
+    setUserId(activeUser);
     console.log('set the vars');
 
 
-    /// THis is where the code is failing
-    const { loading, error, data } = useMutation(CREATE_LIST,
-        { variables: { listName, userId } }
-      )
-
-
-
-    console.log('after mutation');
-      if (loading) return <p>Creating List...</p>;
-      if (error) return <p>Error creating your tasks list</p>;
+    console.log('after mutation'); 
+      if ( loading) return <p>Creating List...</p>;
+      if ( error) return <p>Error creating your tasks list</p>;
       console.log('after ifs');
     
     console.log(document.getElementById('listName').value)
-        return data
+    console.log(listName)
+    createList(listName, userId);
+    handleClose(); 
 
   }
 
