@@ -4,8 +4,8 @@ import { Navigate } from "react-router-dom";
 
 import Container from '@mui/material/Container';
 
-import SubTasks from "../components/subTasks"
-import TaskList from "../components/taskList"
+import SubTasks from "../components/subTasks";
+import TaskList from "../components/taskList";
 
 import ListContext from '../components/listContext';
 
@@ -14,7 +14,7 @@ import { useQuery } from '@apollo/client';
 import { GET_ME_LISTS } from '../utils/queries';
 
 
-import NewListDialog from '../components/newListDialog'
+import NewListDialog from '../components/newListDialog';
 
 const styles = {
   header: {
@@ -27,9 +27,13 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'center'
   },
-}
+};
 
-const Home = () => {
+const Dashboard = () => {
+  const [activeList, setData] = useState('default');
+  const [activeUser, setUser] = useState('None');
+
+  const { loading, error, data } = useQuery(GET_ME_LISTS);
 
   if (!Auth.loggedIn()) {
     return (
@@ -38,23 +42,18 @@ const Home = () => {
         <Navigate to='/login' />
       </div>
     )
-  }
-
-  const [activeList, setData] = useState('default');
-  const [activeUser, setUser] = useState('None');
-
-  const { loading, error, data } = useQuery(GET_ME_LISTS);
+  };
 
   if (loading) return <p>Setting Active User...</p>;
   if (error) return <p>Error setting active user</p>;
 
-  const activeUserDetails = data
+  const activeUserDetails = data;
+
+  console.log(activeUserDetails);
+
   if (activeUser === 'None') {
-    setUser(activeUserDetails.me._id)
+    setUser(activeUserDetails.me._id);
   }
-  console.log (activeUserDetails.me._id)
-  console.log (activeUserDetails.me.username)
-  console.log(activeUser)
 
   return (
     <ActiveUserContext.Provider value={{ activeUser, setUser }}>
@@ -90,4 +89,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Dashboard;
