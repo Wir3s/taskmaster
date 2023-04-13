@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Tooltip from "@mui/material/Tooltip";
 
 import { useMutation } from '@apollo/client';
 import { REMOVE_LIST } from '../utils/mutations';
@@ -57,9 +58,11 @@ export default function DeleteListDialog(props) {
 
     return (
         <div>
+             <Tooltip title="Delete List" placement="right-end">
             <Button variant="outlined" onClick={handleClickOpen}>
                 🗑
             </Button>
+            </Tooltip>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Confirm Task List Delete</DialogTitle>
                 <DialogContent>

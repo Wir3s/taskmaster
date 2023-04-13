@@ -1,26 +1,27 @@
-import React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import React from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Tooltip from "@mui/material/Tooltip";
 
-import { useMutation } from '@apollo/client';
-import { UPDATE_LIST } from '../utils/mutations';
+import { useMutation } from "@apollo/client";
+import { UPDATE_LIST } from "../utils/mutations";
 
 export default function UpdateListDialog(props) {
   const [open, setOpen] = React.useState(false);
 
   // state var for updateListId
   // state var for listName
-  const [updateListId, setUpdateListId] = React.useState('');
-  const [listName, setListName] = React.useState('');
-  
-  const [ updateList, { error, loading, data } ] = useMutation(UPDATE_LIST,
-      { variables: { updateListId, listName } } 
-    )
+  const [updateListId, setUpdateListId] = React.useState("");
+  const [listName, setListName] = React.useState("");
+
+  const [updateList, { error, loading, data }] = useMutation(UPDATE_LIST, {
+    variables: { updateListId, listName },
+  });
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -31,39 +32,40 @@ export default function UpdateListDialog(props) {
   };
 
   const UpdateList = async () => {
-    console.log('in update list');
+    console.log("in update list");
     //Setting listName for use in mutation
-    if ( await document.getElementById('updateListName').value === '' ){
-      console.log('setting to placeholder value')
-      setListName (document.getElementById('updateListName').placeholder)
+    if ((await document.getElementById("updateListName").value) === "") {
+      console.log("setting to placeholder value");
+      setListName(document.getElementById("updateListName").placeholder);
     } else {
-      setListName (document.getElementById('updateListName').value)
-      console.log('setting to  value')
+      setListName(document.getElementById("updateListName").value);
+      console.log("setting to  value");
     }
     console.log("list Name after if");
-    console.log(listName)
+    console.log(listName);
 
     //Setting userId for use in mutation
-    setUpdateListId (props.listId);
-    console.log('set all vars for mutation');
+    setUpdateListId(props.listId);
+    console.log("set all vars for mutation");
 
     /// THis is where the code is failing
-    updateList(updateListId, listName)
+    updateList(updateListId, listName);
 
+    console.log("after mutation");
+    if (loading) return <p>Updating the list name ...</p>;
+    if (error) return <p>Error updating your lists name.</p>;
+    console.log("after ifs");
 
-    console.log('after mutation');
-      if (loading) return <p>Updating the list name ...</p>;
-      if (error) return <p>Error updating your lists name.</p>;
-      console.log('after ifs');
-    
     handleClose();
-  }
+  };
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Edit List
-      </Button>
+      <Tooltip title="Change list name" placement="top-start">
+        <Button variant="outlined" onClick={handleClickOpen}>
+          Edit List
+        </Button>
+      </Tooltip>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Update List</DialogTitle>
         <DialogContent>
