@@ -60,7 +60,7 @@ const taskSchema = new Schema(
       type: Date,
       default: Date.now,
     },
-    dueDate: Date,
+    dueDate: String,
 
     // Uncomment for repeated tasks
     // repeatInterval: Number, // In hours? set to 0 for non-repeating?
@@ -71,15 +71,6 @@ const taskSchema = new Schema(
     },
   }
 );
-
-// pre-save middleware for calculating dueDate based on repeatInterval?
-taskSchema.pre("save", async function (next) {
-  this.dueDate =
-    this.repeatInterval > 0
-      ? this.createdAt + this.repeatInterval
-      : this.createdAt + 24 // hours
-  next();
-});
 
 const Task = model("Task", taskSchema);
 
