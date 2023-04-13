@@ -123,8 +123,8 @@ mutation RemoveSubTask($taskId: ID!, $subTaskId: ID!) {
 `;
 
 export const UPDATE_TASK = gql `
-mutation UpdateTask($updateTaskId: ID!, $title: String, $desc: String, $priority: Int, $complete: Boolean) {
-  updateTask(id: $updateTaskId, title: $title, desc: $desc, priority: $priority, complete: $complete) {
+mutation UpdateTask($updateTaskId: ID!, $title: String, $desc: String, $priority: Int, $complete: Boolean, $dueDate: String) {
+  updateTask(id: $updateTaskId, title: $title, desc: $desc, priority: $priority, complete: $complete, dueDate: $dueDate) {
     _id
     title
   }
