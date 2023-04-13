@@ -124,27 +124,29 @@ export default function NewTaskModal() {
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               <Box component="form">
                 <TextField
+                autoFocus
                   required
                   id="taskTitle"
                   label="Task Title"
+                  fullWidth
                 />
                 <TextField
                   id="taskpriority"
                   label="Priority"
                   type="number"
+                  fullWidth
                   // defaultValue={5}
                   inputProps={{ max: 5, min: 1 }}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
                 />
                 <TextField
                   id="taskDueDate"
                   label="Due Date"
+                  fullWidth
                 />
                 <TextField
                   id="taskDescription"
                   label="Description"
+                  fullWidth
                 />
               </Box>
             </Typography>
