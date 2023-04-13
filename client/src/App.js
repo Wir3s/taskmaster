@@ -5,7 +5,7 @@ import {  ApolloClient,
           createHttpLink } from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
-import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
 import Splash from './pages/Splash';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -45,7 +45,7 @@ function renderPage() {
             />
             <Route
               path="/dashboard"
-              element={<Home />}
+              element={<Dashboard />}
             />
             <Route
               path="/login"
@@ -62,7 +62,7 @@ function renderPage() {
             {/* if user accesses any other page, send em home! */}
             <Route
               path="*"
-              element={<Home />}
+              element={<Dashboard />}
             />
           </Routes>
         </div>
