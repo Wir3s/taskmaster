@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import Container from '@mui/material/Container';
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
 
 import { useQuery } from '@apollo/client';
 import { GET_ME_LISTS } from '../utils/queries';
@@ -43,7 +45,9 @@ const TaskList = () => {
     <Container maxWidth="full">
       {lists.map((list) => (
         <div key={list._id} style={styles.flex}>
-          <button data-listid={list._id} onClick={handleClick}>{list.listName}</button>
+          <Tooltip title="View List" placement="left">
+          <Button data-listid={list._id} onClick={handleClick}>{list.listName}</Button>
+          </Tooltip>
           <UpdateListDialog listId={list._id} listName={list.listName}/>
           <DeleteListDialog listId={list._id} listName={list.listName}/>
         </div>
