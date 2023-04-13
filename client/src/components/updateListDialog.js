@@ -13,6 +13,15 @@ import { UPDATE_LIST } from '../utils/mutations';
 export default function UpdateListDialog(props) {
   const [open, setOpen] = React.useState(false);
 
+  // state var for updateListId
+  // state var for listName
+  const [updateListId, setUpdateListId] = React.useState('');
+  const [listName, setListName] = React.useState('');
+  
+  const [ updateList, { error, loading, data } ] = useMutation(UPDATE_LIST,
+      { variables: { updateListId, listName } } 
+    )
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -21,27 +30,25 @@ export default function UpdateListDialog(props) {
     setOpen(false);
   };
 
-  const UpdateList = () => {
+  const UpdateList = async () => {
     console.log('in update list');
     //Setting listName for use in mutation
-    let listName = ''
-    if (document.getElementById('updateListName').value === '' ){
-      listName = document.getElementById('updateListName').placeholder
+    if ( await document.getElementById('updateListName').value === '' ){
+      console.log('setting to placeholder value')
+      setListName (document.getElementById('updateListName').placeholder)
     } else {
-      listName = document.getElementById('updateListName').value
+      setListName (document.getElementById('updateListName').value)
+      console.log('setting to  value')
     }
     console.log("list Name after if");
     console.log(listName)
 
     //Setting userId for use in mutation
-    const updateListId = props.listId;
+    setUpdateListId (props.listId);
     console.log('set all vars for mutation');
 
     /// THis is where the code is failing
-    const { loading, error } = useMutation(UPDATE_LIST, // THIS NEEDS TO BE UPDATED TO THE UPDATE LIST
-        { variables: { updateListId, listName } } //UPDATE THESE VARIABLES
-      )
-
+    updateList(updateListId, listName)
 
 
     console.log('after mutation');
