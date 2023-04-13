@@ -6,6 +6,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { styled } from '@mui/material/styles';
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
 
 import { useMutation } from '@apollo/client';
 import { REMOVE_LIST } from '../utils/mutations';
@@ -55,11 +59,24 @@ export default function DeleteListDialog(props) {
             handleClose();
        }
 
+       const BootstrapTooltip = styled(({ className, ...props }) => (
+        <Tooltip {...props} arrow classes={{ popper: className }} />
+      ))(({ theme }) => ({
+        [`& .${tooltipClasses.arrow}`]: {
+          color: theme.palette.common.black,
+        },
+        [`& .${tooltipClasses.tooltip}`]: {
+          backgroundColor: theme.palette.common.black,
+        },
+      }));
+
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                🗑
-            </Button>
+             <BootstrapTooltip title="Delete List" placement="right-end">
+            <IconButton variant="outlined" onClick={handleClickOpen}>
+                <DeleteIcon />
+            </IconButton>
+            </BootstrapTooltip>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Confirm Task List Delete</DialogTitle>
                 <DialogContent>
