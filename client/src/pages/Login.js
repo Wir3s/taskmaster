@@ -44,7 +44,7 @@ const Login = (props) => {
         return (
             <div>
                 {console.log("Already logged in. Redirecting...")}
-                <Navigate to='/home' />
+                <Navigate to='/dashboard' />
             </div>
         )
     }
