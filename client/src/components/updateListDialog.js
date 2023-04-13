@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -8,12 +8,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 import { useMutation } from '@apollo/client';
-import { CREATE_LIST } from '../utils/mutations';
+import { UPDATE_LIST } from '../utils/mutations';
 
-import ActiveUserContext from './activeUserContext';
-
-export default function FormDialog() {
-  const { activeUser, setUser } = useContext(ActiveUserContext);
+export default function UpdateListDialog(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -24,56 +21,62 @@ export default function FormDialog() {
     setOpen(false);
   };
 
+  const UpdateList = () => {
+    console.log('in update list');
+    //Setting listName for use in mutation
+    let listName = ''
+    if (document.getElementById('updateListName').value === '' ){
+      listName = document.getElementById('updateListName').placeholder
+    } else {
+      listName = document.getElementById('updateListName').value
+    }
+    console.log("list Name after if");
+    console.log(listName)
 
-  const CreateNewList = () => {
-    console.log('in create list');
-    const listName = document.getElementById('listName').value
-
-    const userId = activeUser;
-    console.log('set the vars');
-
+    //Setting userId for use in mutation
+    const updateListId = props.listId;
+    console.log('set all vars for mutation');
 
     /// THis is where the code is failing
-    const { loading, error, data } = useMutation(CREATE_LIST,
-        { variables: { listName, userId } }
+    const { loading, error } = useMutation(UPDATE_LIST, // THIS NEEDS TO BE UPDATED TO THE UPDATE LIST
+        { variables: { updateListId, listName } } //UPDATE THESE VARIABLES
       )
 
 
 
     console.log('after mutation');
-      if (loading) return <p>Creating List...</p>;
-      if (error) return <p>Error creating your tasks list</p>;
+      if (loading) return <p>Updating the list name ...</p>;
+      if (error) return <p>Error updating your lists name.</p>;
       console.log('after ifs');
     
-    console.log(document.getElementById('listName').value)
-        return data
-
+    handleClose();
   }
 
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Create New List
+        Edit List
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Create New List</DialogTitle>
+        <DialogTitle>Update List</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Please enter the name for the new list that you would like to create.
+            Please enter the new name for this list.
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
-            id="listName"
+            id="updateListName"
             label="List Name"
             type="listName"
+            placeholder={props.listName}
             fullWidth
             variant="standard"
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={CreateNewList}>Create New List</Button>
+          <Button onClick={UpdateList}>Save Changes</Button>
         </DialogActions>
       </Dialog>
     </div>
