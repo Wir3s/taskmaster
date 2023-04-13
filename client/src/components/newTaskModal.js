@@ -14,8 +14,6 @@ import { ADD_TASK } from "../utils/mutations";
 import TextField from '@mui/material/TextField';
 import ListContext from './listContext';
 
-import DatePicker from 'react-date-picker';
-
 const style = {
   position: 'absolute',
   top: '50%',
