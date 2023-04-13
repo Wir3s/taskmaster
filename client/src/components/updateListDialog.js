@@ -6,8 +6,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-
-import Tooltip from "@mui/material/Tooltip";
+import { styled } from '@mui/material/styles';
+import Tooltip, {tooltipClasses} from "@mui/material/Tooltip";
 
 import { useMutation } from "@apollo/client";
 import { UPDATE_LIST } from "../utils/mutations";
@@ -60,15 +60,24 @@ export default function UpdateListDialog(props) {
     handleClose();
   };
 
-
+  const BootstrapTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.black,
+    },
+  }));
 
   return (
     <div>
-      <Tooltip title="Change list name" placement="top-start">
+      <BootstrapTooltip title="Change list name" placement="top-start">
         <Button variant="outlined" onClick={handleClickOpen}>
           Edit List
         </Button>
-      </Tooltip>
+      </BootstrapTooltip>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Update List</DialogTitle>
         <DialogContent>
