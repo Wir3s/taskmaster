@@ -81,10 +81,14 @@ mutation UpdateList($updateListId: ID!, $listName: String!) {
 `;
 
 export const ADD_TASK = gql`
-mutation AddTask($title: String!, $complete: Boolean!, $addListId: String, $priority: Int, $desc: String) {
-  addTask(title: $title, complete: $complete, id: $addListId, priority: $priority, desc: $desc) {
-    _id
+mutation AddTask($title: String!, $complete: Boolean!, $desc: String, $priority: Int, $dueDate: String, $addTaskId: String) {
+  addTask(title: $title, complete: $complete, desc: $desc, priority: $priority, dueDate: $dueDate, id: $addTaskId) {
     title
+    _id
+    priority
+    dueDate
+    desc
+    complete
   }
 }
 `;

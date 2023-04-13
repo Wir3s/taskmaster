@@ -14,9 +14,10 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Container from '@mui/material/Container';
 
-
 import { useQuery } from '@apollo/client';
 import { GET_SINGLE_LIST } from '../utils/queries';
+
+import NewTaskModal from './newTaskModal';
 
 import ListContext from './listContext';
 
@@ -59,7 +60,7 @@ export default function SubTasks() {
             <p>Task Count</p>
           </div>
           <div>
-            <p>Add New Task BTN</p>
+            <NewTaskModal/>
             <p>Hide / Show Completed Toggle</p>
           </div>
         </div>
