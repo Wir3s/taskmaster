@@ -30,6 +30,11 @@ const styles = {
 }
 
 const Home = () => {
+  
+  const [activeList, setData] = useState('default');
+  const [activeUser, setUser] = useState('None');
+
+  const { loading, error, data } = useQuery(GET_ME_LISTS);
 
   if (!Auth.loggedIn()) {
     return (
@@ -39,11 +44,6 @@ const Home = () => {
       </div>
     )
   }
-
-  const [activeList, setData] = useState('default');
-  const [activeUser, setUser] = useState('None');
-
-  const { loading, error, data } = useQuery(GET_ME_LISTS);
 
   if (loading) return <p>Setting Active User...</p>;
   if (error) return <p>Error setting active user</p>;
