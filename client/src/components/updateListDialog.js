@@ -73,8 +73,12 @@ export default function UpdateListDialog(props) {
   }));
 
   return (
-    <div id="updateListDiv" style={{margin: "1vh"}}>
-      <BootstrapTooltip title="Change list name" placement="top-start">
+    <div id="updateListDiv" style={{
+      display: 'flex',
+      margin: "1vh"
+    }}>
+      <BootstrapTooltip
+      title="Change list name" placement="top-start">
         <Button
         variant="text"
         size="small"
@@ -82,6 +86,7 @@ export default function UpdateListDialog(props) {
           <EditIcon/>
         </Button>
       </BootstrapTooltip>
+
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Update List</DialogTitle>
         <DialogContent>
