@@ -30,13 +30,6 @@ export default function NewTaskModal() {
   const { activeList } = useContext(ListContext);
   const [open, setOpen] = React.useState(false);
 
-  // let addTaskId = "642f8fdafb864a7af0f13f97"
-  // let title = "Hard Code Test"
-  // let priority = 1
-  // let desc = "Hard Code Desc"
-  // let complete = false;
-  // let dueDate = '04/21/2023'
-
   // Use Mutation State Variables
   const [addTaskId, setAddListId] = React.useState("");
   const [title, setTitle] = React.useState("");
