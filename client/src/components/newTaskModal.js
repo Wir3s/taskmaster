@@ -106,7 +106,7 @@ export default function NewTaskModal() {
       startIcon={<AddCircleOutlineIcon />}
       size="small"
       onClick={handleOpen}>
-        Create New Task
+        New Task
       </Button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -158,7 +158,8 @@ export default function NewTaskModal() {
                 />
               </Box>
             </Typography>
-            <Button onClick={AddNewTask}>Create task</Button>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={AddNewTask}>Create</Button>
           </Box>
         </Fade>
       </Modal>
