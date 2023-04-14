@@ -74,12 +74,13 @@ const Dashboard = () => {
                 <NewListDialog />
               </Grid>
             </Grid>
+            
           <Paper id="taskPaper"
           elevation="1"
           style={{
-            margin: "1vh",
-          }}
-          >
+            marginLeft: "2vh",
+            marginRight: "2vh"
+          }}>
             {/* TASKLIST SELECTION */}
             <Grid id="taskListSelection"
             container
@@ -95,6 +96,7 @@ const Dashboard = () => {
 
             {/* TASKLIST DISPLAY */}
             <Grid id="taskListBox"
+            style={{paddingBottom: '4vh', paddingTop: '4vh'}}
             container>
               <ListContext.Provider value={{ activeList, setData }}>
                 <SubTasks />
