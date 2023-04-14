@@ -124,7 +124,7 @@ export default function SubTasks() {
                                 <TableCell align="right">🔍</TableCell>
                                 <TableCell align="left">{subTask.priority}</TableCell>
                                 <TableCell align="left">{subTask.title}</TableCell>
-                                <TableCell align="left">✓ / 🗑 / 🖫</TableCell>
+                                <TableCell align="left"></TableCell>
                               </TableRow>
                             ))}
                             <TableRow>
