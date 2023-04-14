@@ -18,10 +18,11 @@ export default function DeleteSubTaskDialog(props) {
     console.log(props);
     const [open, setOpen] = React.useState(false);
 
-    const [removeSubTaskId, setSubTaskId] = React.useState('');
+    const [subTaskId, setSubTaskId] = React.useState('');
+    const [taskId, setTaskId] = React.useState('');
 
     const [removeSubTask, { error, loading, data }] = useMutation(REMOVE_SUB_TASK, 
-        { variables: { removeSubTaskId } } 
+        { variables: { subTaskId, taskId } } 
     )
     const handleClickOpen = () => {
         setOpen(true);
@@ -40,7 +41,8 @@ export default function DeleteSubTaskDialog(props) {
         if (loading) return <p>Deleting the SubTask name...</p>;
         if (error) return <p>Error deleting the SubTask.</p>;
         setSubTaskId(props.subTaskId)
-        removeSubTask(removeSubTaskId)
+        setTaskId(props.taskId)
+        removeSubTask(subTaskId, taskId)
 
         handleClose();
     }
