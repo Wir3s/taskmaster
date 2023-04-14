@@ -52,64 +52,67 @@ const Dashboard = () => {
 
   return (
     <ActiveUserContext.Provider value={{ activeUser, setUser }}>
-          <header style={styles.header}>
-            <div>
-              <div>Welcome {activeUserDetails.me.username}</div>
-              <div>DATE</div>
-            </div>
-            <div>Settings BTN</div>
-          </header>
+      <header style={styles.header}>
+        <div>
+          <div>Welcome {activeUserDetails.me.username}</div>
+          <div>DATE</div>
+        </div>
+        <div>Settings BTN</div>
+      </header>
 
-            {/* YOUR TASK LIST */}
-            <Grid id="tasklistHeaderContainer"
-            container
-            direction="column"
-            justifyContent="space-between"
-            alignItems="center"
-            >
-              <Grid item id="taskListHeader"
-              style={{
-                marginBottom: "1vh"
-              }}>
-                <h3>Your Task Lists</h3>
-              </Grid>
-              <Grid item id="taskListDialog"
-              style={{
-                marginBottom: "2vh"
-              }}>
-                <NewListDialog />
-              </Grid>
-            </Grid>
-            
-          <Paper id="taskPaper"
-          elevation="1"
+      {/* YOUR TASK LIST */}
+      <Grid component="section">
+        <Grid id="tasklistHeaderContainer"
+        container
+        direction="column"
+        justifyContent="space-between"
+        alignItems="center"
+        >
+          <Grid item id="taskListHeader"
           style={{
-            marginLeft: "2vh",
-            marginRight: "2vh"
+            marginBottom: "1vh"
           }}>
-            {/* TASKLIST SELECTION */}
-            <Grid id="taskListSelection"
-            container
-            direction="column"
-            justifyContent="space-evenly"
-            alignItems="flex-start"
-            >
-              <ListContext.Provider value={{ activeList, setData }}>
-                <TaskList/>
-              </ListContext.Provider>
-            </Grid>
-          </Paper>
+            <h3>Your Task Lists</h3>
+          </Grid>
+          <Grid item id="taskListDialog"
+          style={{
+            marginBottom: "2vh"
+          }}>
+            <NewListDialog />
+          </Grid>
+        </Grid>
+          
+        <Paper id="taskPaper"
+        elevation="1"
+        style={{
+          marginLeft: "2vh",
+          marginRight: "2vh"
+        }}>
+          {/* TASKLIST SELECTION */}
+          <Grid id="taskListSelection"
+          container
+          direction="column"
+          justifyContent="space-evenly"
+          alignItems="flex-start"
+          >
+            <ListContext.Provider value={{ activeList, setData }}>
+              <TaskList/>
+            </ListContext.Provider>
+          </Grid>
+        </Paper>
+      </Grid>
 
-            {/* TASKLIST DISPLAY */}
-            <Grid id="taskListBox"
-            container
-            style={{
-              paddingBottom: '4vh', paddingTop: '4vh'
-            }}>
-              <ListContext.Provider value={{ activeList, setData }}>
-                <SubTasks />
-              </ListContext.Provider>
-            </Grid>
+
+        {/* TASKLIST DISPLAY */}
+        <Grid container id="taskListBox"
+        component="section"
+        style={{
+          paddingBottom: '4vh', paddingTop: '4vh'
+        }}>
+          <ListContext.Provider value={{ activeList, setData }}>
+            <SubTasks />
+          </ListContext.Provider>
+        </Grid>
           
     </ActiveUserContext.Provider>
   );
