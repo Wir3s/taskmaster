@@ -72,7 +72,7 @@ const Dashboard = () => {
           style={{
             marginBottom: "1vh"
           }}>
-            <h3>Your Task Lists</h3>
+            <h2>Your Task Lists</h2>
           </Grid>
           <Grid item id="taskListDialog"
           style={{
