@@ -5,7 +5,7 @@ export default function PageWrapper(props) {
       style={{
         // display: 'flex',
         // flexFlow: 'row',
-        backgroundColor: "grey",
+        backgroundColor: "lightgray",
         margin: "5vh",
         padding: "2vh",
       }}
