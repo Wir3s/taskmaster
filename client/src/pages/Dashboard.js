@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Auth from "../utils/auth";
 import { Navigate } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { Paper, Grid } from "@mui/material";
 
 import SubTasks from "../components/subTasks";
 import TaskList from "../components/taskList";
@@ -52,39 +52,55 @@ const Dashboard = () => {
 
   return (
     <ActiveUserContext.Provider value={{ activeUser, setUser }}>
-      
-  
-          
           <header style={styles.header}>
-            <h1>TaskMaster</h1>
             <div>
               <div>Welcome {activeUserDetails.me.username}</div>
               <div>DATE</div>
             </div>
             <div>Settings BTN</div>
           </header>
-            
-          <Grid container spacing={1}>
-             
-          {/* <div style={styles.main}> */}
-            <Grid item xs={12}>
-              <div>
-              <h3>Your Task Lists</h3>
-              <NewListDialog />
-              </div>
+
+            {/* YOUR TASK LIST */}
+            <Grid id="taskListHeader"
+            container
+            direction="column"
+            justifyContent="space-evenly"
+            alignItems="center"
+            >
+              <Grid item>
+                <h3>Your Task Lists</h3>
+              </Grid>
+              <Grid item>
+                <NewListDialog />
+              </Grid>
+            </Grid>
+          <Paper id="taskPaper"
+          elevation="1"
+          style={{
+            margin: "1vh",
+          }}
+          >
+            {/* TASKLIST SELECTION */}
+            <Grid id="taskListSelection"
+            container
+            direction="column"
+            justifyContent="space-evenly"
+            alignItems="flex-start"
+            >
               <ListContext.Provider value={{ activeList, setData }}>
-                <TaskList />
+                <TaskList/>
               </ListContext.Provider>
             </Grid>
+          </Paper>
 
-            <Grid item xs={12}>
+            {/* TASKLIST DISPLAY */}
+            <Grid id="taskListBox"
+            container>
               <ListContext.Provider value={{ activeList, setData }}>
                 <SubTasks />
               </ListContext.Provider>
             </Grid>
-          {/* </div> */}
-        </Grid>
-      
+          
     </ActiveUserContext.Provider>
   );
 };
