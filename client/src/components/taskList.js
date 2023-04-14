@@ -65,6 +65,8 @@ const TaskList = () => {
           <ButtonGroup size="medium">
             <BootstrapTooltip title="View List" placement="left">
               <Button id="taskNameButton"
+              color="secondary"
+              size="large"
               variant="contained"
               data-listid={list._id}
               onClick={handleClick}
