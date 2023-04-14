@@ -1,14 +1,15 @@
 import React from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import {  Button,
+          TextField,
+          Dialog,
+          DialogActions,
+          DialogContent,
+          DialogContentText,
+          DialogTitle,
+          Tooltip,
+          tooltipClasses,
+          IconButton} from "@mui/material";
 import { styled } from '@mui/material/styles';
-import Tooltip, {tooltipClasses} from "@mui/material/Tooltip";
-import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 
 import { useMutation } from "@apollo/client";

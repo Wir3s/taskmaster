@@ -1,17 +1,16 @@
 import React, { useContext } from 'react';
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-
+import {  Backdrop,
+          Box,
+          Modal,
+          Fade,
+          Button,
+          Typography,
+          IconButton,
+          TextField } from '@mui/material';
 import CloseBTN from '@mui/icons-material/CancelPresentationRounded';
-import IconButton from '@mui/material/IconButton';
 
 import { useMutation } from "@apollo/client";
 import { ADD_TASK } from "../utils/mutations";
-import TextField from '@mui/material/TextField';
 import ListContext from './listContext';
 
 const style = {
