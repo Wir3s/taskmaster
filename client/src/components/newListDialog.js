@@ -9,7 +9,7 @@ import {  Button,
           Tooltip,
           tooltipClasses } from "@mui/material";
 import { styled } from '@mui/material/styles';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 
 import { useMutation } from "@apollo/client";
 import { CREATE_LIST } from "../utils/mutations";
@@ -70,7 +70,7 @@ export default function FormDialog() {
         <Button
         color="secondary"
         variant="contained"
-        startIcon={<AddCircleOutlineIcon />}
+        startIcon={<PlaylistAddIcon />}
         size="small"
         onClick={handleClickOpen}>
           Create New List
