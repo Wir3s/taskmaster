@@ -71,7 +71,7 @@ export default function DeleteListDialog(props) {
       }));
 
     return (
-        <div>
+        <div id="deleteListDiv" style={{display: 'flex'}}>
              <BootstrapTooltip title="Delete List" placement="right-end">
             <IconButton variant="outlined" onClick={handleClickOpen}>
                 <DeleteIcon />
