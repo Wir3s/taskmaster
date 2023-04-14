@@ -59,7 +59,7 @@ export default function NewTaskModal() {
     // NEED TO CREATE THE SAVE TASK FUNCTION
     setAddListId(await activeList);
     setTitle(await document.getElementById("taskTitle").value);
-    setPriority(await document.getElementById("taskpriority").value);
+    setPriority(parseInt(await document.getElementById("taskpriority").value));
     setDesc(await document.getElementById("taskDescription").value);
     setDueDate(await document.getElementById("taskDueDate").value)
     setComplete(false);
