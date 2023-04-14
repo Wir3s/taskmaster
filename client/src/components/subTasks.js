@@ -22,6 +22,7 @@ import { GET_SINGLE_LIST } from '../utils/queries';
 
 import NewTaskModal from './newTaskModal';
 import UpdateTaskModal from './updateTaskModal';
+import NewSubTaskModal from './newSubTaskModal'
 
 import ListContext from './listContext';
 
@@ -123,7 +124,7 @@ export default function SubTasks() {
                     <Collapse in={open} timeout="auto" unmountOnExit>
                       <Box sx={{ margin: 1 }}>
                         <Typography variant="h6" gutterBottom component="div">
-                          Sub-Tasks
+                          Sub-Tasks <NewSubTaskModal subTaskID={row._id}/>
                         </Typography>
                         <Table size="small" aria-label="purchases">
                           <TableBody>
@@ -140,12 +141,6 @@ export default function SubTasks() {
                       subTaskDesc={subTask.desc}/></TableCell>
                               </TableRow>
                             ))}
-                            <TableRow>
-                              <TableCell align="right">+</TableCell>
-                              <TableCell align="left">Priority</TableCell>
-                              <TableCell align="left">Task Name</TableCell>
-                              <TableCell align="left">Save Icon</TableCell>
-                            </TableRow>
                           </TableBody>
                         </Table>
                       </Box>
