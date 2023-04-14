@@ -73,11 +73,11 @@ export default function FormDialog() {
         startIcon={<PlaylistAddIcon />}
         size="small"
         onClick={handleClickOpen}>
-          Create New List
+          New List
         </Button>
       </BootstrapTooltip>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Create New List</DialogTitle>
+        <DialogTitle>Create a new task list</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Please enter the name for the new list that you would like to
@@ -95,7 +95,7 @@ export default function FormDialog() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={CreateNewList}>Create New List</Button>
+          <Button onClick={CreateNewList}>Create</Button>
         </DialogActions>
       </Dialog>
     </div>
