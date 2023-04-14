@@ -99,7 +99,7 @@ export default function NewTaskModal() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Create new task</Button>
+      <Button variant="contained" onClick={handleOpen}>Create new task</Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
