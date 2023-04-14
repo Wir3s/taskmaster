@@ -72,10 +72,13 @@ export default function UpdateListDialog(props) {
   }));
 
   return (
-    <div>
+    <div id="updateListDiv" style={{margin: "1vh"}}>
       <BootstrapTooltip title="Change list name" placement="top-start">
-        <Button variant="outlined" onClick={handleClickOpen}>
-          Edit List
+        <Button
+        variant="text"
+        color="secondary"
+        onClick={handleClickOpen}>
+          Rename
         </Button>
       </BootstrapTooltip>
       <Dialog open={open} onClose={handleClose}>
