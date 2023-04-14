@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Container from '@mui/material/Container';
-import Button from "@mui/material/Button";
+import { Button, ButtonGroup } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 
@@ -57,11 +57,13 @@ const TaskList = () => {
     <Container maxWidth="full">
       {lists.map((list) => (
         <div key={list._id} style={styles.flex}>
+        <ButtonGroup size="medium">
           <BootstrapTooltip title="View List" placement="left">
           <Button variant="contained" data-listid={list._id} onClick={handleClick}>{list.listName}</Button>
           </BootstrapTooltip>
           <UpdateListDialog listId={list._id} listName={list.listName}/>
           <DeleteListDialog listId={list._id} listName={list.listName}/>
+          </ButtonGroup>
         </div>
       ))}
     </Container>
