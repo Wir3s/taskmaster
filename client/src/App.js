@@ -60,7 +60,7 @@ function renderPage() {
 
 function App() {
   return (
-    <div>
+    <div id="pageWrapApp">
       <Header />
       <PageWrapper>{renderPage()}</PageWrapper>
       <Footer />

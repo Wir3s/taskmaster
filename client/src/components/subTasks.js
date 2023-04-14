@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
+import {  Box,
+          Collapse,
+          IconButton,
+          Table,
+          TableBody,
+          TableCell,
+          TableContainer,
+          TableHead,
+          TableRow,
+          Typography,
+          Paper,
+          Container} from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Container from '@mui/material/Container';
 
 import DeleteTaskDialog from './deleteTaskDialog'
 import DeleteSubTaskDialog from './deleteSubTaskDialog';
@@ -57,15 +57,22 @@ export default function SubTasks() {
 
   return (
     <Container>
-      <Container>
-        <div style={styles.header}>
-          <div>
-            <h3>{listData.listName}</h3>
-            <p>Task Count</p>
+      <Container >
+        <div id="subTaskContainerHeader" style={styles.header}>
+          <div style={{
+            display: 'flex',
+            flexFlow: 'row wrap',
+            alignItems: "center"
+          }}>
+            <h2>{listData.listName}</h2>
+            <p style={{margin: '1vh'}}>Task Count</p>
           </div>
-          <div>
-            <NewTaskModal />
-            <p>Hide / Show Completed Toggle</p>
+          <div style={{
+            display: 'flex',
+            flexFlow: 'row-reverse wrap'
+          }}>
+            <NewTaskModal/>
+            <p style={{margin: '1vh'}}>Toggle Completed Tasks</p>
           </div>
         </div>
       </Container>

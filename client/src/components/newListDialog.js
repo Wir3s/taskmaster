@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import {  Button,
+          TextField,
+          Dialog,
+          DialogActions,
+          DialogContent,
+          DialogContentText,
+          DialogTitle,
+          Tooltip,
+          tooltipClasses } from "@mui/material";
 import { styled } from '@mui/material/styles';
-import Tooltip, {tooltipClasses } from "@mui/material/Tooltip";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 
 import { useMutation } from "@apollo/client";
 import { CREATE_LIST } from "../utils/mutations";
@@ -66,12 +67,17 @@ export default function FormDialog() {
   return (
     <div>
       <BootstrapTooltip title="Make a new list" placement="top-start">
-        <Button variant="contained" startIcon={<AddCircleOutlineIcon />} size="small" onClick={handleClickOpen}>
-          Create New List
+        <Button
+        color="secondary"
+        variant="contained"
+        startIcon={<PlaylistAddIcon />}
+        size="small"
+        onClick={handleClickOpen}>
+          New List
         </Button>
       </BootstrapTooltip>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Create New List</DialogTitle>
+        <DialogTitle>Create a new task list</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Please enter the name for the new list that you would like to
@@ -89,7 +95,7 @@ export default function FormDialog() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={CreateNewList}>Create New List</Button>
+          <Button onClick={CreateNewList}>Create</Button>
         </DialogActions>
       </Dialog>
     </div>

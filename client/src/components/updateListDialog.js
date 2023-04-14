@@ -1,13 +1,16 @@
 import React from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import {  Button,
+          TextField,
+          Dialog,
+          DialogActions,
+          DialogContent,
+          DialogContentText,
+          DialogTitle,
+          Tooltip,
+          tooltipClasses,
+          IconButton} from "@mui/material";
 import { styled } from '@mui/material/styles';
-import Tooltip, {tooltipClasses} from "@mui/material/Tooltip";
+import EditIcon from '@mui/icons-material/Edit';
 
 import { useMutation } from "@apollo/client";
 import { UPDATE_LIST } from "../utils/mutations";
@@ -72,12 +75,20 @@ export default function UpdateListDialog(props) {
   }));
 
   return (
-    <div>
-      <BootstrapTooltip title="Change list name" placement="top-start">
-        <Button variant="outlined" onClick={handleClickOpen}>
-          Edit List
-        </Button>
+    <div id="updateListDiv" style={{
+      display: 'flex',
+      margin: "1vh"
+    }}>
+      <BootstrapTooltip
+      title="Change list name" placement="top-start">
+        <IconButton
+        variant="text"
+        size="small"
+        onClick={handleClickOpen}>
+          <EditIcon/>
+        </IconButton>
       </BootstrapTooltip>
+
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Update List</DialogTitle>
         <DialogContent>

@@ -1,15 +1,16 @@
 import React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import {    Button,
+            TextField,
+            Dialog,
+            DialogActions,
+            DialogContent,
+            DialogContentText,
+            DialogTitle,
+            Tooltip,
+            tooltipClasses,
+            IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
 
 import { useMutation } from '@apollo/client';
 import { REMOVE_LIST } from '../utils/mutations';
@@ -71,12 +72,20 @@ export default function DeleteListDialog(props) {
       }));
 
     return (
-        <div>
-             <BootstrapTooltip title="Delete List" placement="right-end">
-            <IconButton variant="outlined" onClick={handleClickOpen}>
-                <DeleteIcon />
-            </IconButton>
+        <div id="deleteListDiv" style={{
+            display: 'flex',
+            margin: "1vh"
+        }}>
+            <BootstrapTooltip
+            title="Delete List" placement="right-end">
+                <IconButton
+                variant="outlined"
+                size="small"
+                onClick={handleClickOpen}>
+                    <DeleteIcon />
+                </IconButton>
             </BootstrapTooltip>
+
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Confirm Task List Delete</DialogTitle>
                 <DialogContent>

@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import Container from '@mui/material/Container';
-import Button from "@mui/material/Button";
+import {  Container,
+          Button,
+          ButtonGroup,
+          Tooltip,
+          tooltipClasses } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 
 import { useQuery } from '@apollo/client';
 import { GET_ME_LISTS } from '../utils/queries';
@@ -11,14 +13,6 @@ import ListContext from './listContext';
 
 import UpdateListDialog from './updateListDialog';
 import DeleteListDialog from './deleteListDialog';
-
-const styles = {
-  flex: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  }
-}
 
 const TaskList = () => {
   const { activeList, setData } = useContext(ListContext);
@@ -54,14 +48,43 @@ const TaskList = () => {
   }));
 
   return (
-    <Container maxWidth="full">
+    <Container id="TasklistSelectionContainer"
+      maxWidth="full"
+      style={{padding: 0}}
+    >
       {lists.map((list) => (
-        <div key={list._id} style={styles.flex}>
-          <BootstrapTooltip title="View List" placement="left">
-          <Button variant="contained" data-listid={list._id} onClick={handleClick}>{list.listName}</Button>
-          </BootstrapTooltip>
-          <UpdateListDialog listId={list._id} listName={list.listName}/>
-          <DeleteListDialog listId={list._id} listName={list.listName}/>
+        <div id="taskListMap"
+        key={list._id}
+        >
+          <ButtonGroup
+          size="medium"
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
+            <BootstrapTooltip title="View List" placement="left">
+              <Button id={list.listName}
+              color="secondary"
+              size="large"
+              variant="contained"
+              data-listid={list._id}
+              onClick={handleClick}
+              >
+                {list.listName}
+              </Button>
+            </BootstrapTooltip>
+            <ButtonGroup
+              size="medium"
+              style={{
+                display: 'flex',
+                flexFlow: 'row nowrap',
+                justifyContent: 'center',
+            }}>
+              <UpdateListDialog listId={list._id} listName={list.listName}/>
+              <DeleteListDialog listId={list._id} listName={list.listName}/>
+            </ButtonGroup>
+          </ButtonGroup>
         </div>
       ))}
     </Container>

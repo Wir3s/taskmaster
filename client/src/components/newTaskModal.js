@@ -1,17 +1,18 @@
 import React, { useContext } from 'react';
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-
+import {  Backdrop,
+          Box,
+          Modal,
+          Fade,
+          Button,
+          Typography,
+          IconButton,
+          TextField } from '@mui/material';
+          
 import CloseBTN from '@mui/icons-material/CancelPresentationRounded';
-import IconButton from '@mui/material/IconButton';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 import { useMutation } from "@apollo/client";
 import { ADD_TASK } from "../utils/mutations";
-import TextField from '@mui/material/TextField';
 import ListContext from './listContext';
 
 const style = {
@@ -99,7 +100,14 @@ export default function NewTaskModal() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Create new task</Button>
+      <Button
+      color="secondary"
+      variant="contained"
+      startIcon={<AddCircleOutlineIcon />}
+      size="small"
+      onClick={handleOpen}>
+        New Task
+      </Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -150,7 +158,8 @@ export default function NewTaskModal() {
                 />
               </Box>
             </Typography>
-            <Button onClick={AddNewTask}>Create task</Button>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={AddNewTask}>Create</Button>
           </Box>
         </Fade>
       </Modal>
