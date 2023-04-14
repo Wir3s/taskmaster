@@ -1,29 +1,28 @@
 import React from 'react';
-import {    Button,
-            TextField,
-            Dialog,
-            DialogActions,
-            DialogContent,
-            DialogContentText,
-            DialogTitle,
-            Tooltip,
-            tooltipClasses,
-            IconButton
-            } from '@mui/material';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material/styles';
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
 
 import { useMutation } from '@apollo/client';
-import { REMOVE_TASK } from '../utils/mutations';
+import { REMOVE_SUB_TASK } from '../utils/mutations';
 
-export default function DeleteTaskDialog(props) {
+export default function DeleteSubTaskDialog(props) {
     console.log(props);
     const [open, setOpen] = React.useState(false);
 
-    const [removeTaskId, setTaskId] = React.useState('');
+    const [subTaskId, setSubTaskId] = React.useState('');
+    const [taskId, setTaskId] = React.useState('');
 
-    const [removeTask, { error, loading, data }] = useMutation(REMOVE_TASK, 
-        { variables: { removeTaskId } } 
+    const [removeSubTask, { error, loading, data }] = useMutation(REMOVE_SUB_TASK, 
+        { variables: { subTaskId, taskId } } 
     )
     const handleClickOpen = () => {
         setOpen(true);
@@ -32,17 +31,18 @@ export default function DeleteTaskDialog(props) {
     const handleClose = () => {
         setOpen(false);
     };
-    const RemoveTask = async() => {
-        if(await document.getElementById('deleteConfirm').value !== props.taskName) {
+    const RemoveSubTask = async() => {
+        if(await document.getElementById('deleteConfirm').value !== props.subTaskName) {
             document.getElementById('deleteConfirm').value = ""
             document.getElementById('deleteConfirm').placeholder = "Name does not match, unable to delete"
             return
         }
 
-        if (loading) return <p>Deleting the Task name...</p>;
-        if (error) return <p>Error deleting the Task.</p>;
+        if (loading) return <p>Deleting the SubTask name...</p>;
+        if (error) return <p>Error deleting the SubTask.</p>;
+        setSubTaskId(props.subTaskId)
         setTaskId(props.taskId)
-        removeTask(removeTaskId)
+        removeSubTask(subTaskId, taskId)
 
         handleClose();
     }
@@ -66,10 +66,10 @@ export default function DeleteTaskDialog(props) {
             </IconButton>
             </BootstrapTooltip>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Confirm Task Delete</DialogTitle>
+                <DialogTitle>Confirm SubTask Delete</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        <p>You are about to delete the task "{props.taskName}". This cannot be undone and all subtasks will also be deleted. Please enter the task name below to confirm deletion.</p>
+                        <p>You are about to delete the SubTask "{props.subTaskName}". This cannot be undone. Please enter the SubTask name below to confirm deletion.</p>
                         <p id="deleteError"></p>
                     </DialogContentText>
                     <TextField
@@ -84,7 +84,7 @@ export default function DeleteTaskDialog(props) {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={RemoveTask}>Delete</Button>
+                    <Button onClick={RemoveSubTask}>Delete</Button>
                 </DialogActions>
             </Dialog>
 

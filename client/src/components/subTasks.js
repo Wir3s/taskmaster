@@ -15,6 +15,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 import DeleteTaskDialog from './deleteTaskDialog'
+import DeleteSubTaskDialog from './deleteSubTaskDialog';
 
 import { useQuery } from '@apollo/client';
 import { GET_SINGLE_LIST } from '../utils/queries';
@@ -131,7 +132,12 @@ export default function SubTasks() {
                                 <TableCell align="right">🔍</TableCell>
                                 <TableCell align="left">{subTask.priority}</TableCell>
                                 <TableCell align="left">{subTask.title}</TableCell>
-                                <TableCell align="left">✓ / 🗑 / 🖫</TableCell>
+                                <TableCell align="left"><DeleteSubTaskDialog 
+                      subTaskId={subTask._id}
+                      taskId={row._id}
+                      subTaskName={subTask.title}
+                      subTaskPriority={subTask.priority}
+                      subTaskDesc={subTask.desc}/></TableCell>
                               </TableRow>
                             ))}
                             <TableRow>
