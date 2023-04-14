@@ -19,6 +19,9 @@ import DeleteTaskDialog from './deleteTaskDialog'
 import { useQuery } from '@apollo/client';
 import { GET_SINGLE_LIST } from '../utils/queries';
 
+import NewTaskModal from './newTaskModal';
+import UpdateTaskModal from './updateTaskModal';
+
 import ListContext from './listContext';
 
 const styles = {
@@ -60,7 +63,7 @@ export default function SubTasks() {
             <p>Task Count</p>
           </div>
           <div>
-            <p>Add New Task BTN</p>
+            <NewTaskModal />
             <p>Hide / Show Completed Toggle</p>
           </div>
         </div>
@@ -90,7 +93,13 @@ export default function SubTasks() {
                       {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                   </TableCell>
-                  <TableCell align="left">🔍</TableCell>
+                  <TableCell align="left">
+                    <UpdateTaskModal
+                      taskId={row._id}
+                      taskName={row.title}
+                      taskPriority={row.priority}
+                      taskDueDate={row.dueDate}
+                      taskDesc={row.desc} /></TableCell>
                   <TableCell align="left">{row.priority}</TableCell>
                   <TableCell align="left">{row.title}</TableCell>
                   <TableCell align="left">{row.dueDate}</TableCell>
