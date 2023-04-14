@@ -71,12 +71,20 @@ export default function DeleteListDialog(props) {
       }));
 
     return (
-        <div id="deleteListDiv" style={{display: 'flex'}}>
-             <BootstrapTooltip title="Delete List" placement="right-end">
-            <IconButton variant="outlined" onClick={handleClickOpen}>
-                <DeleteIcon />
-            </IconButton>
+        <div id="deleteListDiv" style={{
+            display: 'flex',
+            margin: "1vh"
+        }}>
+            <BootstrapTooltip
+            title="Delete List" placement="right-end">
+                <IconButton
+                variant="outlined"
+                size="small"
+                onClick={handleClickOpen}>
+                    <DeleteIcon />
+                </IconButton>
             </BootstrapTooltip>
+
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Confirm Task List Delete</DialogTitle>
                 <DialogContent>
