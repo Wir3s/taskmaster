@@ -8,6 +8,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { styled } from '@mui/material/styles';
 import Tooltip, {tooltipClasses} from "@mui/material/Tooltip";
+import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 
 import { useMutation } from "@apollo/client";
@@ -79,12 +80,12 @@ export default function UpdateListDialog(props) {
     }}>
       <BootstrapTooltip
       title="Change list name" placement="top-start">
-        <Button
+        <IconButton
         variant="text"
         size="small"
         onClick={handleClickOpen}>
           <EditIcon/>
-        </Button>
+        </IconButton>
       </BootstrapTooltip>
 
       <Dialog open={open} onClose={handleClose}>
