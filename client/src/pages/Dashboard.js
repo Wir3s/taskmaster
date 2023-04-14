@@ -61,16 +61,22 @@ const Dashboard = () => {
           </header>
 
             {/* YOUR TASK LIST */}
-            <Grid id="taskListHeader"
+            <Grid id="tasklistHeaderContainer"
             container
             direction="column"
-            justifyContent="space-evenly"
+            justifyContent="space-between"
             alignItems="center"
             >
-              <Grid item>
+              <Grid item id="taskListHeader"
+              style={{
+                marginBottom: "1vh"
+              }}>
                 <h3>Your Task Lists</h3>
               </Grid>
-              <Grid item>
+              <Grid item id="taskListDialog"
+              style={{
+                marginBottom: "2vh"
+              }}>
                 <NewListDialog />
               </Grid>
             </Grid>
@@ -96,8 +102,10 @@ const Dashboard = () => {
 
             {/* TASKLIST DISPLAY */}
             <Grid id="taskListBox"
-            style={{paddingBottom: '4vh', paddingTop: '4vh'}}
-            container>
+            container
+            style={{
+              paddingBottom: '4vh', paddingTop: '4vh'
+            }}>
               <ListContext.Provider value={{ activeList, setData }}>
                 <SubTasks />
               </ListContext.Provider>
