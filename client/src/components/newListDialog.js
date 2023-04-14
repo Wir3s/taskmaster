@@ -66,7 +66,12 @@ export default function FormDialog() {
   return (
     <div>
       <BootstrapTooltip title="Make a new list" placement="top-start">
-        <Button variant="contained" startIcon={<AddCircleOutlineIcon />} size="small" onClick={handleClickOpen}>
+        <Button
+        color="secondary"
+        variant="contained"
+        startIcon={<AddCircleOutlineIcon />}
+        size="small"
+        onClick={handleClickOpen}>
           Create New List
         </Button>
       </BootstrapTooltip>
