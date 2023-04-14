@@ -56,15 +56,22 @@ export default function SubTasks() {
 
   return (
     <Container>
-      <Container>
-        <div style={styles.header}>
-          <div>
-            <h3>{listData.listName}</h3>
-            <p>Task Count</p>
+      <Container >
+        <div id="subTaskContainerHeader" style={styles.header}>
+          <div style={{
+            display: 'flex',
+            flexFlow: 'row wrap',
+            alignItems: "center"
+          }}>
+            <h2>{listData.listName}</h2>
+            <p style={{margin: '1vh'}}>Task Count</p>
           </div>
-          <div>
-            <NewTaskModal />
-            <p>Hide / Show Completed Toggle</p>
+          <div style={{
+            display: 'flex',
+            flexFlow: 'row-reverse wrap'
+          }}>
+            <NewTaskModal/>
+            <p style={{margin: '1vh'}}>Toggle Completed Tasks</p>
           </div>
         </div>
       </Container>
