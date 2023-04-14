@@ -54,7 +54,13 @@ const TaskList = () => {
         <div id="taskListMap"
         key={list._id}
         >
-          <ButtonGroup size="medium">
+          <ButtonGroup
+          size="medium"
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
             <BootstrapTooltip title="View List" placement="left">
               <Button id={list.listName}
               color="secondary"
@@ -66,8 +72,16 @@ const TaskList = () => {
                 {list.listName}
               </Button>
             </BootstrapTooltip>
-            <UpdateListDialog listId={list._id} listName={list.listName}/>
-            <DeleteListDialog listId={list._id} listName={list.listName}/>
+            <ButtonGroup
+              size="medium"
+              style={{
+                display: 'flex',
+                flexFlow: 'row nowrap',
+                justifyContent: 'center',
+            }}>
+              <UpdateListDialog listId={list._id} listName={list.listName}/>
+              <DeleteListDialog listId={list._id} listName={list.listName}/>
+            </ButtonGroup>
           </ButtonGroup>
         </div>
       ))}
