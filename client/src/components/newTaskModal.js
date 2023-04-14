@@ -7,7 +7,9 @@ import {  Backdrop,
           Typography,
           IconButton,
           TextField } from '@mui/material';
+          
 import CloseBTN from '@mui/icons-material/CancelPresentationRounded';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 import { useMutation } from "@apollo/client";
 import { ADD_TASK } from "../utils/mutations";
@@ -98,7 +100,14 @@ export default function NewTaskModal() {
 
   return (
     <div>
-      <Button variant="contained" onClick={handleOpen}>Create new task</Button>
+      <Button
+      color="secondary"
+      variant="contained"
+      startIcon={<AddCircleOutlineIcon />}
+      size="small"
+      onClick={handleOpen}>
+        Create New Task
+      </Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
