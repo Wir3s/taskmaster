@@ -12,14 +12,6 @@ import ListContext from './listContext';
 import UpdateListDialog from './updateListDialog';
 import DeleteListDialog from './deleteListDialog';
 
-const styles = {
-  flex: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  }
-}
-
 const TaskList = () => {
   const { activeList, setData } = useContext(ListContext);
 
@@ -61,10 +53,10 @@ const TaskList = () => {
       {lists.map((list) => (
         <div id="taskListMap"
         key={list._id}
-        style={styles.flex}>
+        >
           <ButtonGroup size="medium">
             <BootstrapTooltip title="View List" placement="left">
-              <Button id="taskNameButton"
+              <Button id={list.listName}
               color="secondary"
               size="large"
               variant="contained"
