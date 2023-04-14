@@ -3,8 +3,8 @@ export default function PageWrapper(props) {
   return (
     <div
       style={{
-        // display: 'flex',
-        // flexFlow: 'row',
+        display: 'flex',
+        flexFlow: 'row',
         backgroundColor: "grey",
         margin: "5vh",
         padding: "2vh",
