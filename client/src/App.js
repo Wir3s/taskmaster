@@ -76,7 +76,7 @@ function renderPage() {
 
 function App() {
   return (
-    <div>
+    <div id="pageWrapApp">
       <PageWrapper>{renderPage()}</PageWrapper>
       <Footer />
     </div>
