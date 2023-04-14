@@ -94,7 +94,12 @@ export default function SubTasks() {
                   <TableCell align="left">{row.priority}</TableCell>
                   <TableCell align="left">{row.title}</TableCell>
                   <TableCell align="left">{row.dueDate}</TableCell>
-                  <TableCell align="left"><DeleteTaskDialog/></TableCell>
+                  <TableCell align="left"><DeleteTaskDialog 
+                      taskId={row._id}
+                      taskName={row.title}
+                      taskPriority={row.priority}
+                      taskDueDate={row.dueDate}
+                      taskDesc={row.desc}/></TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>

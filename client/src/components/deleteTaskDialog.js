@@ -15,6 +15,8 @@ import { useMutation } from '@apollo/client';
 import { REMOVE_TASK } from '../utils/mutations';
 
 export default function DeleteTaskDialog(props) {
+    console.log(props);
+    console.log("a");
     const [open, setOpen] = React.useState(false);
 
     const [removeTaskId, setTaskId] = React.useState('');
@@ -22,7 +24,7 @@ export default function DeleteTaskDialog(props) {
     const [removeTask, { error, loading, data }] = useMutation(REMOVE_TASK, 
         { variables: { removeTaskId } } 
     )
-
+    console.log("b");
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -30,9 +32,9 @@ export default function DeleteTaskDialog(props) {
     const handleClose = () => {
         setOpen(false);
     };
-
+    console.log("c");
     const RemoveTask = async() => {
-        if(await document.getElementById().value !== props.taskName) {
+        if(await document.getElementById('deleteConfirm').value !== props.taskName) {
             document.getElementById('deleteConfirm').value = ""
             document.getElementById('deleteConfirm').placeholder = "Name does not match, unable to delete"
             return
@@ -42,7 +44,7 @@ export default function DeleteTaskDialog(props) {
         if (error) return <p>Error deleting the Task.</p>;
         setTaskId(props.taskId)
         removeTask(removeTaskId)
-
+        console.log("d");
         handleClose();
     }
 
