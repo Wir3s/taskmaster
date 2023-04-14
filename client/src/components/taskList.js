@@ -28,8 +28,9 @@ const TaskList = () => {
   if (error) return <p>Error loading your tasks list</p>;
 
   //Setting the active list to the first list from the query
+  //////////////////////// BELOW IF STATEMENT IS THROWING AN ERROR IN CONSOLE ///////////////////////////
   if (activeList === 'default') {
-    setData(data.me.lists[0]._id);
+     setData( data.me.lists[0]._id);
   }
   const lists = data?.me.lists;
 

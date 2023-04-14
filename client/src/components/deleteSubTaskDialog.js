@@ -69,8 +69,7 @@ export default function DeleteSubTaskDialog(props) {
                 <DialogTitle>Confirm SubTask Delete</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        <p>You are about to delete the SubTask "{props.subTaskName}". This cannot be undone. Please enter the SubTask name below to confirm deletion.</p>
-                        <p id="deleteError"></p>
+                        You are about to delete the SubTask "{props.subTaskName}". This cannot be undone. Please enter the SubTask name below to confirm deletion.
                     </DialogContentText>
                     <TextField
                         autoFocus
