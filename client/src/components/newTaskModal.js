@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
-import {  Backdrop,
-          Box,
-          Modal,
-          Fade,
-          Button,
-          Typography,
-          IconButton,
-          TextField } from '@mui/material';
-          
+import {
+  Backdrop,
+  Box,
+  Modal,
+  Fade,
+  Button,
+  Typography,
+  IconButton,
+  TextField
+} from '@mui/material';
+
 import CloseBTN from '@mui/icons-material/CancelPresentationRounded';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
@@ -101,11 +103,11 @@ export default function NewTaskModal() {
   return (
     <div>
       <Button
-      color="secondary"
-      variant="contained"
-      startIcon={<AddCircleOutlineIcon />}
-      size="small"
-      onClick={handleOpen}>
+        color="secondary"
+        variant="contained"
+        startIcon={<AddCircleOutlineIcon />}
+        size="small"
+        onClick={handleOpen}>
         New Task
       </Button>
       <Modal
@@ -128,36 +130,33 @@ export default function NewTaskModal() {
                 <CloseBTN />
               </IconButton>
             </Typography>
-
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              <Box component="form">
-                <TextField
+            <Box component="form">
+              <TextField
                 autoFocus
-                  required
-                  id="taskTitle"
-                  label="Task Title"
-                  fullWidth
-                />
-                <TextField
-                  id="taskpriority"
-                  label="Priority"
-                  type="number"
-                  fullWidth
-                  // defaultValue={5}
-                  inputProps={{ max: 5, min: 1 }}
-                />
-                <TextField
-                  id="taskDueDate"
-                  label="Due Date"
-                  fullWidth
-                />
-                <TextField
-                  id="taskDescription"
-                  label="Description"
-                  fullWidth
-                />
-              </Box>
-            </Typography>
+                required
+                id="taskTitle"
+                label="Task Title"
+                fullWidth
+              />
+              <TextField
+                id="taskpriority"
+                label="Priority"
+                type="number"
+                fullWidth
+                // defaultValue={5}
+                inputProps={{ max: 5, min: 1 }}
+              />
+              <TextField
+                id="taskDueDate"
+                label="Due Date"
+                fullWidth
+              />
+              <TextField
+                id="taskDescription"
+                label="Description"
+                fullWidth
+              />
+            </Box>
             <Button onClick={handleClose}>Cancel</Button>
             <Button onClick={AddNewTask}>Create</Button>
           </Box>

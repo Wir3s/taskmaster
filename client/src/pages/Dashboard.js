@@ -83,7 +83,7 @@ const Dashboard = () => {
         </Grid>
           
         <Paper id="taskPaper"
-        elevation="1"
+        elevation={1}
         style={{
           marginLeft: "2vh",
           marginRight: "2vh"

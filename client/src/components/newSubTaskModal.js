@@ -97,9 +97,7 @@ export default function NewTaskModal(props) {
                 <CloseBTN />
               </IconButton>
             </Typography>
-
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              <Box component="form">
+            <Box component="form">
                 <TextField
                 autoFocus
                   required
@@ -121,7 +119,6 @@ export default function NewTaskModal(props) {
                   fullWidth
                 />
               </Box>
-            </Typography>
             <Button onClick={handleClose}>Cancel</Button>
             <Button onClick={AddNewSubTask}>Create</Button>
           </Box>

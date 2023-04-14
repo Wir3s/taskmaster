@@ -90,8 +90,7 @@ export default function DeleteListDialog(props) {
                 <DialogTitle>Confirm Task List Delete</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        <p>You are about to delete the task list "{props.listName}". This cannot be undone and all tasks and subtasks will also be deleted. Please enter the task list name below to confirm deletion.</p>
-                        <p id="deleteError"></p>
+                        You are about to delete the task list "{props.listName}". This cannot be undone and all tasks and subtasks will also be deleted. Please enter the task list name below to confirm deletion.
                     </DialogContentText>
                     <TextField
                         autoFocus

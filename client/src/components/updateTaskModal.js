@@ -92,9 +92,7 @@ export default function UpdateTaskModal(props) {
                                 <CloseBTN />
                             </IconButton>
                         </Typography>
-
-                        <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                            <Box >
+                        <Box >
                                 <form onSubmit={handleFormSubmit}>
                                     <TextField
                                         required
@@ -134,7 +132,6 @@ export default function UpdateTaskModal(props) {
                                     <Button type='submit'>Save Changes</Button>
                                 </form>
                             </Box>
-                        </Typography>
                     </Box>
                 </Fade>
             </Modal>
