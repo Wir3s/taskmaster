@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import {    Backdrop,
             Box,
             Modal,
@@ -12,9 +12,6 @@ import CloseBTN from '@mui/icons-material/CancelPresentationRounded';
 
 import { useMutation } from "@apollo/client";
 import { UPDATE_TASK } from "../utils/mutations";
-import ListContext from './listContext';
-
-import CompletedSwitch from './completedSwitch';
 
 const style = {
     position: 'absolute',
@@ -29,66 +26,48 @@ const style = {
 };
 
 export default function UpdateTaskModal(props) {
-    console.log(props);
-    const { activeList } = useContext(ListContext);
     const [open, setOpen] = React.useState(false);
 
-    //State Change Variables for textfeilds in modal
-    const [modalTitle, setModalTitle] = React.useState('initValue');
-    const [modalPriority, setModalPriority] = React.useState("initValue");
-    const [modalDueDate, setModalDueDate] = React.useState("initValue");
-    const [modalDesc, setModalDesc] = React.useState("initValue");
-    
-    //Updating settings based on clicked modal
-    if (modalTitle === 'initValue'){
-        setModalTitle(props.taskName);
-        setModalPriority(props.taskPriority);
-        setModalDueDate(props.taskDueDate);
-        setModalDesc(props.taskDesc);
-    };
+    const [updateForm, setUpdateForm] = useState({
+        updateTaskId: props.taskId,
+        title: props.taskName,
+        desc: props.taskDesc,
+        priority: props.taskPriority,
+        complete: false,
+        dueDate: props.taskDueDate
+    })
 
+    console.log(updateForm);
+    const [updateTask, { error, data, loading }] = useMutation(UPDATE_TASK)
+    const mutationResponse = async (event) => {
+       await updateTask ({
+            variables: {
+                updateTaskId: updateForm.updateTaskId,
+                title: updateForm.title,
+                desc: updateForm.desc,
+                priority: ~~updateForm.priority,
+                complete: updateForm.complete,
+                dueDate: updateForm.dueDate
+            }
+        })
+          window.location.reload(false);
+    }
+    const handleFormSubmit = (event) => {
+        console.log('in handleform submit');
+        event.preventDefault();
 
-    // Use Mutation State Variables
-    const [updateTaskId, setUpdateTaskId] = React.useState("");
-    const [title, setTitle] = React.useState("");
-    const [desc, setDesc] = React.useState("");
-    const [priority, setPriority] = React.useState("");
-    const [complete, setComplete] = React.useState("");
-    const [dueDate, setDueDate] = React.useState("");
+        console.log (updateForm)
+        mutationResponse();
+        handleClose()
+    }
 
-    const [UpdateTask, { error, loading, data }] = useMutation(UPDATE_TASK, {
-        variables: { updateTaskId, title, desc, priority, complete, dueDate },
-    });
+    const handleChange = (event) => {
+        const {name, value} = event.target;
+        setUpdateForm({...updateForm,[name]:value,})
+    }
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-
-    const UpdateNewTask = async () => {
-
-        // NEED TO CREATE THE SAVE TASK FUNCTION
-        setUpdateTaskId( props.taskId );
-        setTitle( modalTitle );
-        setPriority(modalPriority);
-        setDesc(modalDesc);
-        setDueDate(modalDueDate)
-        setComplete(false);
-
-        // if (loading) return <p>Creating Task...</p>;
-        if (error) return console.log(error);
-
-        console.log("Values before running UpdateTask mutation");
-        console.log(updateTaskId);
-        console.log(title);
-        console.log(desc);
-        console.log(priority);
-        console.log(complete);
-        console.log(dueDate);
-
-        UpdateTask(updateTaskId, title, desc, priority, complete, dueDate);
-
-        handleClose()
-    }
 
     return (
         <div>
@@ -115,44 +94,47 @@ export default function UpdateTaskModal(props) {
                         </Typography>
 
                         <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                            <Box component="form">
-                                <TextField
-                                    required
-                                    id="taskTitle"
-                                    label="Task Title"
-                                    value={modalTitle}
-                                    onChange={(e)=> {setModalTitle(e.target.value) }}
-                                    fullWidth
-                                />
-                                <TextField
-                                    id="taskpriority"
-                                    label="Priority"
-                                    type="number"                                    
-                                    inputProps={{ max: 5, min: 1 }}
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    value={modalPriority}
-                                    onChange={(e)=> {setModalPriority(e.target.value) }}
-                                    fullWidth
-                                />
-                                <TextField
-                                    id="taskDueDate"
-                                    label="Due Date"
-                                    value={modalDueDate}
-                                    onChange={(e)=> {setModalDueDate(e.target.value) }}
-                                    fullWidth
-                                />
-                                <TextField
-                                    id="taskDescription"
-                                    label="Description"
-                                    value={modalDesc}
-                                    onChange={(e)=> {setModalDesc(e.target.value) }}
-                                    fullWidth
-                                />
+                            <Box >
+                                <form onSubmit={handleFormSubmit}>
+                                    <TextField
+                                        required
+                                        name='title'
+                                        id="taskTitle"
+                                        label="Task Title"
+                                        defaultValue={updateForm.title}
+                                        onChange={handleChange}
+                                        fullWidth
+                                    />
+                                    <TextField
+                                        id="taskpriority"
+                                        name='priority'
+                                        label="Priority"
+                                        type="number"
+                                        inputProps={{ max: 5, min: 1 }}
+                                        defaultValue={updateForm.priority}
+                                        onChange={handleChange}
+                                        fullWidth
+                                    />
+                                    <TextField
+                                        id="taskDueDate"
+                                        name='dueDate'
+                                        label="Due Date"
+                                        defaultValue={updateForm.dueDate}
+                                        onChange={handleChange}
+                                        fullWidth
+                                    />
+                                    <TextField
+                                        id="taskDescription"
+                                        name='desc'
+                                        label="Description"
+                                        defaultValue={updateForm.desc}
+                                        onChange={handleChange}
+                                        fullWidth
+                                    />
+                                    <Button type='submit'>Save Changes</Button>
+                                </form>
                             </Box>
                         </Typography>
-                        <Button onClick={UpdateNewTask}>Save Changes</Button>
                     </Box>
                 </Fade>
             </Modal>
