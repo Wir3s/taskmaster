@@ -1,27 +1,34 @@
 import React from "react";
-import { AppBar, Toolbar, Button } from "@mui/material";
+import { AppBar, Toolbar, Button, Grid } from "@mui/material";
 import Auth from '../utils/auth'
 
 export default function Header() {
-    const logout = (event) => {
+  const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
+
   const displayDesktop = () => {
-    return <Toolbar>TASKMASTER      
-      <span>{Auth.loggedIn() ? ( 
-        <Button onClick={logout} color="error">Logout</Button>
-      ) : (
-        <h5>Login</h5>
-        
-      )}</span>
+    return <Toolbar>
+      <h1>TASKMASTER </h1>
+      
+      <Grid
+      container
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+      component="span"
+      >
+        {
+        Auth.loggedIn() && <Button onClick={logout} color="error">Logout</Button>
+        }
+      </Grid>
       </Toolbar>;
   };
 
   return (
     <header>
-      <AppBar>{displayDesktop()}</AppBar>
-
+      <AppBar color="secondary">{displayDesktop()}</AppBar>
     </header>
   );
 }
