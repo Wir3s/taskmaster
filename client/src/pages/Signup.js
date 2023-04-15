@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Link, Navigate } from "react-router-dom";
+import { Button, TextField } from '@mui/material';
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
@@ -58,39 +59,66 @@ const Signup = (props) => {
         {data ? (
           <p>Signing up...</p>
         ) : (
-          <div>
-            <h1>Signup</h1>
-            <form onSubmit={handleFormSubmit}>
-              <input
+          <div style={{
+                    display: 'flex',
+                    flexFlow: 'column',
+                    alignContent: 'center',
+                    alignItems: 'center',
+                }}>
+            
+            <form onSubmit={handleFormSubmit} style={{
+                        display: 'flex',
+                        flexFlow: 'column',
+                        alignContent: 'center',
+                        alignItems: 'center',
+                        gap: '2vh',
+                        marginTop: '2vh'
+                    }}>
+                      <h1>Signup</h1>
+              <TextField
                 placeholder="Enter username..."
                 name="username"
                 type="text"
                 value={formState.username}
                 onChange={handleChange}
               />
-              <input
+              <TextField
                 placeholder="Enter email..."
                 name="email"
                 type="email"
                 value={formState.email}
                 onChange={handleChange}
               />
-              <input
+              <TextField
                 placeholder="Enter password..."
                 name="password"
                 type="password"
                 value={formState.password}
                 onChange={handleChange}
               />
-              <button type="submit">Signup</button>
+              <Button 
+                variant="contained"
+                color="secondary"
+                type="submit"
+                size="large"
+                style={{ width: '100% '}}
+                >Signup
+                </Button>
+            <Link to="/login"
+              style={{
+                textDecoration: 'none',
+                marginBottom: '2vh'
+              }}>
+          <Button
+            variant="outlined"
+            color="secondary"
+            size="small"
+            >Login Here
+            </Button>
+        </Link>
             </form>
           </div>
         )}
-      </div>
-      <div>
-        <Link to="/login">
-          <button>Back to login.</button>
-        </Link>
       </div>
     </main>
   );
