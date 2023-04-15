@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
+
 import {  Grid,
           Container,
           Button,
           ButtonGroup,
           Tooltip,
           tooltipClasses } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { styled, createTheme } from '@mui/material/styles';
 
 import { useQuery } from '@apollo/client';
 import { GET_ME_LISTS } from '../utils/queries';
@@ -19,7 +20,6 @@ const TaskList = () => {
   const { activeList, setData } = useContext(ListContext);
 
   const handleClick = (event) => {
-    console.log(event.target.dataset.listid);
     setData(event.target.dataset.listid);
   }
 
@@ -35,8 +35,7 @@ const TaskList = () => {
   }
   const lists = data?.me.lists;
 
-  console.log("testing")
-  console.log(data.me.lists[0]._id)
+  console.log("testing:", data.me.lists[0]._id)
 
   const BootstrapTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -59,9 +58,7 @@ const TaskList = () => {
         <Grid item id="taskListMap"
         // get rid of the md breakpoint for 2 columns at full width
         md={4} sm={6} xs={12}
-        key={list._id}
-        style={{
-        }}>
+        key={list._id}>
           <ButtonGroup
           size="medium"
           style={{
@@ -76,7 +73,8 @@ const TaskList = () => {
               display: 'flex',
             }}>
               <Button id={list.listName}
-              color="secondary"
+              color= {(list._id) === activeList ? "success" : "secondary"}
+              // color= {isActive ? "secondary" : "primary"}
               size="small"
               variant="contained"
               style={{
