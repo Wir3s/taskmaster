@@ -85,8 +85,8 @@ const Dashboard = () => {
         <Paper id="taskPaper"
         elevation={1}
         style={{
-          marginLeft: "2vh",
-          marginRight: "2vh"
+          marginLeft: "3vh",
+          marginRight: "3vh"
         }}>
           {/* TASKLIST SELECTION */}
           <Grid id="taskListSelection"
