@@ -64,11 +64,18 @@ const TaskList = () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
-            <BootstrapTooltip title="View List" placement="left">
+            <BootstrapTooltip id="buttonContainer" title="View List" placement="left"
+            style={{
+              display: 'flex',
+            }}>
               <Button id={list.listName}
               color="secondary"
-              size="large"
+              size="small"
               variant="contained"
+              style={{
+                margin: '1vh',
+                flex: 1,
+              }}
               data-listid={list._id}
               onClick={handleClick}
               >
