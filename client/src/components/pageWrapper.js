@@ -3,8 +3,9 @@ import { Box, Container, Paper } from "@mui/material";
 
 const style = {
   backgroundColor: "WhiteSmoke",
-  margin: "10vh",
   padding: "1vh",
+  marginTop: "10vh",
+
 };
 
 export default function PageWrapper(props) {
