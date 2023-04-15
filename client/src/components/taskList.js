@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import {  Container,
+import {  Grid,
+          Container,
           Button,
           ButtonGroup,
           Tooltip,
@@ -53,10 +54,14 @@ const TaskList = () => {
       maxWidth="full"
       style={{padding: 0}}
     >
+      <Grid container>
       {lists.map((list) => (
-        <div id="taskListMap"
+        <Grid item id="taskListMap"
+        // get rid of the md breakpoint for 2 columns at full width
+        md={4} sm={6} xs={12}
         key={list._id}
-        >
+        style={{
+        }}>
           <ButtonGroup
           size="medium"
           style={{
@@ -93,8 +98,10 @@ const TaskList = () => {
               <DeleteListDialog listId={list._id} listName={list.listName}/>
             </ButtonGroup>
           </ButtonGroup>
-        </div>
+        </Grid>
       ))}
+      </Grid>
+      
     </Container>
   );
 };
