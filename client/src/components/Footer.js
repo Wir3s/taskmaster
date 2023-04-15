@@ -1,16 +1,9 @@
 import React from 'react';
 
-import { BottomNavigation } from '@mui/material';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 const Footer = () => {
     return (
-        // <footer style={{
-        //     position: 'sticky',
-        //     textAlign: 'center'
-        // }}>
-        //     <h3>Lovely footer designed by all of us here at TaskMaster ♥</h3>
-        // </footer>
         <footer style={{
             width: "100%",
             backgroundColor: "transparent",
