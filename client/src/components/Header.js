@@ -20,6 +20,7 @@ export default function Header() {
       component="span"
       >
         {
+        // render logout button if logged in
         Auth.loggedIn() && <Button onClick={logout} color="error">Logout</Button>
         }
       </Grid>
