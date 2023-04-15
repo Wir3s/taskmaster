@@ -21,7 +21,10 @@ export default function Header() {
       >
         {
         // render logout button if logged in
-        Auth.loggedIn() && <Button onClick={logout} color="error">Logout</Button>
+        Auth.loggedIn()
+        &&  <Button id="headerLogoutBtn" color="inherit" onClick={logout}>
+              Logout
+            </Button>
         }
       </Grid>
       </Toolbar>;
