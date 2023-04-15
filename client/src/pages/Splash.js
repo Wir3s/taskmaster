@@ -36,12 +36,13 @@ const Splash = () => {
                     </h2>
                     {/* thank you chris for showing us this kind of thing! */}
                     {visibility && <div style={{
+                        paddingTop: '2vh',
                         paddingLeft: '2vh',
                         paddingRight: '2vh',
                         textAlign: 'center'
                     }}>
-                        <p>Long ago, the four filters lived together in harmony. Then, everything changed when the fire filter AI gained sentience and attacked. Only the master filter, controller of all four filters, could stop it. But when the homeowner needed a tasklist the most, the master filter reset to factory settings.</p>
-                        <p>A month passed and a few developers created a task application named TaskMaster, and although its ability to create, update, and delete tasks was great, they had a lot to learn before they actually got the tasks done. But I believe TaskMaster can save the world.</p>
+                        <p>Long ago, the <span style={{color: 'forestgreen', fontWeight: 'bold'}}>four filters</span> lived together in harmony. Then, everything changed when the <span style={{color: 'firebrick', fontWeight: 'bold'}}>fire filter</span> gained sentience and attacked. Only the <span style={{color: 'deepskyblue', fontWeight: 'bold'}}>master filter</span>, controller of all four filters, could stop it. But when the homeowner needed a tasklist to keep track of when to change the filters the most, the <span style={{color: 'deepskyblue', fontWeight: 'bold'}}>master filter</span> reset to factory settings.</p>
+                        <p>A month passed and a few developers created a task application named <span style={{color: '#ea4848', fontWeight: 'bold'}}>TaskMaster</span>, and although its ability to create, update, and delete tasks was great, they had a lot to learn before they actually got the tasks done. But I believe <span style={{color: '#ea4848', fontWeight: 'bold'}}>TaskMaster</span> can save the world.</p>
                     </div>
                     }
                 </Grid>
