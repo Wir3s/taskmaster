@@ -69,13 +69,13 @@ const Login = (props) => {
                         marginTop: '2vh'
                     }}>
                         <h1>Login</h1>
-                        <TextField
-                            placeholder="Enter email..."
-                            name="email"
-                            type="email"
-                            value={formState.email}
-                            onChange={handleChange}
-                        />
+                            <TextField
+                                placeholder="Enter email..."
+                                name="email"
+                                type="email"
+                                value={formState.email}
+                                onChange={handleChange}
+                            />
                         <TextField
                             placeholder="Enter password..."
                             name="password"
@@ -99,7 +99,11 @@ const Login = (props) => {
                             textDecoration: 'none',
                             marginBottom: '2vh'
                         }}>
-                            <Button variant="outlined" size="small">
+                            <Button
+                            variant="outlined"
+                            color="secondary"
+                            size="small"
+                            >
                                 Signup here
                             </Button>
                         </Link>
