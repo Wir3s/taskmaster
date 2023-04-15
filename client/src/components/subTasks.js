@@ -70,20 +70,24 @@ const styles = {
 };
 
 export default function SubTasks() {
-  const [open, setOpen] = React.useState(false);
-
   const { activeList, setData } = useContext(ListContext);
-
   const id = activeList; // This is the list ID
   const { loading, error, data } = useQuery(GET_SINGLE_LIST, {
     variables: { id },
   });
+  const listData = data?.list;
+
+ 
+  const [open, setOpen] = React.useState(listData && listData.tasks ? listData.tasks.map(() => false) : []);
+
+
 
   if (loading) return <p>Loading...</p>;
   if (error)
     return <p>No List has been select, please choose one from above.</p>;
 
-  const listData = data?.list;
+ 
+ 
 
   console.log(listData);
 
@@ -105,7 +109,7 @@ export default function SubTasks() {
             style={{
               display: "flex",
               flexFlow: "row-reverse wrap",
-              marginBottom: '2vh'
+              marginBottom: "2vh",
             }}
           >
             <NewTaskModal />
@@ -136,7 +140,12 @@ export default function SubTasks() {
                     <IconButton
                       aria-label="expand row"
                       size="small"
-                      onClick={() => setOpen(!open)}
+                      onClick={() => {
+                        const index = listData.tasks.indexOf(row);
+                        const newOpen = [...open];
+                        newOpen[index] = !newOpen[index];
+                        setOpen(newOpen);
+                      }}
                     >
                       {open ? (
                         <KeyboardArrowUpIcon />
@@ -172,7 +181,11 @@ export default function SubTasks() {
                     style={{ paddingBottom: 0, paddingTop: 0 }}
                     colSpan={6}
                   >
-                    <Collapse in={open} timeout="auto" unmountOnExit>
+                    <Collapse
+                      in={open[listData.tasks.indexOf(row)]}
+                      timeout="auto"
+                      unmountOnExit
+                    >
                       <Box sx={{ margin: 1 }}>
                         <Typography variant="h6" gutterBottom component="div">
                           Sub-Tasks
