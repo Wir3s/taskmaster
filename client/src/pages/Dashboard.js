@@ -53,11 +53,11 @@ const Dashboard = () => {
   return (
     <ActiveUserContext.Provider value={{ activeUser, setUser }}>
       <header style={styles.header}>
-        <div>
+        {/* <div>
           <div>Welcome {activeUserDetails.me.username}</div>
           <div>DATE</div>
         </div>
-        <div>Settings BTN</div>
+        <div>Settings BTN</div> */}
       </header>
 
       {/* YOUR TASK LIST */}
