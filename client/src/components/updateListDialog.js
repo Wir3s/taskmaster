@@ -1,17 +1,19 @@
 import React from "react";
-import {  Button,
-          TextField,
-          Dialog,
-          DialogActions,
-          DialogContent,
-          DialogContentText,
-          DialogTitle,
-          Tooltip,
-          tooltipClasses,
-          IconButton} from "@mui/material";
-import { styled } from '@mui/material/styles';
-import EditIcon from '@mui/icons-material/Edit';
-
+import {
+  Button,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Tooltip,
+  tooltipClasses,
+  IconButton,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import EditIcon from "@mui/icons-material/Edit";
+import { GET_ME_LISTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 import { UPDATE_LIST } from "../utils/mutations";
 
@@ -23,9 +25,13 @@ export default function UpdateListDialog(props) {
   const [updateListId, setUpdateListId] = React.useState("");
   const [listName, setListName] = React.useState("");
 
-  const [updateList, { error, loading, data }] = useMutation(UPDATE_LIST, {
-    variables: { updateListId, listName },
-  });
+  const [updateList, { error, loading, data, refetch }] = useMutation(
+    UPDATE_LIST,
+    {
+      variables: { updateListId, listName },
+      refetchQueries: [{ query: GET_ME_LISTS }],
+    }
+  );
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -61,6 +67,7 @@ export default function UpdateListDialog(props) {
     console.log("after ifs");
 
     handleClose();
+    refetch();
   };
 
   const BootstrapTooltip = styled(({ className, ...props }) => (
@@ -75,17 +82,16 @@ export default function UpdateListDialog(props) {
   }));
 
   return (
-    <div id="updateListDiv" style={{
-      display: 'flex',
-      margin: "1vh"
-    }}>
-      <BootstrapTooltip
-      title="Change list name" placement="top-start">
-        <IconButton
-        variant="text"
-        size="small"
-        onClick={handleClickOpen}>
-          <EditIcon/>
+    <div
+      id="updateListDiv"
+      style={{
+        display: "flex",
+        margin: "1vh",
+      }}
+    >
+      <BootstrapTooltip title="Change list name" placement="top-start">
+        <IconButton variant="text" size="small" onClick={handleClickOpen}>
+          <EditIcon />
         </IconButton>
       </BootstrapTooltip>
 
