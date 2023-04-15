@@ -99,16 +99,17 @@ export default function SubTasks() {
             }}
           >
             <h2>{listData.listName}</h2>
-            <p style={{ margin: "1vh" }}>Task Count</p>
+            {/* <p style={{ margin: "1vh" }}>Task Count</p> */}
           </div>
           <div
             style={{
               display: "flex",
               flexFlow: "row-reverse wrap",
+              marginBottom: '2vh'
             }}
           >
             <NewTaskModal />
-            <p style={{ margin: "1vh" }}>Toggle Completed Tasks</p>
+            {/* <p style={{ margin: "1vh" }}>Toggle Completed Tasks</p> */}
           </div>
         </div>
       </Container>
