@@ -3,7 +3,7 @@ import { Box, Container, Paper } from "@mui/material";
 
 const style = {
   backgroundColor: "WhiteSmoke",
-  margin: "10vh",
+  margin: "1vh",
   padding: "1vh",
 };
 
