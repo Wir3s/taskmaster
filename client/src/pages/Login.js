@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Link, Navigate } from 'react-router-dom';
+import { Button, TextField } from '@mui/material';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
-
-// Commented portions relate to code that isn't developed yet.
-// Might need to change the import name of the LOGIN mutation later.
 
 const Login = (props) => {
     const [formState, setFormState] = useState({ email: '', password: ''});
@@ -56,38 +54,64 @@ const Login = (props) => {
                     <Navigate to="/dashboard" />
                 )
                 : (
-                <div>
-                    <h1>Login</h1>
-                    <form onSubmit={handleFormSubmit}>
-                        <input
-                            placeholder="Enter email..."
-                            name="email"
-                            type="email"
-                            value={formState.email}
-                            onChange={handleChange}
-                        />
-                        <input
+                <div style={{
+                    display: 'flex',
+                    flexFlow: 'column',
+                    alignContent: 'center',
+                    alignItems: 'center',
+                }}>
+                    <form onSubmit={handleFormSubmit} style={{
+                        display: 'flex',
+                        flexFlow: 'column',
+                        alignContent: 'center',
+                        alignItems: 'center',
+                        gap: '2vh',
+                        marginTop: '2vh'
+                    }}>
+                        <h1>Login</h1>
+                            <TextField
+                                placeholder="Enter email..."
+                                name="email"
+                                type="email"
+                                value={formState.email}
+                                onChange={handleChange}
+                            />
+                        <TextField
                             placeholder="Enter password..."
                             name="password"
                             type="password"
                             value={formState.password}
                             onChange={handleChange}
                         />
-                        <button
+                        <Button
+                            variant="contained"
+                            color="secondary"
                             type="submit"
+                            size="large"
+                            style={{
+                                width: '100%'
+                            }}
                         >
-                            Login
-                        </button>  
+                            Submit
+                        </Button>
+                        <Link to="/signup"
+                        style={{
+                            textDecoration: 'none',
+                            marginBottom: '2vh'
+                        }}>
+                            <Button
+                            variant="outlined"
+                            color="secondary"
+                            size="small"
+                            >
+                                Signup here
+                            </Button>
+                        </Link>
                     </form>
                 </div>
                 )}
             </div>
             <div>
-                <Link to="/signup">
-                    <button>
-                        Click here to sign up.
-                    </button>
-                </Link>
             </div>
         </main>
     )
