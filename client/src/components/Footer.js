@@ -11,11 +11,18 @@ const Footer = () => {
         // }}>
         //     <h3>Lovely footer designed by all of us here at TaskMaster ♥</h3>
         // </footer>
-        <BottomNavigation style={{backgroundColor: "transparent"}}>
+        <footer style={{
+            width: "100%",
+            backgroundColor: "transparent",
+            position: "fixed",
+            bottom: 0,
+            display: 'flex',
+            justifyContent: 'center'
+        }}>
             <p style={{display: 'flex', flexFlow: 'row wrap', alignItems: 'center'}}>
                 <AutoAwesomeIcon/><span style={{margin: "3vh"}}>Change The Filter 2023</span><AutoAwesomeIcon/>
             </p>
-        </BottomNavigation>
+        </footer>
     )
 };
 
