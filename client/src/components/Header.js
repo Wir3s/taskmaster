@@ -10,22 +10,24 @@ export default function Header() {
 
   const displayDesktop = () => {
     return <Toolbar>
-      <h1>TASKMASTER </h1>
-      
-      <Grid
-      container
+      <Grid container
       direction="row"
-      justifyContent="center"
+      justifyContent="space-between"
       alignItems="center"
       component="span"
       >
-        {
-        // render logout button if logged in
-        Auth.loggedIn()
-        &&  <Button id="headerLogoutBtn" color="inherit" onClick={logout}>
-              Logout
-            </Button>
-        }
+        <Grid item>
+          <h1>TASKMASTER</h1>
+        </Grid>
+        <Grid item>
+          {
+          // render logout button if logged in
+          Auth.loggedIn()
+          &&  <Button id="headerLogoutBtn" color="inherit" onClick={logout}>
+                Logout
+              </Button>
+          }
+        </Grid>
       </Grid>
       </Toolbar>;
   };
