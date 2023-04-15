@@ -99,16 +99,17 @@ export default function SubTasks() {
             }}
           >
             <h2>{listData.listName}</h2>
-            <p style={{ margin: "1vh" }}>Task Count</p>
+            {/* <p style={{ margin: "1vh" }}>Task Count</p> */}
           </div>
           <div
             style={{
               display: "flex",
               flexFlow: "row-reverse wrap",
+              marginBottom: '2vh'
             }}
           >
             <NewTaskModal />
-            <p style={{ margin: "1vh" }}>Toggle Completed Tasks</p>
+            {/* <p style={{ margin: "1vh" }}>Toggle Completed Tasks</p> */}
           </div>
         </div>
       </Container>
@@ -119,12 +120,12 @@ export default function SubTasks() {
               {/* {headers.map((header) => (
               <TableCell key={header.headerId} align="left">{header.headerText}</TableCell>
             ))} */}
-              <TableCell align="left">Hide / Show Subtasks</TableCell>
+              <TableCell align="left"></TableCell>
               <TableCell align="left">Details</TableCell>
               <TableCell align="left">Priority</TableCell>
               <TableCell align="left">Task Name</TableCell>
               <TableCell align="left">Due Date</TableCell>
-              <TableCell align="left">Actions</TableCell>
+              <TableCell align="left"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -156,7 +157,7 @@ export default function SubTasks() {
                   <TableCell align="left">{row.priority}</TableCell>
                   <TableCell align="left">{row.title}</TableCell>
                   <TableCell align="left">{row.dueDate}</TableCell>
-                  <TableCell align="left">
+                  <TableCell align="center">
                     <DeleteTaskDialog
                       taskId={row._id}
                       taskName={row.title}
