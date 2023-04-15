@@ -120,12 +120,12 @@ export default function SubTasks() {
               {/* {headers.map((header) => (
               <TableCell key={header.headerId} align="left">{header.headerText}</TableCell>
             ))} */}
-              <TableCell align="left">Hide / Show Subtasks</TableCell>
+              <TableCell align="left"></TableCell>
               <TableCell align="left">Details</TableCell>
               <TableCell align="left">Priority</TableCell>
               <TableCell align="left">Task Name</TableCell>
               <TableCell align="left">Due Date</TableCell>
-              <TableCell align="left">Actions</TableCell>
+              <TableCell align="left"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -157,7 +157,7 @@ export default function SubTasks() {
                   <TableCell align="left">{row.priority}</TableCell>
                   <TableCell align="left">{row.title}</TableCell>
                   <TableCell align="left">{row.dueDate}</TableCell>
-                  <TableCell align="left">
+                  <TableCell align="center">
                     <DeleteTaskDialog
                       taskId={row._id}
                       taskName={row.title}
