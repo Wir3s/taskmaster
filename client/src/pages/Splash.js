@@ -55,6 +55,10 @@ const Splash = () => {
                             variant="contained"
                             color="secondary"
                             size="large"
+                            style={{
+                                marginTop: '2vh',
+                                marginBottom: '4vh'
+                            }}
                             startIcon={<LoginIcon/>}
                             >
                                 Login or Signup with us!
