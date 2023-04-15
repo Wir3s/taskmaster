@@ -69,7 +69,9 @@ const TaskList = () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
-            <BootstrapTooltip id="buttonContainer" title="View List" placement="left"
+            <BootstrapTooltip id="buttonContainer"
+            title="View List"
+            placement="left"
             style={{
               display: 'flex',
             }}>
