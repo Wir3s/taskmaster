@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 import {
   Backdrop,
   Box,
@@ -7,24 +7,24 @@ import {
   Button,
   Typography,
   IconButton,
-  TextField
-} from '@mui/material';
+  TextField,
+} from "@mui/material";
 
-import CloseBTN from '@mui/icons-material/CancelPresentationRounded';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-
+import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { GET_ME_LISTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 import { ADD_TASK } from "../utils/mutations";
-import ListContext from './listContext';
+import ListContext from "./listContext";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -41,22 +41,21 @@ export default function NewTaskModal() {
   const [complete, setComplete] = React.useState("");
   const [dueDate, setDueDate] = React.useState("");
 
-  const [AddTask, { error, loading, data }] = useMutation(ADD_TASK, {
+  const [AddTask, { error, loading, data, refetch }] = useMutation(ADD_TASK, {
     variables: { title, complete, desc, priority, dueDate, addTaskId },
+    refetchQueries: [{ query: GET_ME_LISTS }],
   });
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-
   const AddNewTask = async () => {
-
     // NEED TO CREATE THE SAVE TASK FUNCTION
     setAddListId(await activeList);
     setTitle(await document.getElementById("taskTitle").value);
     setPriority(parseInt(await document.getElementById("taskpriority").value));
     setDesc(await document.getElementById("taskDescription").value);
-    setDueDate(await document.getElementById("taskDueDate").value)
+    setDueDate(await document.getElementById("taskDueDate").value);
     setComplete(false);
 
     // if (loading) return <p>Creating Task...</p>;
@@ -82,16 +81,17 @@ export default function NewTaskModal() {
     // console.log(await document.getElementById("taskDescription").value);
 
     console.log(addTaskId);
-    console.log(title)
-    console.log(priority)
-    console.log(desc)
-    console.log(dueDate)
-    console.log(complete)
+    console.log(title);
+    console.log(priority);
+    console.log(desc);
+    console.log(dueDate);
+    console.log(complete);
 
     AddTask(title, complete, desc, priority, dueDate, addTaskId);
 
-    handleClose()
-  }
+    handleClose();
+    refetch();
+  };
 
   return (
     <div>
@@ -100,7 +100,8 @@ export default function NewTaskModal() {
         variant="contained"
         startIcon={<AddCircleOutlineIcon />}
         size="small"
-        onClick={handleOpen}>
+        onClick={handleOpen}
+      >
         New Task
       </Button>
       <Modal
@@ -119,7 +120,8 @@ export default function NewTaskModal() {
         <Fade in={open}>
           <Box sx={style}>
             <Typography id="newListModal" variant="h6" component="h2">
-              Create a new task<IconButton aria-label="close" onClick={handleClose}>
+              Create a new task
+              <IconButton aria-label="close" onClick={handleClose}>
                 <CloseBTN />
               </IconButton>
             </Typography>
@@ -139,16 +141,8 @@ export default function NewTaskModal() {
                 // defaultValue={5}
                 inputProps={{ max: 5, min: 1 }}
               />
-              <TextField
-                id="taskDueDate"
-                label="Due Date"
-                fullWidth
-              />
-              <TextField
-                id="taskDescription"
-                label="Description"
-                fullWidth
-              />
+              <TextField id="taskDueDate" label="Due Date" fullWidth />
+              <TextField id="taskDescription" label="Description" fullWidth />
             </Box>
             <Button onClick={handleClose}>Cancel</Button>
             <Button onClick={AddNewTask}>Create</Button>

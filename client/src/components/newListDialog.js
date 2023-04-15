@@ -1,16 +1,18 @@
 import React, { useContext } from "react";
-import {  Button,
-          TextField,
-          Dialog,
-          DialogActions,
-          DialogContent,
-          DialogContentText,
-          DialogTitle,
-          Tooltip,
-          tooltipClasses } from "@mui/material";
-import { styled } from '@mui/material/styles';
-import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
-
+import {
+  Button,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Tooltip,
+  tooltipClasses,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import { GET_ME_LISTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 import { CREATE_LIST } from "../utils/mutations";
 
@@ -23,8 +25,9 @@ export default function FormDialog() {
   const [listName, setListName] = React.useState("");
   const [userId, setUserId] = React.useState("");
 
-  const [createList, { error, loading }] = useMutation(CREATE_LIST, {
+  const [createList, { error, loading, refetch }] = useMutation(CREATE_LIST, {
     variables: { listName, userId },
+    refetchQueries: [{ query: GET_ME_LISTS }],
   });
 
   const handleClickOpen = () => {
@@ -51,6 +54,7 @@ export default function FormDialog() {
     console.log(listName);
     createList(listName, userId);
     handleClose();
+    refetch();
   };
 
   const BootstrapTooltip = styled(({ className, ...props }) => (
@@ -68,11 +72,12 @@ export default function FormDialog() {
     <div>
       <BootstrapTooltip title="Make a new list" placement="top-start">
         <Button
-        color="secondary"
-        variant="contained"
-        startIcon={<PlaylistAddIcon />}
-        size="small"
-        onClick={handleClickOpen}>
+          color="secondary"
+          variant="contained"
+          startIcon={<PlaylistAddIcon />}
+          size="small"
+          onClick={handleClickOpen}
+        >
           New List
         </Button>
       </BootstrapTooltip>
