@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import {
   Button,
+  Box,
+  IconButton,
   TextField,
   Dialog,
   DialogActions,
@@ -18,6 +20,7 @@ import { CREATE_LIST } from "../utils/mutations";
 
 import ActiveUserContext from "./activeUserContext";
 import InputLabel from '@mui/material/InputLabel';
+import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
 export default function FormDialog() {
   const { activeUser } = useContext(ActiveUserContext);
@@ -83,8 +86,14 @@ export default function FormDialog() {
         </Button>
       </BootstrapTooltip>
       <Dialog open={open} onClose={handleClose}>
+        <Box id="modalHeader">
         <DialogTitle>Create a new task list</DialogTitle>
+        <IconButton aria-label="close" onClick={handleClose}>
+                <CloseBTN />
+              </IconButton>
+        </Box>
         <DialogContent>
+        
           <DialogContentText>
             Please enter the name for the new list that you would like to
             create.
@@ -99,9 +108,16 @@ export default function FormDialog() {
             variant="standard"
           />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={CreateNewList}>Create</Button>
+        <DialogActions id="modalFooter">
+          <Button sx={{marginBottom: 3}}
+          onClick={handleClose}
+          color="secondary"
+          variant="contained"
+          >Cancel</Button>
+          <Button sx={{marginBottom: 3}}
+          onClick={CreateNewList}
+          color="secondary"
+          variant="contained">Create</Button>
         </DialogActions>
       </Dialog>
     </div>
