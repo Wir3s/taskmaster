@@ -108,13 +108,15 @@ export default function NewTaskModal() {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
+          <Box sx={style} id="modal">
+            <Box id="modalHeader">
             <Typography id="newListModal" variant="h6" component="h2">
               Create a new task
+              </Typography>
               <IconButton aria-label="close" onClick={handleClose}>
                 <CloseBTN />
               </IconButton>
-            </Typography>
+            </Box>
             <Box component="form">
               <InputLabel>Task Title (Required)</InputLabel>
               <TextField
@@ -144,8 +146,20 @@ export default function NewTaskModal() {
               <InputLabel>Description</InputLabel>
               <TextField id="taskDescription" fullWidth />
             </Box>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={AddNewTask}>Create</Button>
+            <Box id="modalFooter">
+              <Button sx={{marginTop: 3}}
+                onClick={handleClose}
+                color="secondary"
+                variant="contained"
+              >Cancel
+              </Button>
+              <Button sx={{marginTop: 3}}
+                onClick={AddNewTask}
+                color="secondary"
+                variant="contained">
+                Create
+                </Button>
+            </Box>
           </Box>
         </Fade>
       </Modal>
