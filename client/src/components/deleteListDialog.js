@@ -94,12 +94,12 @@ export default function DeleteListDialog(props) {
       </BootstrapTooltip>
 
       <Dialog open={open} onClose={handleClose}>
-      <Box id="modalHeader">
-        <DialogTitle>Confirm Task List Delete</DialogTitle>
-        <IconButton aria-label="close" onClick={handleClose}>
-                <CloseBTN />
-              </IconButton>
-              </Box>
+        <Box id="modalHeader">
+          <DialogTitle>Confirm Task List Delete</DialogTitle>
+          <IconButton aria-label="close" onClick={handleClose}>
+            <CloseBTN />
+          </IconButton>
+        </Box>
         <DialogContent>
           <DialogContentText>
             You are about to delete the task list "{props.listName}". This
@@ -117,15 +117,15 @@ export default function DeleteListDialog(props) {
           />
         </DialogContent>
         <DialogActions id="modalFooter">
-          <Button sx={{marginBottom: 3}}
-          onClick={handleClose}
-          color="secondary"
-          variant="contained"
+          <Button sx={{ marginBottom: 3 }}
+            onClick={handleClose}
+            color="secondary"
+            variant="contained"
           >Cancel</Button>
-          <Button sx={{marginBottom: 3}}
-          onClick={DeleteList}
-          color="secondary"
-          variant="contained"
+          <Button sx={{ marginBottom: 3 }}
+            onClick={DeleteList}
+            color="secondary"
+            variant="contained"
           >Delete</Button>
         </DialogActions>
       </Dialog>

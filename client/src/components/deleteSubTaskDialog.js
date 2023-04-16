@@ -77,11 +77,11 @@ export default function DeleteSubTaskDialog(props) {
         </IconButton>
       </BootstrapTooltip>
       <Dialog open={open} onClose={handleClose}>
-      <Box id="modalHeader">
-        <DialogTitle>Confirm SubTask Delete</DialogTitle>
-        <IconButton aria-label="close" onClick={handleClose}>
-                <CloseBTN />
-              </IconButton>
+        <Box id="modalHeader">
+          <DialogTitle>Confirm SubTask Delete</DialogTitle>
+          <IconButton aria-label="close" onClick={handleClose}>
+            <CloseBTN />
+          </IconButton>
         </Box>
         <DialogContent>
           <DialogContentText>
@@ -100,15 +100,15 @@ export default function DeleteSubTaskDialog(props) {
           />
         </DialogContent>
         <DialogActions id="modalFooter">
-          <Button sx={{marginBottom: 3}}
-          onClick={handleClose}
-          color="secondary"
-          variant="contained"
+          <Button sx={{ marginBottom: 3 }}
+            onClick={handleClose}
+            color="secondary"
+            variant="contained"
           >Cancel</Button>
-          <Button sx={{marginBottom: 3}}
-          onClick={RemoveSubTask}
-          color="secondary"
-          variant="contained"
+          <Button sx={{ marginBottom: 3 }}
+            onClick={RemoveSubTask}
+            color="secondary"
+            variant="contained"
           >Delete</Button>
         </DialogActions>
       </Dialog>

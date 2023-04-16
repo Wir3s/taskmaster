@@ -87,13 +87,13 @@ export default function FormDialog() {
       </BootstrapTooltip>
       <Dialog open={open} onClose={handleClose}>
         <Box id="modalHeader">
-        <DialogTitle>Create a new task list</DialogTitle>
-        <IconButton aria-label="close" onClick={handleClose}>
-                <CloseBTN />
-              </IconButton>
+          <DialogTitle>Create a new task list</DialogTitle>
+          <IconButton aria-label="close" onClick={handleClose}>
+            <CloseBTN />
+          </IconButton>
         </Box>
         <DialogContent>
-        
+
           <DialogContentText>
             Please enter the name for the new list that you would like to
             create.
@@ -109,15 +109,15 @@ export default function FormDialog() {
           />
         </DialogContent>
         <DialogActions id="modalFooter">
-          <Button sx={{marginBottom: 3}}
-          onClick={handleClose}
-          color="secondary"
-          variant="contained"
+          <Button sx={{ marginBottom: 3 }}
+            onClick={handleClose}
+            color="secondary"
+            variant="contained"
           >Cancel</Button>
-          <Button sx={{marginBottom: 3}}
-          onClick={CreateNewList}
-          color="secondary"
-          variant="contained">Create</Button>
+          <Button sx={{ marginBottom: 3 }}
+            onClick={CreateNewList}
+            color="secondary"
+            variant="contained">Create</Button>
         </DialogActions>
       </Dialog>
     </div>

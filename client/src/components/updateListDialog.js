@@ -98,12 +98,12 @@ export default function UpdateListDialog(props) {
       </BootstrapTooltip>
 
       <Dialog open={open} onClose={handleClose}>
-      <Box id="modalHeader">
-        <DialogTitle>Update List</DialogTitle>
-        <IconButton aria-label="close" onClick={handleClose}>
-                <CloseBTN />
-              </IconButton>
-      </Box>
+        <Box id="modalHeader">
+          <DialogTitle>Update List</DialogTitle>
+          <IconButton aria-label="close" onClick={handleClose}>
+            <CloseBTN />
+          </IconButton>
+        </Box>
         <DialogContent>
           <DialogContentText>
             Please enter the new name for this list.
@@ -120,15 +120,15 @@ export default function UpdateListDialog(props) {
           />
         </DialogContent>
         <DialogActions id="modalFooter">
-          <Button sx={{marginBottom: 3}}
-          onClick={handleClose}
-          color="secondary"
-          variant="contained"
+          <Button sx={{ marginBottom: 3 }}
+            onClick={handleClose}
+            color="secondary"
+            variant="contained"
           >Cancel</Button>
-          <Button sx={{marginBottom: 3}}
-          onClick={UpdateList}
-          color="secondary"
-          variant="contained"
+          <Button sx={{ marginBottom: 3 }}
+            onClick={UpdateList}
+            color="secondary"
+            variant="contained"
           >Save Changes</Button>
         </DialogActions>
       </Dialog>
