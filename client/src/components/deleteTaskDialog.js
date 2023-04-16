@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Button,
+  Box,
   TextField,
   Dialog,
   DialogActions,
@@ -16,6 +17,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { GET_ME_LISTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 import { REMOVE_TASK } from "../utils/mutations";
+import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
 export default function DeleteTaskDialog(props) {
   console.log(props);
@@ -72,7 +74,12 @@ export default function DeleteTaskDialog(props) {
         </IconButton>
       </BootstrapTooltip>
       <Dialog open={open} onClose={handleClose}>
+      <Box id="modalHeader">
         <DialogTitle>Confirm Task Delete</DialogTitle>
+        <IconButton aria-label="close" onClick={handleClose}>
+                <CloseBTN />
+              </IconButton>
+        </Box>
         <DialogContent>
           <DialogContentText>
             You are about to delete the task "{props.taskName}". This cannot be
@@ -89,9 +96,17 @@ export default function DeleteTaskDialog(props) {
             variant="standard"
           />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={RemoveTask}>Delete</Button>
+        <DialogActions id="modalFooter">
+          <Button sx={{marginBottom: 3}}
+          onClick={handleClose}
+          color="secondary"
+          variant="contained"
+          >Cancel</Button>
+          <Button sx={{marginBottom: 3}}
+          onClick={RemoveTask}
+          color="secondary"
+          variant="contained"
+          >Delete</Button>
         </DialogActions>
       </Dialog>
     </div>
