@@ -135,7 +135,7 @@ export default function SubTasks() {
               <TableCell key={header.headerId} align="left">{header.headerText}</TableCell>
             ))} */}
               <TableCell align="left"></TableCell>
-              <TableCell align="left"><strong>Priority</strong></TableCell>
+              <TableCell align="left"><strong class="prioLabel">Priority</strong></TableCell>
               <TableCell align="left"><strong>Task Name</strong></TableCell>
               <TableCell align="left" id="dueDateCell1"><strong>Due Date</strong></TableCell>
               <TableCell align="left" id="taskPriorityCell1"></TableCell>
@@ -224,7 +224,7 @@ export default function SubTasks() {
               {/* {headers.map((header) => (
               <TableCell key={header.headerId} align="left">{header.headerText}</TableCell>
             ))} */}
-              <TableCell align="left" id="taskPriorityCell3"><strong>Priority</strong></TableCell>
+              <TableCell align="left" id="taskPriorityCell3"><strong class="prioLabel">Priority</strong></TableCell>
               <TableCell align="left"><strong>Task Name</strong></TableCell>
               <TableCell align="left"></TableCell>
               <TableCell align="left"></TableCell>
