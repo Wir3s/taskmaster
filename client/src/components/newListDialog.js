@@ -71,7 +71,7 @@ export default function FormDialog() {
 
   return (
     <div>
-      <BootstrapTooltip title="Make a new list" placement="top-start">
+      <BootstrapTooltip title="Make a new list" placement="left">
         <Button
           color="secondary"
           variant="contained"
