@@ -13,3 +13,19 @@ html {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+table {
+    padding: 0;
+    margin: 0;
+    min-width: none;
+}
+
+td {
+    padding: 0;
+    margin: 0;
+    min-width: none;
+}
+
+.duDate {
+
+}
