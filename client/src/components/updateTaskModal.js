@@ -15,6 +15,10 @@ import { GET_ME_LISTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 import { UPDATE_TASK } from "../utils/mutations";
 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -100,37 +104,43 @@ export default function UpdateTaskModal(props) {
             </Typography>
             <Box>
               <form onSubmit={handleFormSubmit}>
+              <InputLabel>Task Title (Required)</InputLabel>
                 <TextField
                   required
                   name="title"
                   id="taskTitle"
-                  label="Task Title"
                   defaultValue={updateForm.title}
                   onChange={handleChange}
                   fullWidth
                 />
-                <TextField
-                  id="taskpriority"
-                  name="priority"
-                  label="Priority"
-                  type="number"
-                  inputProps={{ max: 5, min: 1 }}
-                  defaultValue={updateForm.priority}
-                  onChange={handleChange}
-                  fullWidth
-                />
+                <InputLabel>Priority (Required)</InputLabel>
+                <Select
+                    id="taskpriority"
+                    name="priority"
+                    value={updateForm.priority}
+                    defaultValue={5}
+                    type="number"
+                    onChange={handleChange}
+                    fullWidth
+                >
+                    <MenuItem value={1}>1</MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                    <MenuItem value={3}>3</MenuItem>
+                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={5}>5</MenuItem>
+                </Select>
+                <InputLabel>Due Date</InputLabel>
                 <TextField
                   id="taskDueDate"
                   name="dueDate"
-                  label="Due Date"
                   defaultValue={updateForm.dueDate}
                   onChange={handleChange}
                   fullWidth
                 />
+                <InputLabel>Description</InputLabel>
                 <TextField
                   id="taskDescription"
                   name="desc"
-                  label="Description"
                   defaultValue={updateForm.desc}
                   onChange={handleChange}
                   fullWidth

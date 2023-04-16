@@ -16,6 +16,10 @@ import { GET_ME_LISTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 import { ADD_SUBTASK } from "../utils/mutations";
 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -36,7 +40,7 @@ export default function NewTaskModal(props) {
   const [taskId, setTaskId] = React.useState("unset");
   const [title, setTitle] = React.useState("");
   const [desc, setDesc] = React.useState("");
-  const [priority, setPriority] = React.useState("");
+  const [priority, setPriority] = React.useState(5);
   const [complete, setComplete] = React.useState("");
 
   if (taskId === "unset") {
@@ -54,6 +58,11 @@ export default function NewTaskModal(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const handleChange = (event) => {
+    const update = parseInt(event.target.value);
+    setPriority(update);
+  };
+
   const AddNewSubTask = async () => {
     // NEED TO CREATE THE SAVE TASK FUNCTION
     console.log(activeTask);
@@ -61,13 +70,10 @@ export default function NewTaskModal(props) {
     console.log(taskId);
 
     setTitle(await document.getElementById("subTaskTitle").value);
-    setPriority(
-      parseInt(await document.getElementById("subTaskpriority").value)
-    );
+    setPriority(parseInt(await priority));
     setDesc(await document.getElementById("subTaskDescription").value);
     setComplete(false);
 
-    // if (loading) return <p>Creating Task...</p>;
     if (error) return console.log(error);
 
     AddSubTask(taskId, title, desc, priority, complete);
@@ -108,25 +114,32 @@ export default function NewTaskModal(props) {
                 <CloseBTN />
               </IconButton>
             </Typography>
+            <InputLabel>Task Title (Required)</InputLabel>
             <Box component="form">
               <TextField
                 autoFocus
                 required
                 id="subTaskTitle"
-                label="Task Title"
                 fullWidth
               />
-              <TextField
-                id="subTaskpriority"
-                label="Priority"
-                type="number"
-                fullWidth
-                // defaultValue={5}
-                inputProps={{ max: 5, min: 1 }}
-              />
+                <InputLabel>Priority (Required)</InputLabel>
+                <Select
+                    id="subTaskpriority"
+                    name="subTaskPriority"
+                    type="number"
+                    defaultValue='5'
+                    onChange={handleChange}
+                    fullWidth
+                >
+                    <MenuItem value={1}>1</MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                    <MenuItem value={3}>3</MenuItem>
+                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={5}>5</MenuItem>
+                </Select>
+              <InputLabel>Description</InputLabel>
               <TextField
                 id="subTaskDescription"
-                label="Description"
                 fullWidth
               />
             </Box>
