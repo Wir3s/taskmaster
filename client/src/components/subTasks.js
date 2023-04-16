@@ -134,11 +134,11 @@ export default function SubTasks() {
               {/* {headers.map((header) => (
               <TableCell key={header.headerId} align="left">{header.headerText}</TableCell>
             ))} */}
-              <TableCell align="left">1</TableCell>
+              <TableCell align="left"></TableCell>
               <TableCell align="left"><strong>Priority</strong></TableCell>
               <TableCell align="left"><strong>Task Name</strong></TableCell>
-              <TableCell align="left"><strong>Due Date</strong></TableCell>
-              <TableCell align="left">2</TableCell>
+              <TableCell align="left" class="dueDate"><strong>Due Date</strong></TableCell>
+              <TableCell align="left" class="taskPriority"></TableCell>
               <TableCell align="left"><strong>Details</strong></TableCell>
             </TableRow>
           </TableHead>
@@ -166,7 +166,7 @@ export default function SubTasks() {
                       )}
                     </IconButton>
                   </TableCell>
-                  <TableCell id="rowPriorityColor" align="left">
+                  <TableCell id="rowPriorityColor" class="taskPriority" align="left">
                     {row.priority}
                     <span style={{
                       height: '1vh',
@@ -178,8 +178,8 @@ export default function SubTasks() {
                     }}></span>
                   </TableCell>
                   <TableCell id="rowTitle" align="left">{row.title}</TableCell>
-                  <TableCell id="rowDueDate" align="left">{row.dueDate}</TableCell>
-                  <TableCell id="rowDelete" align="left" style={{
+                  <TableCell id="rowDueDate" class="dueDate" align="left">{row.dueDate}</TableCell>
+                  <TableCell id="rowDelete" align="center" style={{
                     padding: 0
                   }}>
                     <DeleteTaskDialog
@@ -190,7 +190,7 @@ export default function SubTasks() {
                       taskDesc={row.desc}
                     />
                   </TableCell>
-                  <TableCell id="rowInformation" align="left">
+                  <TableCell id="rowInformation" align="center">
                     <UpdateTaskModal
                       taskId={row._id}
                       taskName={row.title}
@@ -224,7 +224,7 @@ export default function SubTasks() {
               {/* {headers.map((header) => (
               <TableCell key={header.headerId} align="left">{header.headerText}</TableCell>
             ))} */}
-              <TableCell align="left"><strong>Priority</strong></TableCell>
+              <TableCell align="left" class="taskPriority"><strong>Priority</strong></TableCell>
               <TableCell align="left"><strong>Task Name</strong></TableCell>
               <TableCell align="left"><strong>Due Date</strong></TableCell>
               <TableCell align="left"></TableCell>
@@ -233,7 +233,7 @@ export default function SubTasks() {
                           <TableBody>
                             {row.subTasks.map((subTask) => (
                               <TableRow key={subTask._id}>
-                                <TableCell align="left">
+                                <TableCell align="left" class="taskPriority">
                                   {subTask.priority}
                                 </TableCell>
                                 <TableCell align="left">
