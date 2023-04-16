@@ -118,13 +118,15 @@ export default function UpdateTaskModal(props) {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
+          <Box sx={style} id="modal">
+          <Box id="modalHeader">
             <Typography id="newListModal" variant="h6" component="h2">
               Update Task - {props.taskName}
-              <IconButton aria-label="close" onClick={handleClose}>
+            </Typography>
+            <IconButton aria-label="close" onClick={handleClose}>
                 <CloseBTN />
               </IconButton>
-            </Typography>
+            </Box>
             <Box>
               <form onSubmit={handleFormSubmit}>
               <InputLabel>Task Title (Required)</InputLabel>
@@ -168,7 +170,18 @@ export default function UpdateTaskModal(props) {
                   onChange={handleChange}
                   fullWidth
                 />
-                <Button type="submit">Save Changes</Button>
+                            <Box id="modalFooter">
+              <Button sx={{marginTop: 3}}
+                onClick={handleClose}
+                color="secondary"
+                variant="contained"
+              >Cancel
+              </Button>
+                <Button sx={{marginTop: 3}}
+                 type="submit"
+                 color="secondary"
+                 variant="contained">Save Changes</Button>
+                </Box>
               </form>
             </Box>
           </Box>
