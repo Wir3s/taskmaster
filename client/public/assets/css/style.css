@@ -26,6 +26,11 @@ td {
     min-width: none;
 }
 
-.duDate {
 
+
+@media (max-width: 600px) {
+    .dueDate, .taskPriority {
+        display: none;
+    }
 }
+  
