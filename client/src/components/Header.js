@@ -28,8 +28,8 @@ export default function Header() {
                   width="100"
                   className="logo"
                   style={{
-                    paddingTop: '0.5vh',
-                    paddingBottom: '0.5vh',
+                    paddingTop: '1vh',
+                    paddingBottom: '1vh',
                   }}
                 />
             </Button>
