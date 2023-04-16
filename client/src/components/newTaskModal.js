@@ -58,7 +58,7 @@ export default function NewTaskModal() {
     setPriority(update);
   };
 
-  
+
   const AddNewTask = async () => {
     console.log(priority)
     setAddListId(await activeList);
@@ -108,13 +108,15 @@ export default function NewTaskModal() {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
-            <Typography id="newListModal" variant="h6" component="h2">
-              Create a new task
+          <Box sx={style} id="modal">
+            <Box id="modalHeader">
+              <Typography id="newListModal" variant="h6" component="h2">
+                Create a new task
+              </Typography>
               <IconButton aria-label="close" onClick={handleClose}>
                 <CloseBTN />
               </IconButton>
-            </Typography>
+            </Box>
             <Box component="form">
               <InputLabel>Task Title (Required)</InputLabel>
               <TextField
@@ -123,29 +125,41 @@ export default function NewTaskModal() {
                 id="taskTitle"
                 fullWidth
               />
-              
-                <InputLabel>Priority (Required)</InputLabel>
-                <Select
-                    id="taskPriority"
-                    name="taskPriority"
-                    type="number"
-                    defaultValue='5'
-                    onChange={handleChange}
-                    fullWidth
-                >
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
-                    <MenuItem value={5}>5</MenuItem>
-                </Select>
+
+              <InputLabel>Priority (Required)</InputLabel>
+              <Select
+                id="taskPriority"
+                name="taskPriority"
+                type="number"
+                defaultValue='5'
+                onChange={handleChange}
+                fullWidth
+              >
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+              </Select>
               <InputLabel>Due Date</InputLabel>
               <TextField id="taskDueDate" fullWidth />
               <InputLabel>Description</InputLabel>
               <TextField id="taskDescription" fullWidth />
             </Box>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={AddNewTask}>Create</Button>
+            <Box id="modalFooter">
+              <Button sx={{ marginTop: 3 }}
+                onClick={handleClose}
+                color="secondary"
+                variant="contained"
+              >Cancel
+              </Button>
+              <Button sx={{ marginTop: 3 }}
+                onClick={AddNewTask}
+                color="secondary"
+                variant="contained">
+                Create
+              </Button>
+            </Box>
           </Box>
         </Fade>
       </Modal>

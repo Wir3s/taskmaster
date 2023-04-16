@@ -94,16 +94,16 @@ export default function UpdateTaskModal(props) {
   return (
     <div>
       <BootstrapTooltip
-      id="buttonContainer"
-      title="View & Update Details"
-      placement="top-start"
-      style={{
-              display: "flex",
-                }}
-              >
-      <Button onClick={handleOpen} style={{
-        minWidth: 0,
-      }}>🔍</Button></BootstrapTooltip>
+        id="buttonContainer"
+        title="View & Update Details"
+        placement="top-start"
+        style={{
+          display: "flex",
+        }}
+      >
+        <Button onClick={handleOpen} style={{
+          minWidth: 0,
+        }}>🔍</Button></BootstrapTooltip>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -118,16 +118,18 @@ export default function UpdateTaskModal(props) {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
-            <Typography id="newListModal" variant="h6" component="h2">
-              Update Task - {props.taskName}
+          <Box sx={style} id="modal">
+            <Box id="modalHeader">
+              <Typography id="newListModal" variant="h6" component="h2">
+                Update Task - {props.taskName}
+              </Typography>
               <IconButton aria-label="close" onClick={handleClose}>
                 <CloseBTN />
               </IconButton>
-            </Typography>
+            </Box>
             <Box>
               <form onSubmit={handleFormSubmit}>
-              <InputLabel>Task Title (Required)</InputLabel>
+                <InputLabel>Task Title (Required)</InputLabel>
                 <TextField
                   required
                   name="title"
@@ -138,19 +140,19 @@ export default function UpdateTaskModal(props) {
                 />
                 <InputLabel>Priority (Required)</InputLabel>
                 <Select
-                    id="taskpriority"
-                    name="priority"
-                    value={updateForm.priority}
-                    defaultValue={5}
-                    type="number"
-                    onChange={handleChange}
-                    fullWidth
+                  id="taskpriority"
+                  name="priority"
+                  value={updateForm.priority}
+                  defaultValue={5}
+                  type="number"
+                  onChange={handleChange}
+                  fullWidth
                 >
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
-                    <MenuItem value={5}>5</MenuItem>
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
+                  <MenuItem value={5}>5</MenuItem>
                 </Select>
                 <InputLabel>Due Date</InputLabel>
                 <TextField
@@ -168,7 +170,18 @@ export default function UpdateTaskModal(props) {
                   onChange={handleChange}
                   fullWidth
                 />
-                <Button type="submit">Save Changes</Button>
+                <Box id="modalFooter">
+                  <Button sx={{ marginTop: 3 }}
+                    onClick={handleClose}
+                    color="secondary"
+                    variant="contained"
+                  >Cancel
+                  </Button>
+                  <Button sx={{ marginTop: 3 }}
+                    type="submit"
+                    color="secondary"
+                    variant="contained">Save Changes</Button>
+                </Box>
               </form>
             </Box>
           </Box>

@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -13,6 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import { GET_ME_LISTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 import { REMOVE_SUB_TASK } from "../utils/mutations";
+import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
 export default function DeleteSubTaskDialog(props) {
   console.log(props);
@@ -75,7 +77,12 @@ export default function DeleteSubTaskDialog(props) {
         </IconButton>
       </BootstrapTooltip>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Confirm SubTask Delete</DialogTitle>
+        <Box id="modalHeader">
+          <DialogTitle>Confirm SubTask Delete</DialogTitle>
+          <IconButton aria-label="close" onClick={handleClose}>
+            <CloseBTN />
+          </IconButton>
+        </Box>
         <DialogContent>
           <DialogContentText>
             You are about to delete the SubTask "{props.subTaskName}". This
@@ -92,9 +99,17 @@ export default function DeleteSubTaskDialog(props) {
             variant="standard"
           />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={RemoveSubTask}>Delete</Button>
+        <DialogActions id="modalFooter">
+          <Button sx={{ marginBottom: 3 }}
+            onClick={handleClose}
+            color="secondary"
+            variant="contained"
+          >Cancel</Button>
+          <Button sx={{ marginBottom: 3 }}
+            onClick={RemoveSubTask}
+            color="secondary"
+            variant="contained"
+          >Delete</Button>
         </DialogActions>
       </Dialog>
     </div>

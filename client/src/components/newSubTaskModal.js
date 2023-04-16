@@ -107,13 +107,15 @@ export default function NewTaskModal(props) {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
-            <Typography id="newListModal" variant="h6" component="h2">
-              Create a new SubTask
+          <Box sx={style} id="modal">
+            <Box id="modalHeader">
+              <Typography id="newListModal" variant="h6" component="h2">
+                Create a new SubTask
+              </Typography>
               <IconButton aria-label="close" onClick={handleClose} id="111111">
                 <CloseBTN />
               </IconButton>
-            </Typography>
+            </Box>
             <InputLabel>Task Title (Required)</InputLabel>
             <Box component="form">
               <TextField
@@ -122,29 +124,39 @@ export default function NewTaskModal(props) {
                 id="subTaskTitle"
                 fullWidth
               />
-                <InputLabel>Priority (Required)</InputLabel>
-                <Select
-                    id="subTaskpriority"
-                    name="subTaskPriority"
-                    type="number"
-                    defaultValue='5'
-                    onChange={handleChange}
-                    fullWidth
-                >
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
-                    <MenuItem value={5}>5</MenuItem>
-                </Select>
+              <InputLabel>Priority (Required)</InputLabel>
+              <Select
+                id="subTaskpriority"
+                name="subTaskPriority"
+                type="number"
+                defaultValue='5'
+                onChange={handleChange}
+                fullWidth
+              >
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+              </Select>
               <InputLabel>Description</InputLabel>
               <TextField
                 id="subTaskDescription"
                 fullWidth
               />
             </Box>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={AddNewSubTask}>Create</Button>
+            <Box id="modalFooter">
+              <Button sx={{ marginTop: 3 }}
+                onClick={handleClose}
+                color="secondary"
+                variant="contained"
+              >Cancel</Button>
+              <Button sx={{ marginTop: 3 }}
+                onClick={AddNewSubTask}
+                color="secondary"
+                variant="contained"
+              >Create</Button>
+            </Box>
           </Box>
         </Fade>
       </Modal>
