@@ -1,5 +1,4 @@
 * {
-    padding: 0;
     margin: 0;
     background-color: transparent;
     font-family: Arial, Helvetica, sans-serif;
@@ -36,6 +35,12 @@ td {
     #dueDateCell1,
     #dueDateCell2 {
         display: none;
+    }
+    .logo {
+        max-width: 85px;
+    }
+    #taskMasterTitle {
+        font-size: 1.5em;
     }
 }
   
