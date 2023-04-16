@@ -10,7 +10,9 @@ export default function Header() {
 
   const displayDesktop = () => {
     return (
-      <Toolbar>
+      <Toolbar style={{
+        padding: '0 1vh 0 1vh'
+      }}>
         <Grid
           container
           direction="row"
@@ -19,14 +21,24 @@ export default function Header() {
           component="span"
         >
           <Grid item>
-            <img
-              src="assets/images/tmlogo.png"
-              alt="TaskMaster Logo"
-              width="100"
-              className="logo"
-            />
+            <Button href="/" style={{margin: 0, padding: 0}}>
+                <img
+                  src="assets/images/tmlogo.png"
+                  alt="TaskMaster Logo"
+                  width="100"
+                  className="logo"
+                  style={{
+                    paddingTop: '1vh',
+                    paddingBottom: '1vh',
+                  }}
+                />
+            </Button>
           </Grid>
-          <Grid item>
+          <Grid item style={{
+            position: "absolute",
+            textAlign: "center",
+            width: "100%"
+          }}>
             <h1>TASKMASTER</h1>
           </Grid>
           <Grid item>
@@ -46,7 +58,7 @@ export default function Header() {
 
   return (
     <header>
-      <AppBar color="secondary">{displayDesktop()}</AppBar>
+      <AppBar color="secondary" position='static'>{displayDesktop()}</AppBar>
     </header>
   );
 }

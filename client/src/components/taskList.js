@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
-import {  Container,
+
+import {  Grid,
+          Container,
           Button,
           ButtonGroup,
           Tooltip,
@@ -18,7 +20,6 @@ const TaskList = () => {
   const { activeList, setData } = useContext(ListContext);
 
   const handleClick = (event) => {
-    console.log(event.target.dataset.listid);
     setData(event.target.dataset.listid);
   }
 
@@ -34,8 +35,7 @@ const TaskList = () => {
   }
   const lists = data?.me.lists;
 
-  console.log("testing")
-  console.log(data.me.lists[0]._id)
+  console.log("testing:", data.me.lists[0]._id)
 
   const BootstrapTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -53,10 +53,12 @@ const TaskList = () => {
       maxWidth="full"
       style={{padding: 0}}
     >
+      <Grid container>
       {lists.map((list) => (
-        <div id="taskListMap"
-        key={list._id}
-        >
+        <Grid item id="taskListMap"
+        // get rid of the md breakpoint for 2 columns at full width
+        md={4} sm={6} xs={12}
+        key={list._id}>
           <ButtonGroup
           size="medium"
           style={{
@@ -64,16 +66,26 @@ const TaskList = () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
-            <BootstrapTooltip title="View List" placement="left">
-              <Button id={list.listName}
-              color="secondary"
-              size="large"
-              variant="contained"
-              data-listid={list._id}
-              onClick={handleClick}
-              >
-                {list.listName}
-              </Button>
+            <BootstrapTooltip id="buttonContainer"
+            title="View List"
+            placement="left"
+            style={{
+              display: 'flex',
+            }}>
+                <Button id={list.listName}
+                // change active button color here
+                color= {(list._id) === activeList ? "error" : "secondary"}
+                size="small"
+                variant="contained"
+                style={{
+                  margin: '1vh',
+                  flex: 1,
+                }}
+                data-listid={list._id}
+                onClick={handleClick}
+                >
+                  {list.listName}
+                </Button>
             </BootstrapTooltip>
             <ButtonGroup
               size="medium"
@@ -86,8 +98,10 @@ const TaskList = () => {
               <DeleteListDialog listId={list._id} listName={list.listName}/>
             </ButtonGroup>
           </ButtonGroup>
-        </div>
+        </Grid>
       ))}
+      </Grid>
+      
     </Container>
   );
 };

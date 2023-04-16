@@ -70,23 +70,24 @@ const Dashboard = () => {
         >
           <Grid item id="taskListHeader"
           style={{
-            marginBottom: "1vh"
+            marginBottom: "3vh",
           }}>
             <h2>Your Task Lists</h2>
           </Grid>
           <Grid item id="taskListDialog"
           style={{
-            marginBottom: "2vh"
+            marginBottom: "1vh"
           }}>
             <NewListDialog />
           </Grid>
         </Grid>
           
         <Paper id="taskPaper"
-        elevation={1}
+        elevation={0}
         style={{
-          marginLeft: "3vh",
-          marginRight: "3vh"
+          marginLeft: "1vh",
+          marginRight: "1vh",
+          padding: "2vh"
         }}>
           {/* TASKLIST SELECTION */}
           <Grid id="taskListSelection"

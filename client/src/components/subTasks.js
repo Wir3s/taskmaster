@@ -69,6 +69,16 @@ const styles = {
   },
 };
 
+function renderSubTaskColor(priority) {
+    switch (priority) {
+      case 4: return "#ffe9ec";
+      case 3: return "#ffc8cc";
+      case 2: return "#f4918f";
+      case 1: return "#eb6564";
+      default: return "transparent";
+  }
+}
+
 export default function SubTasks() {
   const { activeList, setData } = useContext(ListContext);
   const id = activeList; // This is the list ID
@@ -124,18 +134,19 @@ export default function SubTasks() {
               {/* {headers.map((header) => (
               <TableCell key={header.headerId} align="left">{header.headerText}</TableCell>
             ))} */}
-              <TableCell align="left"></TableCell>
-              <TableCell align="left">Details</TableCell>
-              <TableCell align="left">Priority</TableCell>
-              <TableCell align="left">Task Name</TableCell>
-              <TableCell align="left">Due Date</TableCell>
-              <TableCell align="left"></TableCell>
+              <TableCell></TableCell>
+              <TableCell align="left"><strong>Details</strong></TableCell>
+              <TableCell align="left"><strong>Priority</strong></TableCell>
+              <TableCell align="left"><strong>Task Name</strong></TableCell>
+              <TableCell align="left"><strong>Due Date</strong></TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {listData.tasks.map((row) => (
               <React.Fragment key={row._id}>
-                <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+                <TableRow sx={{
+                  "& > *": { borderBottom: "unset", }}}>
                   <TableCell align="left">
                     <IconButton
                       aria-label="expand row"
@@ -163,7 +174,18 @@ export default function SubTasks() {
                       taskDesc={row.desc}
                     />
                   </TableCell>
-                  <TableCell align="left">{row.priority}</TableCell>
+                  <TableCell align="left">
+                    {row.priority}
+                    <span style={{
+                      height: '1vh',
+                      width: '1vh',
+                      backgroundColor: renderSubTaskColor(row.priority),
+                      borderRadius: "50%",
+                      // border: '1px solid grey',
+                      display: 'inline-block',
+                      marginLeft: '1vh'
+                    }}></span>
+                  </TableCell>
                   <TableCell align="left">{row.title}</TableCell>
                   <TableCell align="left">{row.dueDate}</TableCell>
                   <TableCell align="center">
