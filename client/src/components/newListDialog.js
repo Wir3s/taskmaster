@@ -17,6 +17,7 @@ import { useMutation } from "@apollo/client";
 import { CREATE_LIST } from "../utils/mutations";
 
 import ActiveUserContext from "./activeUserContext";
+import InputLabel from '@mui/material/InputLabel';
 
 export default function FormDialog() {
   const { activeUser } = useContext(ActiveUserContext);
@@ -88,11 +89,11 @@ export default function FormDialog() {
             Please enter the name for the new list that you would like to
             create.
           </DialogContentText>
+          <InputLabel>List Name (Required)</InputLabel>
           <TextField
             autoFocus
             margin="dense"
             id="listName"
-            label="List Name"
             type="listName"
             fullWidth
             variant="standard"

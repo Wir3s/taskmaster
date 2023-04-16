@@ -104,7 +104,7 @@ export default function UpdateTaskModal(props) {
             </Typography>
             <Box>
               <form onSubmit={handleFormSubmit}>
-              <InputLabel>SubTask Title</InputLabel>
+              <InputLabel>SubTask Title (Required)</InputLabel>
                 <TextField
                   required
                   name="title"
@@ -114,7 +114,7 @@ export default function UpdateTaskModal(props) {
                   onChange={handleChange}
                   fullWidth
                 />
-                <InputLabel>Priority</InputLabel>
+                <InputLabel>Priority (Required)</InputLabel>
                 <Select
                     id="subTaskpriority"
                     name="priority"
