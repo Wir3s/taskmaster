@@ -71,10 +71,10 @@ const styles = {
 
 function renderSubTaskColor(priority) {
     switch (priority) {
-      case 2: return "#ffe9ec";
+      case 4: return "#ffe9ec";
       case 3: return "#ffc8cc";
-      case 4: return "#f4918f";
-      case 5: return "#eb6564";
+      case 2: return "#f4918f";
+      case 1: return "#eb6564";
       default: return "transparent";
   }
 }
