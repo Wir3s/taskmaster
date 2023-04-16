@@ -145,6 +145,7 @@ export default function SubTasks() {
           <TableBody id="taskTable">
             {listData.tasks.map((row) => (
               <React.Fragment key={row._id}>
+{/* ------------------------ TASK SECTION ------------------------ */}
                 <TableRow id="rowTaskList" sx={{
                   "& > *": { borderBottom: "unset", }}}>
                   <TableCell id="rowDetail" align="left">
@@ -172,7 +173,6 @@ export default function SubTasks() {
                       width: '1vh',
                       backgroundColor: renderSubTaskColor(row.priority),
                       borderRadius: "50%",
-                      // border: '1px solid grey',
                       display: 'inline-block',
                       marginLeft: '1vh'
                     }}></span>
@@ -198,6 +198,7 @@ export default function SubTasks() {
                     />
                   </TableCell>
                 </TableRow>
+{/* ------------------------ SUBTASK SECTION ------------------------ */}
                 <TableRow id="rowSubTaskList">
                   <TableCell
                     style={{ paddingBottom: 0, paddingTop: 0 }}
@@ -214,19 +215,20 @@ export default function SubTasks() {
                           <NewSubTaskModal subTaskID={row._id} />
                         </Typography>
                         <Table size="small" aria-label="purchases">
+                        <TableHead>
+            <TableRow>
+              {/* {headers.map((header) => (
+              <TableCell key={header.headerId} align="left">{header.headerText}</TableCell>
+            ))} */}
+              <TableCell align="left"><strong>Priority</strong></TableCell>
+              <TableCell align="left"><strong>Task Name</strong></TableCell>
+              <TableCell align="left"><strong>Due Date</strong></TableCell>
+              <TableCell align="left"></TableCell>
+            </TableRow>
+          </TableHead>
                           <TableBody>
                             {row.subTasks.map((subTask) => (
                               <TableRow key={subTask._id}>
-                                <TableCell align="left">
-                                  <UpdateSubTaskModal
-                                    taskID={row._id}
-                                    subTaskId={subTask._id}
-                                    subTaskName={subTask.title}
-                                    subTaskPriority={subTask.priority}
-                                    subTaskDueDate={subTask.dueDate}
-                                    subTaskDesc={subTask.desc}
-                                  />
-                                </TableCell>
                                 <TableCell align="left">
                                   {subTask.priority}
                                 </TableCell>
@@ -239,6 +241,16 @@ export default function SubTasks() {
                                     taskId={row._id}
                                     subTaskName={subTask.title}
                                     subTaskPriority={subTask.priority}
+                                    subTaskDesc={subTask.desc}
+                                  />
+                                </TableCell>
+                                <TableCell align="left">
+                                  <UpdateSubTaskModal
+                                    taskID={row._id}
+                                    subTaskId={subTask._id}
+                                    subTaskName={subTask.title}
+                                    subTaskPriority={subTask.priority}
+                                    subTaskDueDate={subTask.dueDate}
                                     subTaskDesc={subTask.desc}
                                   />
                                 </TableCell>
