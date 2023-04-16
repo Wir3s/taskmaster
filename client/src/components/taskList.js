@@ -6,7 +6,7 @@ import {  Grid,
           ButtonGroup,
           Tooltip,
           tooltipClasses } from '@mui/material';
-import { styled, createTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 import { useQuery } from '@apollo/client';
 import { GET_ME_LISTS } from '../utils/queries';
@@ -72,20 +72,19 @@ const TaskList = () => {
             style={{
               display: 'flex',
             }}>
-              <Button id={list.listName}
-              color= {(list._id) === activeList ? "success" : "secondary"}
-              // color= {isActive ? "secondary" : "primary"}
-              size="small"
-              variant="contained"
-              style={{
-                margin: '1vh',
-                flex: 1,
-              }}
-              data-listid={list._id}
-              onClick={handleClick}
-              >
-                {list.listName}
-              </Button>
+                <Button id={list.listName}
+                color= {(list._id) === activeList ? "success" : "secondary"}
+                size="small"
+                variant="contained"
+                style={{
+                  margin: '1vh',
+                  flex: 1,
+                }}
+                data-listid={list._id}
+                onClick={handleClick}
+                >
+                  {list.listName}
+                </Button>
             </BootstrapTooltip>
             <ButtonGroup
               size="medium"
