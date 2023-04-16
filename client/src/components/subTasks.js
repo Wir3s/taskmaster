@@ -69,6 +69,16 @@ const styles = {
   },
 };
 
+function renderSubTaskColor(priority) {
+    switch (priority) {
+      case 2: return "#fce6f0";
+      case 3: return "#f8c0db";
+      case 4: return "#f598c4";
+      case 5: return "#f46fab";
+      default: return "transparent";
+  }
+}
+
 export default function SubTasks() {
   const { activeList, setData } = useContext(ListContext);
   const id = activeList; // This is the list ID
@@ -135,7 +145,9 @@ export default function SubTasks() {
           <TableBody>
             {listData.tasks.map((row) => (
               <React.Fragment key={row._id}>
-                <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+                <TableRow sx={{
+                  "& > *": { borderBottom: "unset", },
+                  backgroundColor: renderSubTaskColor(row.priority)}}>
                   <TableCell align="left">
                     <IconButton
                       aria-label="expand row"
