@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Box,
   Button,
   TextField,
   Dialog,
@@ -16,6 +17,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { GET_ME_LISTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 import { UPDATE_LIST } from "../utils/mutations";
+import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
 export default function UpdateListDialog(props) {
   const [open, setOpen] = React.useState(false);
@@ -96,7 +98,12 @@ export default function UpdateListDialog(props) {
       </BootstrapTooltip>
 
       <Dialog open={open} onClose={handleClose}>
+      <Box id="modalHeader">
         <DialogTitle>Update List</DialogTitle>
+        <IconButton aria-label="close" onClick={handleClose}>
+                <CloseBTN />
+              </IconButton>
+      </Box>
         <DialogContent>
           <DialogContentText>
             Please enter the new name for this list.
@@ -112,9 +119,17 @@ export default function UpdateListDialog(props) {
             variant="standard"
           />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={UpdateList}>Save Changes</Button>
+        <DialogActions id="modalFooter">
+          <Button sx={{marginBottom: 3}}
+          onClick={handleClose}
+          color="secondary"
+          variant="contained"
+          >Cancel</Button>
+          <Button sx={{marginBottom: 3}}
+          onClick={UpdateList}
+          color="secondary"
+          variant="contained"
+          >Save Changes</Button>
         </DialogActions>
       </Dialog>
     </div>
