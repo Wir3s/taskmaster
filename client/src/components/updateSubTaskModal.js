@@ -15,6 +15,10 @@ import { GET_ME_LISTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 import { UPDATE_SUB_TASK } from "../utils/mutations";
 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -100,29 +104,37 @@ export default function UpdateTaskModal(props) {
             </Typography>
             <Box>
               <form onSubmit={handleFormSubmit}>
+              <InputLabel>SubTask Title</InputLabel>
                 <TextField
                   required
                   name="title"
                   id="subTaskTitle"
-                  label="subTask Title"
+                //   label="SubTask Title"
                   defaultValue={updateForm.title}
                   onChange={handleChange}
                   fullWidth
                 />
-                <TextField
-                  id="subTaskpriority"
-                  name="priority"
-                  label="Priority"
-                  type="number"
-                  inputProps={{ max: 5, min: 1 }}
-                  defaultValue={updateForm.priority}
-                  onChange={handleChange}
-                  fullWidth
-                />
+                <InputLabel>Priority</InputLabel>
+                <Select
+                    id="subTaskpriority"
+                    name="priority"
+                    label="Priority"
+                    value={updateForm.priority}
+                    defaultValue={5}
+                    type="number"
+                    onChange={handleChange}
+                    fullWidth
+                >
+                    <MenuItem value={1}>1</MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                    <MenuItem value={3}>3</MenuItem>
+                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={5}>5</MenuItem>
+                </Select>
+                <InputLabel>Description</InputLabel>
                 <TextField
                   id="subTaskDescription"
                   name="desc"
-                  label="Description"
                   defaultValue={updateForm.desc}
                   onChange={handleChange}
                   fullWidth

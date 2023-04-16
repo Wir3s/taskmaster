@@ -17,6 +17,10 @@ import { useMutation } from "@apollo/client";
 import { ADD_TASK } from "../utils/mutations";
 import ListContext from "./listContext";
 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -36,7 +40,7 @@ export default function NewTaskModal() {
   // Use Mutation State Variables
   const [addTaskId, setAddListId] = React.useState("");
   const [title, setTitle] = React.useState("");
-  const [priority, setPriority] = React.useState("");
+  const [priority, setPriority] = React.useState(5);
   const [desc, setDesc] = React.useState("");
   const [complete, setComplete] = React.useState("");
   const [dueDate, setDueDate] = React.useState("");
@@ -49,36 +53,22 @@ export default function NewTaskModal() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const handleChange = (event) => {
+    const update = parseInt(event.target.value);
+    setPriority(update);
+  };
+
+  
   const AddNewTask = async () => {
-    // NEED TO CREATE THE SAVE TASK FUNCTION
+    console.log(priority)
     setAddListId(await activeList);
     setTitle(await document.getElementById("taskTitle").value);
-    setPriority(parseInt(await document.getElementById("taskpriority").value));
+    setPriority(parseInt(await priority));
     setDesc(await document.getElementById("taskDescription").value);
     setDueDate(await document.getElementById("taskDueDate").value);
     setComplete(false);
 
-    // if (loading) return <p>Creating Task...</p>;
     if (error) return console.log(error);
-
-    // addTaskId = (await activeList);
-    // title = (await document.getElementById("taskTitle").value);
-    // priority = (await document.getElementById("taskpriority").value);
-    // desc = (await document.getElementById("taskDescription").value);
-    // complete = false;
-    // DueDate = '04/21/2023'
-
-    // addTaskId = "642f8fdafb864a7af0f13f97"
-    // title = "Hard Code Test"
-    // priority = 1
-    // desc = "Hard Code Desc"
-    // complete = false;
-    // dueDate = '04/21/2023'
-
-    // console.log(await activeList);
-    // console.log(await document.getElementById("taskTitle").value);
-    // console.log(await document.getElementById("taskpriority").value);
-    // console.log(await document.getElementById("taskDescription").value);
 
     console.log(addTaskId);
     console.log(title);
@@ -126,23 +116,33 @@ export default function NewTaskModal() {
               </IconButton>
             </Typography>
             <Box component="form">
+              <InputLabel>Task Title (Required)</InputLabel>
               <TextField
                 autoFocus
                 required
                 id="taskTitle"
-                label="Task Title"
                 fullWidth
               />
-              <TextField
-                id="taskpriority"
-                label="Priority"
-                type="number"
-                fullWidth
-                // defaultValue={5}
-                inputProps={{ max: 5, min: 1 }}
-              />
-              <TextField id="taskDueDate" label="Due Date" fullWidth />
-              <TextField id="taskDescription" label="Description" fullWidth />
+              
+                <InputLabel>Priority (Required)</InputLabel>
+                <Select
+                    id="taskPriority"
+                    name="taskPriority"
+                    type="number"
+                    defaultValue='5'
+                    onChange={handleChange}
+                    fullWidth
+                >
+                    <MenuItem value={1}>1</MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                    <MenuItem value={3}>3</MenuItem>
+                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={5}>5</MenuItem>
+                </Select>
+              <InputLabel>Due Date</InputLabel>
+              <TextField id="taskDueDate" fullWidth />
+              <InputLabel>Description</InputLabel>
+              <TextField id="taskDescription" fullWidth />
             </Box>
             <Button onClick={handleClose}>Cancel</Button>
             <Button onClick={AddNewTask}>Create</Button>
