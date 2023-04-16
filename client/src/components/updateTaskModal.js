@@ -81,7 +81,6 @@ export default function UpdateTaskModal(props) {
   return (
     <div>
       <Button onClick={handleOpen} style={{
-        padding: 0,
         minWidth: 0,
       }}>🔍</Button>
       <Modal
