@@ -1,5 +1,4 @@
 * {
-    padding: 0;
     margin: 0;
     background-color: transparent;
     font-family: Arial, Helvetica, sans-serif;
@@ -13,3 +12,35 @@ html {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+table {
+    padding: 0;
+    margin: 0;
+    min-width: none;
+}
+
+td {
+    padding: 0;
+    margin: 0;
+    min-width: none;
+}
+
+
+
+@media (max-width: 600px) {
+    #taskPriorityCell1,
+    #taskPriorityCell2,
+    #taskPriorityCell3,
+    #taskPriorityCell4,
+    #dueDateCell1,
+    #dueDateCell2 {
+        display: none;
+    }
+    .logo {
+        max-width: 85px;
+    }
+    #taskMasterTitle {
+        font-size: 1.5em;
+    }
+}
+  

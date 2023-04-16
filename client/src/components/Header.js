@@ -11,7 +11,7 @@ export default function Header() {
   const displayDesktop = () => {
     return (
       <Toolbar style={{
-        padding: '0 1vh 0 1vh'
+        padding: '1vh'
       }}>
         <Grid
           container
@@ -39,7 +39,7 @@ export default function Header() {
             textAlign: "center",
             width: "100%"
           }}>
-            <h1>TASKMASTER</h1>
+            <h1 id="taskMasterTitle">TASKMASTER</h1>
           </Grid>
           <Grid item>
             {

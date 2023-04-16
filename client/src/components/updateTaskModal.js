@@ -80,7 +80,10 @@ export default function UpdateTaskModal(props) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>🔍</Button>
+      <Button onClick={handleOpen} style={{
+        padding: 0,
+        minWidth: 0,
+      }}>🔍</Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
