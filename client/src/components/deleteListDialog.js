@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Box,
   Button,
   TextField,
   Dialog,
@@ -16,6 +17,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { GET_ME_LISTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 import { REMOVE_LIST } from "../utils/mutations";
+import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
 export default function DeleteListDialog(props) {
   const [open, setOpen] = React.useState(false);
@@ -92,7 +94,12 @@ export default function DeleteListDialog(props) {
       </BootstrapTooltip>
 
       <Dialog open={open} onClose={handleClose}>
+      <Box id="modalHeader">
         <DialogTitle>Confirm Task List Delete</DialogTitle>
+        <IconButton aria-label="close" onClick={handleClose}>
+                <CloseBTN />
+              </IconButton>
+              </Box>
         <DialogContent>
           <DialogContentText>
             You are about to delete the task list "{props.listName}". This
@@ -109,9 +116,17 @@ export default function DeleteListDialog(props) {
             variant="standard"
           />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={DeleteList}>Delete</Button>
+        <DialogActions id="modalFooter">
+          <Button sx={{marginBottom: 3}}
+          onClick={handleClose}
+          color="secondary"
+          variant="contained"
+          >Cancel</Button>
+          <Button sx={{marginBottom: 3}}
+          onClick={DeleteList}
+          color="secondary"
+          variant="contained"
+          >Delete</Button>
         </DialogActions>
       </Dialog>
     </div>
