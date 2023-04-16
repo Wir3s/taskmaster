@@ -25,6 +25,21 @@ td {
     min-width: none;
 }
 
+#modal{
+    display: flex;
+    flex-direction: column;
+}
+
+#modalHeader{
+    display: flex;
+    justify-content: space-between;
+}
+
+#modalFooter{
+    display: flex;
+    justify-content: space-around;
+}
+
 @media (max-width: 600px) {
     #taskPriorityCell1,
     #taskPriorityCell2,
@@ -47,4 +62,9 @@ td {
 
     strong.prioLabel {display: none;}
 }
-  
+
+@media (max-width: 500px) {
+    #modal{
+        width: 90%;
+    }
+}
