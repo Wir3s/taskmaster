@@ -74,7 +74,7 @@ const TaskList = () => {
             }}>
                 <Button id={list.listName}
                 // change active button color here
-                color= {(list._id) === activeList ? "success" : "secondary"}
+                color= {(list._id) === activeList ? "error" : "secondary"}
                 size="small"
                 variant="contained"
                 style={{
