@@ -69,7 +69,7 @@ export default function DeleteSubTaskDialog(props) {
 
   return (
     <div>
-      <BootstrapTooltip title="Delete Task" placement="right-end">
+      <BootstrapTooltip title="Delete Task" placement="top">
         <IconButton variant="outlined" onClick={handleClickOpen}>
           <DeleteIcon />
         </IconButton>

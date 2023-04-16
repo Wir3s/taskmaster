@@ -8,8 +8,10 @@ import {
   Typography,
   IconButton,
   TextField,
+  Tooltip,
+  tooltipClasses,
 } from "@mui/material";
-
+import { styled } from "@mui/material/styles";
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 import { GET_ME_LISTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
@@ -78,11 +80,30 @@ export default function UpdateTaskModal(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const BootstrapTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.black,
+    },
+  }));
+
   return (
     <div>
+      <BootstrapTooltip
+      id="buttonContainer"
+      title="View & Update Details"
+      placement="top-start"
+      style={{
+              display: "flex",
+                }}
+              >
       <Button onClick={handleOpen} style={{
         minWidth: 0,
-      }}>🔍</Button>
+      }}>🔍</Button></BootstrapTooltip>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

@@ -85,7 +85,7 @@ export default function DeleteListDialog(props) {
         margin: "1vh",
       }}
     >
-      <BootstrapTooltip title="Delete List" placement="right-end">
+      <BootstrapTooltip title="Delete List" placement="top">
         <IconButton variant="outlined" size="small" onClick={handleClickOpen}>
           <DeleteIcon />
         </IconButton>
