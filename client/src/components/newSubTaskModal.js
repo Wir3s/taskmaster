@@ -107,13 +107,15 @@ export default function NewTaskModal(props) {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
+          <Box sx={style} id="modal">
+          <Box id="modalHeader">
             <Typography id="newListModal" variant="h6" component="h2">
               Create a new SubTask
-              <IconButton aria-label="close" onClick={handleClose} id="111111">
+            </Typography>
+            <IconButton aria-label="close" onClick={handleClose} id="111111">
                 <CloseBTN />
               </IconButton>
-            </Typography>
+            </Box>
             <InputLabel>Task Title (Required)</InputLabel>
             <Box component="form">
               <TextField
@@ -143,8 +145,18 @@ export default function NewTaskModal(props) {
                 fullWidth
               />
             </Box>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={AddNewSubTask}>Create</Button>
+            <Box id="modalFooter">
+            <Button sx={{marginTop: 3}}
+            onClick={handleClose}
+            color="secondary"
+            variant="contained"
+            >Cancel</Button>
+            <Button sx={{marginTop: 3}}
+            onClick={AddNewSubTask}
+            color="secondary"
+            variant="contained"
+            >Create</Button>
+            </Box>
           </Box>
         </Fade>
       </Modal>
