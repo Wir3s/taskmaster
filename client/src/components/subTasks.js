@@ -166,7 +166,7 @@ export default function SubTasks() {
                       )}
                     </IconButton>
                   </TableCell>
-                  <TableCell id="rowPriorityColor" id="taskPriorityCell2" align="left">
+                  <TableCell id="rowPriorityColor taskPriorityCell2" align="left">
                     {row.priority}
                     <span style={{
                       height: '1vh',
