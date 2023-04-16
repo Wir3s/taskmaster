@@ -34,7 +34,11 @@ export default function Header() {
                 />
             </Button>
           </Grid>
-          <Grid item>
+          <Grid item style={{
+            position: "absolute",
+            textAlign: "center",
+            width: "100%"
+          }}>
             <h1>TASKMASTER</h1>
           </Grid>
           <Grid item>
