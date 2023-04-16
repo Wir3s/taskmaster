@@ -29,7 +29,12 @@ td {
 
 
 @media (max-width: 600px) {
-    .dueDate, .taskPriority {
+    #taskPriorityCell1,
+    #taskPriorityCell2,
+    #taskPriorityCell3,
+    #taskPriorityCell4,
+    #dueDateCell1,
+    #dueDateCell2 {
         display: none;
     }
 }

@@ -137,8 +137,8 @@ export default function SubTasks() {
               <TableCell align="left"></TableCell>
               <TableCell align="left"><strong>Priority</strong></TableCell>
               <TableCell align="left"><strong>Task Name</strong></TableCell>
-              <TableCell align="left" class="dueDate"><strong>Due Date</strong></TableCell>
-              <TableCell align="left" class="taskPriority"></TableCell>
+              <TableCell align="left" id="dueDateCell1"><strong>Due Date</strong></TableCell>
+              <TableCell align="left" id="taskPriorityCell1"></TableCell>
               <TableCell align="left"><strong>Details</strong></TableCell>
             </TableRow>
           </TableHead>
@@ -166,7 +166,7 @@ export default function SubTasks() {
                       )}
                     </IconButton>
                   </TableCell>
-                  <TableCell id="rowPriorityColor" class="taskPriority" align="left">
+                  <TableCell id="rowPriorityColor" id="taskPriorityCell2" align="left">
                     {row.priority}
                     <span style={{
                       height: '1vh',
@@ -178,7 +178,7 @@ export default function SubTasks() {
                     }}></span>
                   </TableCell>
                   <TableCell id="rowTitle" align="left">{row.title}</TableCell>
-                  <TableCell id="rowDueDate" class="dueDate" align="left">{row.dueDate}</TableCell>
+                  <TableCell id="dueDateCell2" align="left">{row.dueDate}</TableCell>
                   <TableCell id="rowDelete" align="center" style={{
                     padding: 0
                   }}>
@@ -224,7 +224,7 @@ export default function SubTasks() {
               {/* {headers.map((header) => (
               <TableCell key={header.headerId} align="left">{header.headerText}</TableCell>
             ))} */}
-              <TableCell align="left" class="taskPriority"><strong>Priority</strong></TableCell>
+              <TableCell align="left" id="taskPriorityCell3"><strong>Priority</strong></TableCell>
               <TableCell align="left"><strong>Task Name</strong></TableCell>
               <TableCell align="left"><strong>Due Date</strong></TableCell>
               <TableCell align="left"></TableCell>
@@ -233,7 +233,7 @@ export default function SubTasks() {
                           <TableBody>
                             {row.subTasks.map((subTask) => (
                               <TableRow key={subTask._id}>
-                                <TableCell align="left" class="taskPriority">
+                                <TableCell align="left" id="taskPriorityCell4">
                                   {subTask.priority}
                                 </TableCell>
                                 <TableCell align="left">
