@@ -69,6 +69,19 @@ const Splash = ({ in: inProp }) => {
             paddingBottom: "2vh",
           }}
         >
+          <img
+                  src="assets/images/tmlogo.png"
+                  alt="TaskMaster Logo"
+                  width="200"
+                  className="splashImg"
+                  style={{
+                    display: 'flex',
+                    paddingTop: '1vh',
+                    paddingBottom: '4vh',
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                />
           <h2
             style={{
               textAlign: "center",
