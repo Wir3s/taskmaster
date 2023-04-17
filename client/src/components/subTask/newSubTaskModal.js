@@ -9,13 +9,11 @@ import {
   IconButton,
   TextField,
 } from "@mui/material";
-
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
 import { ADD_SUBTASK } from "../../utils/mutations";
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -32,6 +30,7 @@ const style = {
   p: 4,
 };
 
+// This creates the new task modal
 export default function NewTaskModal(props) {
   const [open, setOpen] = React.useState(false);
   const activeTask = props.subTaskID;
@@ -57,16 +56,14 @@ export default function NewTaskModal(props) {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   const handleChange = (event) => {
     const update = parseInt(event.target.value);
     setPriority(update);
   };
 
+    //This is the function that is triggered when the user opts to create the new subtask.
   const AddNewSubTask = async () => {
-    // NEED TO CREATE THE SAVE TASK FUNCTION
     setTaskId(await activeTask);
-
     setTitle(await document.getElementById("subTaskTitle").value);
     setPriority(parseInt(await priority));
     setDesc(await document.getElementById("subTaskDescription").value);
@@ -75,7 +72,6 @@ export default function NewTaskModal(props) {
     if (error) return console.log(error);
 
     AddSubTask(taskId, title, desc, priority, complete);
-
     handleClose();
     refetch();
   };

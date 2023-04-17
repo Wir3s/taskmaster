@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-
 import {
   Grid,
   Container,
@@ -9,34 +8,28 @@ import {
   tooltipClasses,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-
 import { useQuery } from "@apollo/client";
 import { GET_ME_LISTS } from "../utils/queries";
-
 import ListContext from "./context/listContext";
-
 import UpdateListDialog from "./list/updateListDialog";
 import DeleteListDialog from "./list/deleteListDialog";
 
+// This controls the gathering and displaying of the lists that the logged in uses has access to.
 const TaskList = () => {
   const { activeList, setData } = useContext(ListContext);
-
   const handleClick = (event) => {
     setData(event.target.dataset.listid);
   };
-
   const { loading, error, data } = useQuery(GET_ME_LISTS);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading your tasks list</p>;
 
   //Setting the active list to the first list from the query
-  //////////////////////// BELOW IF STATEMENT IS THROWING AN ERROR IN CONSOLE ///////////////////////////
   if (activeList === "default") {
     setData(data.me.lists[0]._id);
   }
   const lists = data?.me.lists;
-
   const BootstrapTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({
@@ -55,11 +48,11 @@ const TaskList = () => {
       style={{ padding: 0 }}
     >
       <Grid container>
+        {/* This generating the buttons for each of the lists that the use has access to. */}
         {lists.map((list) => (
           <Grid
             item
             id="taskListMap"
-            // get rid of the md breakpoint for 2 columns at full width
             md={4}
             sm={6}
             xs={12}
@@ -83,7 +76,6 @@ const TaskList = () => {
               >
                 <Button
                   id={list.listName}
-                  // change active button color here
                   color={list._id === activeList ? "error" : "secondary"}
                   size="small"
                   variant="contained"

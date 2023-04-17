@@ -4,6 +4,7 @@ import { Transition } from "react-transition-group";
 import { Grid, Button } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
 
+// Defining the fade in timeers
 const duration1 = 1000;
 const duration2 = 3000;
 const duration3 = 4000;

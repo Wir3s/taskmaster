@@ -19,11 +19,10 @@ import { useMutation } from "@apollo/client";
 import { REMOVE_LIST } from "../../utils/mutations";
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
+// This creates the delete list Dialog modal
 export default function DeleteListDialog(props) {
   const [open, setOpen] = React.useState(false);
-
   const [removeListId, setListId] = React.useState("");
-
   const [removeList, { error, loading, refetch }] = useMutation(
     REMOVE_LIST,
     { variables: { removeListId }, refetchQueries: [{ query: GET_ME_LISTS }] }
@@ -37,6 +36,7 @@ export default function DeleteListDialog(props) {
     setOpen(false);
   };
 
+    //This is the function that is triggered when the user opts to delete a list.
   const DeleteList = async () => {
     if (
       (await document.getElementById("deleteConfirm").value) !== props.listName
@@ -51,7 +51,6 @@ export default function DeleteListDialog(props) {
     if (error) return <p>Error deleting the lists.</p>;
     setListId(props.listId);
     removeList(removeListId);
-
     handleClose();
     refetch();
   };

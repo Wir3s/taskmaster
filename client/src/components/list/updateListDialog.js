@@ -19,6 +19,7 @@ import { useMutation } from "@apollo/client";
 import { UPDATE_LIST } from "../../utils/mutations";
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
+// This creates the update list Dialog modal
 export default function UpdateListDialog(props) {
   const [open, setOpen] = React.useState(false);
 
@@ -26,7 +27,6 @@ export default function UpdateListDialog(props) {
   // state var for listName
   const [updateListId, setUpdateListId] = React.useState("");
   const [listName, setListName] = React.useState("");
-
   const [updateList, { error, loading, refetch }] = useMutation(
     UPDATE_LIST,
     {
@@ -43,6 +43,7 @@ export default function UpdateListDialog(props) {
     setOpen(false);
   };
 
+    //This is the function that is triggered when the user opts to create the new list.
   const UpdateList = async () => {
     //Setting listName for use in mutation
     if ((await document.getElementById("updateListName").value) === "") {

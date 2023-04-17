@@ -9,14 +9,12 @@ import {
   IconButton,
   TextField,
 } from "@mui/material";
-
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
 import { ADD_TASK } from "../../utils/mutations";
 import ListContext from "../context/listContext";
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -33,6 +31,7 @@ const style = {
   p: 4,
 };
 
+// This creates the new task modal
 export default function NewTaskModal() {
   const { activeList } = useContext(ListContext);
   const [open, setOpen] = React.useState(false);
@@ -44,7 +43,6 @@ export default function NewTaskModal() {
   const [desc, setDesc] = React.useState("");
   const [complete, setComplete] = React.useState("");
   const [dueDate, setDueDate] = React.useState("");
-
   const [AddTask, { error, refetch }] = useMutation(ADD_TASK, {
     variables: { title, complete, desc, priority, dueDate, addTaskId },
     refetchQueries: [{ query: GET_ME_LISTS }],
@@ -52,15 +50,13 @@ export default function NewTaskModal() {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   const handleChange = (event) => {
     const update = parseInt(event.target.value);
     setPriority(update);
   };
 
-
+    //This this the function that is triggered when the user opts to create the new task.
   const AddNewTask = async () => {
-
     setAddListId(await activeList);
     setTitle(await document.getElementById("taskTitle").value);
     setPriority(parseInt(await priority));
@@ -71,7 +67,6 @@ export default function NewTaskModal() {
     if (error) return console.log(error);
 
     AddTask(title, complete, desc, priority, dueDate, addTaskId);
-
     handleClose();
     refetch();
   };

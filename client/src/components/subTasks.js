@@ -15,18 +15,14 @@ import {
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
 import DeleteTaskDialog from "./task/deleteTaskDialog";
 import DeleteSubTaskDialog from "./subTask/deleteSubTaskDialog";
-
 import { useQuery } from "@apollo/client";
 import { GET_SINGLE_LIST } from "../utils/queries";
-
 import NewTaskModal from "./task/newTaskModal";
 import UpdateTaskModal from "./task/updateTaskModal";
 import NewSubTaskModal from "./subTask/newSubTaskModal";
 import UpdateSubTaskModal from "./subTask/updateSubTaskModal";
-
 import ListContext from "./context/listContext";
 
 const styles = {
@@ -42,6 +38,7 @@ const styles = {
   },
 };
 
+//Definign the color that will be displayed for the priority dot that is rendered on the page.
 function renderSubTaskColor(priority) {
     switch (priority) {
       case 4: return "#ffe9ec";
@@ -52,6 +49,7 @@ function renderSubTaskColor(priority) {
   }
 }
 
+//This is the fucntion that controls the tasks and subtasks that are being rendered on the page.
 export default function SubTasks() {
   const { activeList } = useContext(ListContext);
   const id = activeList; // This is the list ID
@@ -108,9 +106,9 @@ export default function SubTasks() {
             </TableRow>
           </TableHead>
           <TableBody id="taskTable">
+{/* ------------------------ TASK SECTION ------------------------ */}
             {listData.tasks.map((row) => (
               <React.Fragment key={row._id}>
-{/* ------------------------ TASK SECTION ------------------------ */}
                 <TableRow id="rowTaskList" sx={{
                   "& > *": { borderBottom: "unset", }}}>
                   <TableCell id="rowDetail" align="left">

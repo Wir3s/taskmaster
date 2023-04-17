@@ -16,7 +16,6 @@ import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
 import { UPDATE_SUB_TASK } from "../../utils/mutations";
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -33,6 +32,7 @@ const style = {
   p: 4,
 };
 
+// This creates the update task modal
 export default function UpdateTaskModal(props) {
   const [open, setOpen] = React.useState(false);
 
@@ -45,6 +45,7 @@ export default function UpdateTaskModal(props) {
     complete: false,
   });
 
+    //This is the function that is triggered when the user opts to update a task.
   const [updateTask, { refetch }] =
     useMutation(UPDATE_SUB_TASK);
   const mutationResponse = async (event) => {

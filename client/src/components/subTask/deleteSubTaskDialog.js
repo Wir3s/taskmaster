@@ -16,12 +16,11 @@ import { useMutation } from "@apollo/client";
 import { REMOVE_SUB_TASK } from "../../utils/mutations";
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
+// This creates the delete subtask dialog modal
 export default function DeleteSubTaskDialog(props) {
   const [open, setOpen] = React.useState(false);
-
   const [subTaskId, setSubTaskId] = React.useState("");
   const [taskId, setTaskId] = React.useState("");
-
   const [removeSubTask, { error, loading, refetch }] = useMutation(
     REMOVE_SUB_TASK,
     {
@@ -36,6 +35,8 @@ export default function DeleteSubTaskDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+    //This is the function that is triggered when the user opts to remove a subtask.
   const RemoveSubTask = async () => {
     if (
       (await document.getElementById("deleteConfirm").value) !==
@@ -52,7 +53,6 @@ export default function DeleteSubTaskDialog(props) {
     setSubTaskId(props.subTaskId);
     setTaskId(props.taskId);
     removeSubTask(subTaskId, taskId);
-
     handleClose();
     refetch();
   };

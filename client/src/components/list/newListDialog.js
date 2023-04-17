@@ -17,18 +17,16 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
 import { CREATE_LIST } from "../../utils/mutations";
-
 import ActiveUserContext from "../context/activeUserContext";
 import InputLabel from '@mui/material/InputLabel';
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
+// This creates the new list Dialog modal
 export default function FormDialog() {
   const { activeUser } = useContext(ActiveUserContext);
   const [open, setOpen] = React.useState(false);
-
   const [listName, setListName] = React.useState("");
   const [userId, setUserId] = React.useState("");
-
   const [createList, { error, loading, refetch }] = useMutation(CREATE_LIST, {
     variables: { listName, userId },
     refetchQueries: [{ query: GET_ME_LISTS }],
@@ -42,6 +40,7 @@ export default function FormDialog() {
     setOpen(false);
   };
 
+  //This is the function that is triggered when the user opts to create the new list.
   const CreateNewList = async () => {
     setListName(await document.getElementById("listName").value);
 

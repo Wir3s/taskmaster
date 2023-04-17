@@ -21,9 +21,7 @@ import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
 export default function DeleteTaskDialog(props) {
   const [open, setOpen] = React.useState(false);
-
   const [removeTaskId, setTaskId] = React.useState("");
-
   const [removeTask, { error, loading, refetch }] = useMutation(
     REMOVE_TASK,
     { variables: { removeTaskId }, refetchQueries: [{ query: GET_ME_LISTS }] }
@@ -35,6 +33,8 @@ export default function DeleteTaskDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+    //This this the function that is triggered when the user opts to remove a task.
   const RemoveTask = async () => {
     if (
       (await document.getElementById("deleteConfirm").value) !== props.taskName
@@ -49,7 +49,6 @@ export default function DeleteTaskDialog(props) {
     if (error) return <p>Error deleting the Task.</p>;
     setTaskId(props.taskId);
     removeTask(removeTaskId);
-
     handleClose();
     refetch();
   };
