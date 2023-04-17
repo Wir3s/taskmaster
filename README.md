@@ -1,7 +1,9 @@
 # TaskMaster
+
 TaskMaster is a single-page progressive web application that allows the user to organize their tasks and todos, as well as  make tasklists containing tasks and subtasks.
 
 # Table of Contents
+
 - [TaskMaster](#taskmaster)
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
@@ -11,6 +13,7 @@ TaskMaster is a single-page progressive web application that allows the user to 
 
 
 # Installation
+
 If the user does not want to use the official web app, installation on a local machine is as follows:
 1. Clone or download the repository
 2. Navigate in a terminal to the top level of the repository
@@ -23,6 +26,7 @@ If the user does not want to use the official web app, installation on a local m
 5. You can then use the site as you would on the official web app version.
 
 # Usage
+
 Whether using the official web app or a local version, the site is used the same way.
 
 - If you are not already logged in, you must either log in or register.
@@ -36,6 +40,7 @@ Whether using the official web app or a local version, the site is used the same
 - You can edit tasks and subtasks by clicking or tapping on them.
 
 # Credits
+
 This project is a collaboration between four junior web developers:
 
 - Andre Bessette ([GitHub](https://github.com/Wir3s))
@@ -44,10 +49,11 @@ This project is a collaboration between four junior web developers:
 
 - Karl Hubig ([GitHub](https://github.com/karlnh))
 
-- Salahuddin Imad ([GitHub](https://github.com/Sal8298))
+- Salahuddin Imdad ([GitHub](https://github.com/Sal8298))
 
 
 # License
+
 [![[badge](https://mit-license.org/)](https://img.shields.io/badge/license-MIT-green)](https://img.shields.io/github/license/Wir3s/taskmaster?style=for-the-badge)
 
 This project is licensed under the MIT license. See the LICENSE file for more details.
