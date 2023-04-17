@@ -6,10 +6,10 @@
     "lists": [{"_id":"642f8fdafb864a7af0f13f97"}, {"_id":"642f8fdafb864a7af0f13f98"} ]
   },{
     "_id": "642f8b9361968c78806c0e71",
-    "email": "useremail1@email.com",
-    "username": "user1",
+    "email": "Pipsqueak@email.com",
+    "username": "Pipsqueak",
     "password": "123123123",
-    "lists": [{"_id":"642f8fdafb864a7af0f13f97"}, {"_id":"642f8fdafb864a7af0f13f98"}, {"_id":"642f8fdafb864a7af0f13f99"} ]
+    "lists": [{"_id":"642f8fdafb864a7af0f13f97"}, {"_id":"642f8fdafb864a7af0f13f98"}, {"_id":"642f8fdafb864a7af0f13f99"}, {"_id":"643d5bc99a0bb553530251db"}, {"_id":"643d5bf69a0bb553530251e1"}, {"_id":"643d5bdd9a0bb553530251de"} ]
   },{
     "_id": "642f8b9361968c78806c0e72",
     "email": "useremail2@email.com",

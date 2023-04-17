@@ -2,7 +2,7 @@
     {
         "_id": "642fa2c9bc3eb07e98aa8a0f",
         "title": "Clean Bathroom",
-        "desc": "Clean Bathroom Decription",
+        "desc": "Clean The Bathroom. Duh.",
         "priority": 1,
         "complete": false,
         "assignees": [
@@ -13,7 +13,7 @@
         "subTasks": [
             {
                 "title": "Scrub Toliet",
-                "desc": "Scrub Toliet",
+                "desc": "Scrub the Toliet.",
                 "priority": 1,
                 "complete": false,
                 "assignees": [
@@ -24,6 +24,7 @@
             {
                 "title": "Clean Mirror",
                 "priority": 2,
+                "desc": "",
                 "complete": false,
                 "assignees": [
                     "Garrett"
@@ -32,7 +33,21 @@
             },
             {
                 "title": "Scrub Bathtub",
-                "desc": "clean the tub",
+                "desc": "Clean the tub. Duh.",
+                "priority": 3,
+                "complete": false,
+                "dueDate": "04/21/2023"
+            },
+            {
+                "title": "Swifer the floor.",
+                "desc": "",
+                "priority": 3,
+                "complete": false,
+                "dueDate": "04/21/2023"
+            },
+            {
+                "title": "Empty trash can.",
+                "desc": "",
                 "priority": 3,
                 "complete": false,
                 "dueDate": "04/21/2023"
@@ -42,13 +57,14 @@
     {
         "_id": "642fa2c9bc3eb07e98aa8a13",
         "title": "Clean Kitchen",
-        "desc": "Make it spotless",
+        "desc": "Make it spotless. Or else.",
         "priority": 2,
         "complete": false,
         "assignees": [
             "Joe"
         ],
         "createdBy": "642f8b9361968c78806c0e73",
+        "dueDate": "04/21/2023",
         "subTasks": [
             {
                 "title": "Clean Counter",
@@ -71,6 +87,16 @@
                 "priority": 3,
                 "complete": true,
                 "assignees": ["Garrett"]
+            },
+            {
+                "title": "Clean stovetop",
+                "priority": 3,
+                "complete": false
+            },
+            {
+                "title": "Empty dishwasher.",
+                "priority": 3,
+                "complete": false
             }
         ]
     },
@@ -80,19 +106,26 @@
         "priority": 3,
         "complete": false,
         "createdBy": "642f8b9361968c78806c0e73",
-        "dueDate": "",
+        "dueDate": "04/21/2023",
         "subTasks": [
             {
-                "title": "Dust",
+                "title": "Dust the room.",
                 "desc": "",
                 "priority": 1,
                 "complete": false,
                 "dueDate": "04/21/2023"
             },
             {
-                "title": "Vacuum",
+                "title": "Vacuum AFTER dusting.",
                 "desc": "",
                 "priority": 2,
+                "complete": false,
+                "dueDate": "04/21/2023"
+            },
+            {
+                "title": "Swifer the floor AFTER Vacuuming.",
+                "desc": "",
+                "priority": 3,
                 "complete": false,
                 "dueDate": "04/21/2023"
             }
@@ -145,6 +178,230 @@
                 "priority": "3",
                 "complete": false,
                 "dueDate": "04/21/2023"
+            }
+        ]
+    },
+    {
+        "_id": "643d5eb525603c5704249116",
+        "title": "Garage Inventory",
+        "desc": "Make an inventory of all the things in my garage and make sure nothing is misplaced.",
+        "priority": "1",
+        "complete": false,
+        "createdBy": "642f8b9361968c78806c0e73",
+        "dueDate": "04/30/2023",
+        "subTasks": [
+            {
+                "title": "Power Tools",
+                "desc": "",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "04/30/2023"
+            },
+            {
+                "title": "Gardening Supplies",
+                "desc": "",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "04/30/2023"
+            },
+            {
+                "title": "All Kids Outdoor Stuff",
+                "desc": "Two bikes, a scooter and an electric toy car.",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "04/30/2023"
+            },
+            {
+                "title": "Emergency Supplies",
+                "desc": "In case there is a zombie apocolypse.",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "04/30/2023"
+            }
+        ]
+    },
+    {
+        "_id": "643d621393b49e5965d001a3",
+        "title": "Clean Garage",
+        "desc": "",
+        "priority": "1",
+        "complete": false,
+        "createdBy": "642f8b9361968c78806c0e73",
+        "dueDate": "04/30/2023",
+        "subTasks": [
+            {
+                "title": "Leaf Blower",
+                "desc": "Use Leaf Blower to clean out once.",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "04/30/2023"
+            },
+            {
+                "title": "Pressure Cleaning",
+                "desc": "Use water pressure cleaner to wash once. Use Caution.",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "04/30/2023"
+            },
+            {
+                "title": "Last Inspection",
+                "desc": "Check for any leftover dirty areas and clean as apopriate.",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "04/30/2023"
+            }
+        ]
+    },
+    {
+        "_id": "643d648d033f655a2b068e80",
+        "title": "Washing",
+        "desc": "",
+        "priority": "1",
+        "complete": false,
+        "createdBy": "642f8b9361968c78806c0e73",
+        "dueDate": "04/30/2023",
+        "subTasks": [
+            {
+                "title": "Car wash",
+                "desc": "Wash the car.",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "04/30/2023"
+            },
+            {
+                "title": "Wash Trashcans",
+                "desc": "",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "04/30/2023"
+            }
+        ]
+    },
+    {
+        "_id": "643d65ee2b42a55b54607953",
+        "title": "Deck Gardening",
+        "desc": "List of things needed to be done on the deck.",
+        "priority": "1",
+        "complete": false,
+        "createdBy": "642f8b9361968c78806c0e73",
+        "dueDate": "05/15/2023",
+        "subTasks": [
+            {
+                "title": "Repot deck plants.",
+                "desc": "Change the soil for the plants on the deck. Soil should be in garage.",
+                "priority": "2",
+                "complete": false,
+                "dueDate": "05/15/2023"
+            },
+            {
+                "title": "Water plants",
+                "desc": "AFTER repotting the plants, water them.",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "05/15/2023"
+            },
+            {
+                "title": "Trimming branches",
+                "desc": "The tree next to the deck is reaching out onto the deck again. Use electric chainsaw to trim. It should be in garage. Will need to be charged.",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "05/15/2023"
+            },
+            {
+                "title": "Clean deck",
+                "desc": "Sweep up all the leaves and dirt on the deck into the yard.",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "05/15/2023"
+            }
+        ]
+    },
+    {
+        "_id": "643d68682b42a55b54607958",
+        "title": "Front Yard",
+        "desc": "Stuff I need to do in the yard before it gets too hot.",
+        "priority": "1",
+        "complete": false,
+        "createdBy": "642f8b9361968c78806c0e73",
+        "dueDate": "05/15/2023",
+        "subTasks": [
+            {
+                "title": "Water the plants.",
+                "desc": "",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "05/15/2023"
+            },
+            {
+                "title": "Trim the grass",
+                "desc": "",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "05/15/2023"
+            },
+            {
+                "title": "Trimming bushes",
+                "desc": "Bushes should be trimmed to stay below window level so as not to obstruct the view.",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "05/15/2023"
+            }
+        ]
+    },
+    {
+        "_id": "643d6a012b42a55b5460795d",
+        "title": "Gardening Supplies",
+        "desc": "Stuff that is running out.",
+        "priority": "1",
+        "complete": false,
+        "createdBy": "642f8b9361968c78806c0e73",
+        "dueDate": "05/01/2023",
+        "subTasks": [
+            {
+                "title": "Soil.",
+                "desc": "Both for potted plants and for backyard farm.",
+                "priority": "2",
+                "complete": false,
+                "dueDate": "05/01/2023"
+            },
+            {
+                "title": "New Trowel",
+                "desc": "Old one broke.",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "05/15/2023"
+            },
+            {
+                "title": "Seeds",
+                "desc": "Tomato seeds, Cucumber seeds, Carrots.",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "05/15/2023"
+            }
+        ]
+    },
+    {
+        "_id": "643d6c6a2b42a55b54607962",
+        "title": "Backyard Farming",
+        "desc": "Stuff I need to do before it starts raining next week.",
+        "priority": "1",
+        "complete": false,
+        "createdBy": "642f8b9361968c78806c0e73",
+        "dueDate": "04/24/2023",
+        "subTasks": [
+            {
+                "title": "Fix gate.",
+                "desc": "Gate door needs oiling.",
+                "priority": "2",
+                "complete": false,
+                "dueDate": "04/24/2023"
+            },
+            {
+                "title": "Stakes",
+                "desc": "Put in stakes in the apropriate plants.",
+                "priority": "3",
+                "complete": false,
+                "dueDate": "04/24/2023"
             }
         ]
     }
