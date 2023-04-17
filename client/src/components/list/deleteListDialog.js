@@ -14,9 +14,9 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { GET_ME_LISTS } from "../utils/queries";
+import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
-import { REMOVE_LIST } from "../utils/mutations";
+import { REMOVE_LIST } from "../../utils/mutations";
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
 export default function DeleteListDialog(props) {

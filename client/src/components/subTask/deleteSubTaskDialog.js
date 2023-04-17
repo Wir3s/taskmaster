@@ -11,9 +11,9 @@ import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
-import { GET_ME_LISTS } from "../utils/queries";
+import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
-import { REMOVE_SUB_TASK } from "../utils/mutations";
+import { REMOVE_SUB_TASK } from "../../utils/mutations";
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
 export default function DeleteSubTaskDialog(props) {

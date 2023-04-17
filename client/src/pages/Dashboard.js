@@ -6,13 +6,13 @@ import { Paper, Grid } from "@mui/material";
 import SubTasks from "../components/subTasks";
 import TaskList from "../components/taskList";
 
-import ListContext from "../components/listContext";
+import ListContext from "../components/context/listContext";
 
-import ActiveUserContext from "../components/activeUserContext";
+import ActiveUserContext from "../components/context/activeUserContext";
 import { useQuery } from "@apollo/client";
 import { GET_ME_LISTS } from "../utils/queries";
 
-import NewListDialog from "../components/newListDialog";
+import NewListDialog from "../components/list/newListDialog";
 
 const styles = {
   header: {

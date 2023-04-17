@@ -12,10 +12,10 @@ import {
 
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { GET_ME_LISTS } from "../utils/queries";
+import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
-import { ADD_TASK } from "../utils/mutations";
-import ListContext from "./listContext";
+import { ADD_TASK } from "../../utils/mutations";
+import ListContext from "../context/listContext";
 
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';

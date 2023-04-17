@@ -14,11 +14,11 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import { GET_ME_LISTS } from "../utils/queries";
+import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
-import { CREATE_LIST } from "../utils/mutations";
+import { CREATE_LIST } from "../../utils/mutations";
 
-import ActiveUserContext from "./activeUserContext";
+import ActiveUserContext from "../context/activeUserContext";
 import InputLabel from '@mui/material/InputLabel';
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 

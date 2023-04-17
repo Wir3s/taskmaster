@@ -13,9 +13,9 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
-import { GET_ME_LISTS } from "../utils/queries";
+import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
-import { UPDATE_TASK } from "../utils/mutations";
+import { UPDATE_TASK } from "../../utils/mutations";
 
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';

@@ -16,18 +16,18 @@ import {
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-import DeleteTaskDialog from "./deleteTaskDialog";
-import DeleteSubTaskDialog from "./deleteSubTaskDialog";
+import DeleteTaskDialog from "./task/deleteTaskDialog";
+import DeleteSubTaskDialog from "./subTask/deleteSubTaskDialog";
 
 import { useQuery } from "@apollo/client";
 import { GET_SINGLE_LIST } from "../utils/queries";
 
-import NewTaskModal from "./newTaskModal";
-import UpdateTaskModal from "./updateTaskModal";
-import NewSubTaskModal from "./newSubTaskModal";
-import UpdateSubTaskModal from "./updateSubTaskModal";
+import NewTaskModal from "./task/newTaskModal";
+import UpdateTaskModal from "./task/updateTaskModal";
+import NewSubTaskModal from "./subTask/newSubTaskModal";
+import UpdateSubTaskModal from "./subTask/updateSubTaskModal";
 
-import ListContext from "./listContext";
+import ListContext from "./context/listContext";
 
 // const headers = [
 //   {

@@ -13,10 +13,10 @@ import { styled } from "@mui/material/styles";
 import { useQuery } from "@apollo/client";
 import { GET_ME_LISTS } from "../utils/queries";
 
-import ListContext from "./listContext";
+import ListContext from "./context/listContext";
 
-import UpdateListDialog from "./updateListDialog";
-import DeleteListDialog from "./deleteListDialog";
+import UpdateListDialog from "./list/updateListDialog";
+import DeleteListDialog from "./list/deleteListDialog";
 
 const TaskList = () => {
   const { activeList, setData } = useContext(ListContext);

@@ -14,9 +14,9 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import EditIcon from "@mui/icons-material/Edit";
-import { GET_ME_LISTS } from "../utils/queries";
+import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
-import { UPDATE_LIST } from "../utils/mutations";
+import { UPDATE_LIST } from "../../utils/mutations";
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
 export default function UpdateListDialog(props) {
