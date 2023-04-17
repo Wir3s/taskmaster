@@ -34,7 +34,7 @@ const transitionStyles = {
   exited: { opacity: 0 },
 };
 
-const Splash = ({ in: inProp }) => {
+const Splash = () => {
   const [visibility, setVisibility] = useState(false);
   const [showText, setShowText] = useState(false);
   const nodeRef = useRef(null);

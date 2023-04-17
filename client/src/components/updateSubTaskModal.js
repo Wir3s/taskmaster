@@ -46,7 +46,7 @@ export default function UpdateTaskModal(props) {
   });
 
   console.log(updateForm);
-  const [updateTask, { error, data, loading, refetch }] =
+  const [updateTask, { refetch }] =
     useMutation(UPDATE_SUB_TASK);
   const mutationResponse = async (event) => {
     await updateTask({

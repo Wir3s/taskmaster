@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   Backdrop,
   Box,
@@ -47,7 +47,7 @@ export default function NewTaskModal(props) {
     setTaskId(props.subTaskID);
   }
 
-  const [AddSubTask, { error, loading, data, refetch }] = useMutation(
+  const [AddSubTask, { error, refetch }] = useMutation(
     ADD_SUBTASK,
     {
       variables: { taskId, title, desc, priority, complete },

@@ -80,7 +80,7 @@ function renderSubTaskColor(priority) {
 }
 
 export default function SubTasks() {
-  const { activeList, setData } = useContext(ListContext);
+  const { activeList } = useContext(ListContext);
   const id = activeList; // This is the list ID
   const { loading, error, data } = useQuery(GET_SINGLE_LIST, {
     variables: { id },

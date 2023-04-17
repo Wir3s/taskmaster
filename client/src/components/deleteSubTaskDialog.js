@@ -23,7 +23,7 @@ export default function DeleteSubTaskDialog(props) {
   const [subTaskId, setSubTaskId] = React.useState("");
   const [taskId, setTaskId] = React.useState("");
 
-  const [removeSubTask, { error, loading, data, refetch }] = useMutation(
+  const [removeSubTask, { error, loading, refetch }] = useMutation(
     REMOVE_SUB_TASK,
     {
       variables: { subTaskId, taskId },

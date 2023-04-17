@@ -27,7 +27,7 @@ export default function UpdateListDialog(props) {
   const [updateListId, setUpdateListId] = React.useState("");
   const [listName, setListName] = React.useState("");
 
-  const [updateList, { error, loading, data, refetch }] = useMutation(
+  const [updateList, { error, loading, refetch }] = useMutation(
     UPDATE_LIST,
     {
       variables: { updateListId, listName },

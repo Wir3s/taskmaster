@@ -24,7 +24,7 @@ export default function DeleteListDialog(props) {
 
   const [removeListId, setListId] = React.useState("");
 
-  const [removeList, { error, loading, data, refetch }] = useMutation(
+  const [removeList, { error, loading, refetch }] = useMutation(
     REMOVE_LIST,
     { variables: { removeListId }, refetchQueries: [{ query: GET_ME_LISTS }] }
   );

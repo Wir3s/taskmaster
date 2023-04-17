@@ -25,7 +25,7 @@ export default function DeleteTaskDialog(props) {
 
   const [removeTaskId, setTaskId] = React.useState("");
 
-  const [removeTask, { error, loading, data, refetch }] = useMutation(
+  const [removeTask, { error, loading, refetch }] = useMutation(
     REMOVE_TASK,
     { variables: { removeTaskId }, refetchQueries: [{ query: GET_ME_LISTS }] }
   );

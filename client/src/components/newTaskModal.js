@@ -45,7 +45,7 @@ export default function NewTaskModal() {
   const [complete, setComplete] = React.useState("");
   const [dueDate, setDueDate] = React.useState("");
 
-  const [AddTask, { error, loading, data, refetch }] = useMutation(ADD_TASK, {
+  const [AddTask, { error, refetch }] = useMutation(ADD_TASK, {
     variables: { title, complete, desc, priority, dueDate, addTaskId },
     refetchQueries: [{ query: GET_ME_LISTS }],
   });
