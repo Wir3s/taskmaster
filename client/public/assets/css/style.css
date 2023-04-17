@@ -52,6 +52,10 @@ td {
     .logo {
         max-width: 85px;
     }
+    .splashImg {
+        min-width: 100px;
+        padding: 0;
+    }
     #taskMasterTitle {
         font-size: 1.5em;
     }
