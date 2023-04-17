@@ -1,11 +1,6 @@
-// wherever we're resolving the query to pull data back,
-// do a Task.populate(WithSomeTasksInHere) so you get the full task data
-// https://www.bezkoder.com/mongoose-one-to-many-relationship/
-
 const { AuthenticationError } = require("apollo-server-express");
 const { User, List, Task } = require("../models");
 const { signToken } = require("../utils/auth");
-const { findByIdAndUpdate } = require("../models/User");
 
 const resolvers = {
   Query: {
@@ -13,20 +8,19 @@ const resolvers = {
       return User.findById(args._id).populate("lists").populate({
         path: 'lists',
         populate: 'tasks'
-      });
+      }); // Poputates lists into user and tasks into list.
     },
 
     users: async () => {
       return User.find({}).populate("lists").populate({
         path: 'lists',
         populate: 'tasks'
-      });
+      }); // Poputates lists into user and tasks into list.
     },
 
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
       if (context.user) {
-        // return User.findOne({ _id: context.user._id });
         const findOne = await User.findById({ _id: context.user._id }).populate('lists').populate({
           path: 'lists',
           populate: 'tasks'
@@ -37,11 +31,11 @@ const resolvers = {
     },
 
     task: async (parent, args) => {
-      return Task.findById(args._id).populate("createdBy"); //Createdby doesn't work yet.
+      return Task.findById(args._id).populate("createdBy"); 
     },
 
     tasks: async () => {
-      return Task.find({}).populate("createdBy"); //Createdby doesn't work yet.
+      return Task.find({}).populate("createdBy");
     },
 
     list: async (parent, args) => {
@@ -62,16 +56,19 @@ const resolvers = {
         throw new AuthenticationError("No user with this email found!");
       }
 
+      //checks for correct password
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
         throw new AuthenticationError("Incorrect password!");
       }
-
+      
+      //Uses JWT for user authentication
       const token = signToken(user);
       return { token, user };
     },
 
+    // Until error handling on front, addUser automatically creates a list and task for a new user.
     addUser: async (parent, { email, username, password, listName, title }) => {
       const user = await User.create({ email, username, password });
       const token = signToken(user);
@@ -148,7 +145,6 @@ const resolvers = {
         { $addToSet: { subTasks: { _id: id, title, desc, priority, complete } } }
       )
     },
-    // removeTask with Context:
 
     updateTask: async (parent, args) => {
       const { id } = args;
@@ -156,33 +152,7 @@ const resolvers = {
       return result;
     },
 
-    // updateTaskTitle: async (parent, args) => {
-    //   const { id } = args;
-    //   const result = await Task.findByIdAndUpdate(id, args);
-    //   return result;
-    // },
-    // updateTaskDesc: async (parent, args) => {
-    //   const { id } = args;
-    //   const result = await Task.findByIdAndUpdate(id, args);
-    //   return result;
-    // },
-    // updateTaskPriority: async (parent, args) => {
-    //   const { id } = args;
-    //   const result = await Task.findByIdAndUpdate(id, args);
-    //   return result;
-    // },
-    // updateTaskComplete: async (parent, args) => {
-    //   const { id } = args;
-    //   const result = await Task.findByIdAndUpdate(id, args);
-    //   return result;
-    // },
-    // updateTaskDueDate: async (parent, args) => {
-    //   const { id } = args;
-    //   const result = await Task.findByIdAndUpdate(id, args);
-    //   return result;
-    // },
     // LISTS:
-
     createList: async (parent, { listName, id }) => {
       const list = await List.create({ listName });
       await User.findByIdAndUpdate(
@@ -201,47 +171,6 @@ const resolvers = {
       const result = await List.findByIdAndUpdate(id, args);
       return result;
     },
-
-    // This requires login Authentication. Cannot be checked now
-    // Uncomment when context.user works
-
-    // // Set up mutation so a logged in user can only remove their account and no one else's
-    // removeUser: async (parent, args, context) => {
-    //     if (context.user) {
-    //         return User.findOneAndDelete({ _id: context.user._id }, args, { new: true });
-    //     }
-    //     throw new AuthenticationError('You need to be logged in!');
-    // },
-
-    // updateUserEmail: async (parent, { newEmail }, context) => {
-    //     // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-    //     if (context.user) {
-    //         return User.findOneAndUpdate(
-    //             { email: newEmail },
-    //             {
-    //                 new: true,
-    //                 runValidators: true,
-    //             }
-    //         );
-    //     }
-    //     // If user attempts to execute this mutation and isn't logged in, throw an error
-    //     throw new AuthenticationError('You need to be logged in!');
-    // },
-
-    // updateUserUsername: async (parent, { newUsername }, context) => {
-    //     // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-    //     if (context.user) {
-    //         return User.findOneAndUpdate(
-    //             { username: newUsername },
-    //             {
-    //                 new: true,
-    //                 runValidators: true,
-    //             }
-    //           );
-    //         }
-    //         // If user attempts to execute this mutation and isn't logged in, throw an error
-    //         throw new AuthenticationError('You need to be logged in!');
-    //       },
   },
 };
 

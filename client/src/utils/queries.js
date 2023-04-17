@@ -44,16 +44,6 @@ query Task($id: ID!) {
 }
 `;
 
-export const GET_USERS = gql`
-query Users {
-  users {
-    _id
-    email
-    username
-  }
-}
-`;
-
 export const GET_USER = gql `
 query User($id: ID!) {
   user(_id: $id) {
