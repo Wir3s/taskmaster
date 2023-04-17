@@ -44,8 +44,6 @@ const Dashboard = () => {
 
   const activeUserDetails = data;
 
-  console.log(activeUserDetails);
-
   if (activeUser === "None") {
     setUser(activeUserDetails.me._id);
   }

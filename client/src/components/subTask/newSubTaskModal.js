@@ -35,7 +35,7 @@ const style = {
 export default function NewTaskModal(props) {
   const [open, setOpen] = React.useState(false);
   const activeTask = props.subTaskID;
-  console.log(activeTask);
+
   // Use Mutation State Variables
   const [taskId, setTaskId] = React.useState("unset");
   const [title, setTitle] = React.useState("");
@@ -65,9 +65,7 @@ export default function NewTaskModal(props) {
 
   const AddNewSubTask = async () => {
     // NEED TO CREATE THE SAVE TASK FUNCTION
-    console.log(activeTask);
     setTaskId(await activeTask);
-    console.log(taskId);
 
     setTitle(await document.getElementById("subTaskTitle").value);
     setPriority(parseInt(await priority));

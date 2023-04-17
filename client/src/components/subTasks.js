@@ -29,33 +29,6 @@ import UpdateSubTaskModal from "./subTask/updateSubTaskModal";
 
 import ListContext from "./context/listContext";
 
-// const headers = [
-//   {
-//     headerText: "Hide / Show Subtask",
-//     headerId: 1,
-//   },
-//   {
-//     headerText: "Details",
-//     headerId: 2,
-//   },
-//   {
-//     headerText: "Priority",
-//     headerId: 3,
-//   },
-//   {
-//     headerText: "Task Name",
-//     headerId: 4,
-//   },
-//   {
-//     headerText: "Due Date",
-//     headerId: 5,
-//   },
-//   {
-//     headerText: "Actions",
-//     headerId: 6,
-//   }
-// ]
-
 const styles = {
   header: {
     display: "flex",
@@ -87,19 +60,11 @@ export default function SubTasks() {
   });
   const listData = data?.list;
 
- 
-  const [open, setOpen] = React.useState(listData && listData.tasks ? listData.tasks.map(() => false) : []);
-
-
+   const [open, setOpen] = React.useState(listData && listData.tasks ? listData.tasks.map(() => false) : []);
 
   if (loading) return <p>Loading...</p>;
   if (error)
     return <p>No List has been select, please choose one from above.</p>;
-
- 
- 
-
-  console.log(listData);
 
   return (
     <Container>

@@ -35,7 +35,7 @@ const style = {
 
 export default function UpdateTaskModal(props) {
   const [open, setOpen] = React.useState(false);
-  console.log(props);
+
   const [updateForm, setUpdateForm] = useState({
     taskId: props.taskID,
     subTaskId: props.subTaskId,
@@ -45,7 +45,6 @@ export default function UpdateTaskModal(props) {
     complete: false,
   });
 
-  console.log(updateForm);
   const [updateTask, { refetch }] =
     useMutation(UPDATE_SUB_TASK);
   const mutationResponse = async (event) => {
@@ -64,10 +63,8 @@ export default function UpdateTaskModal(props) {
     refetch();
   };
   const handleFormSubmit = (event) => {
-    console.log("in handleform submit");
     event.preventDefault();
 
-    console.log(updateForm);
     mutationResponse();
     handleClose();
   };

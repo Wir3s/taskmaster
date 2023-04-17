@@ -44,29 +44,21 @@ export default function UpdateListDialog(props) {
   };
 
   const UpdateList = async () => {
-    console.log("in update list");
     //Setting listName for use in mutation
     if ((await document.getElementById("updateListName").value) === "") {
-      console.log("setting to placeholder value");
       setListName(document.getElementById("updateListName").placeholder);
     } else {
       setListName(document.getElementById("updateListName").value);
-      console.log("setting to  value");
     }
-    console.log("list Name after if");
-    console.log(listName);
 
     //Setting userId for use in mutation
     setUpdateListId(props.listId);
-    console.log("set all vars for mutation");
 
     /// THis is where the code is failing
     updateList(updateListId, listName);
 
-    console.log("after mutation");
     if (loading) return <p>Updating the list name ...</p>;
     if (error) return <p>Error updating your lists name.</p>;
-    console.log("after ifs");
 
     handleClose();
     refetch();

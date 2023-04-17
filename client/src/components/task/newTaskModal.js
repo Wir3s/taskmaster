@@ -60,7 +60,7 @@ export default function NewTaskModal() {
 
 
   const AddNewTask = async () => {
-    console.log(priority)
+
     setAddListId(await activeList);
     setTitle(await document.getElementById("taskTitle").value);
     setPriority(parseInt(await priority));
@@ -69,13 +69,6 @@ export default function NewTaskModal() {
     setComplete(false);
 
     if (error) return console.log(error);
-
-    console.log(addTaskId);
-    console.log(title);
-    console.log(priority);
-    console.log(desc);
-    console.log(dueDate);
-    console.log(complete);
 
     AddTask(title, complete, desc, priority, dueDate, addTaskId);
 

@@ -38,8 +38,6 @@ export default function DeleteListDialog(props) {
   };
 
   const DeleteList = async () => {
-    console.log("in delete list");
-
     if (
       (await document.getElementById("deleteConfirm").value) !== props.listName
     ) {
@@ -48,20 +46,10 @@ export default function DeleteListDialog(props) {
         "Name does not match, unable to delete";
       return;
     }
-    console.log("delete list after if");
 
-    //Setting userId for use in mutation
-    console.log(props.listId);
-
-    console.log("set all vars for mutation");
-
-    console.log("after mutation");
     if (loading) return <p>Deleting the list name...</p>;
     if (error) return <p>Error deleting the lists.</p>;
-    console.log("after ifs");
-    console.log(props.listId);
     setListId(props.listId);
-    console.log(removeListId);
     removeList(removeListId);
 
     handleClose();

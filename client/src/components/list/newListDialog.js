@@ -43,19 +43,13 @@ export default function FormDialog() {
   };
 
   const CreateNewList = async () => {
-    console.log("in create list");
     setListName(await document.getElementById("listName").value);
 
     setUserId(activeUser);
-    console.log("set the vars");
 
-    console.log("after mutation");
     if (loading) return <p>Creating List...</p>;
     if (error) return <p>Error creating your tasks list</p>;
-    console.log("after ifs");
 
-    console.log(document.getElementById("listName").value);
-    console.log(listName);
     createList(listName, userId);
     handleClose();
     refetch();

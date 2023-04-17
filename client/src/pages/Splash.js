@@ -47,7 +47,6 @@ const Splash = () => {
   }, []);
 
   const handleClick = () => {
-    console.log(visibility);
     return visibility === false ? setVisibility(true) : setVisibility(false);
   };
 

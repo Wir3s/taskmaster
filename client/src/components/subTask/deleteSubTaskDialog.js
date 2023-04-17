@@ -17,7 +17,6 @@ import { REMOVE_SUB_TASK } from "../../utils/mutations";
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
 export default function DeleteSubTaskDialog(props) {
-  console.log(props);
   const [open, setOpen] = React.useState(false);
 
   const [subTaskId, setSubTaskId] = React.useState("");

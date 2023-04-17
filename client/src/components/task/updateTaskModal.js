@@ -45,7 +45,6 @@ export default function UpdateTaskModal(props) {
     dueDate: props.taskDueDate,
   });
 
-  console.log(updateForm);
   const [updateTask, { refetch }] =
     useMutation(UPDATE_TASK);
   const mutationResponse = async (event) => {
@@ -64,10 +63,8 @@ export default function UpdateTaskModal(props) {
     refetch();
   };
   const handleFormSubmit = (event) => {
-    console.log("in handleform submit");
     event.preventDefault();
 
-    console.log(updateForm);
     mutationResponse();
     handleClose();
   };

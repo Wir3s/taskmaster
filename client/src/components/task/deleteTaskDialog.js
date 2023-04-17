@@ -20,7 +20,6 @@ import { REMOVE_TASK } from "../../utils/mutations";
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
 export default function DeleteTaskDialog(props) {
-  console.log(props);
   const [open, setOpen] = React.useState(false);
 
   const [removeTaskId, setTaskId] = React.useState("");

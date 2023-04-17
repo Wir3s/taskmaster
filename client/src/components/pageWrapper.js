@@ -8,7 +8,6 @@ const style = {
 };
 
 export default function PageWrapper(props) {
-  console.log(props);
   return (
     <Container>
       <Box sx={style}>
