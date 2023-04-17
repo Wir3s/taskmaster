@@ -37,8 +37,6 @@ const TaskList = () => {
   }
   const lists = data?.me.lists;
 
-  console.log("testing:", data.me.lists[0]._id);
-
   const BootstrapTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({
