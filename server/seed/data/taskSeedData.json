@@ -2,7 +2,7 @@
     {
         "_id": "642fa2c9bc3eb07e98aa8a0f",
         "title": "Clean Bathroom",
-        "desc": "Clean Bathroom Decription",
+        "desc": "Clean The Bathroom. Duh.",
         "priority": 1,
         "complete": false,
         "assignees": [
@@ -13,7 +13,7 @@
         "subTasks": [
             {
                 "title": "Scrub Toliet",
-                "desc": "Scrub Toliet",
+                "desc": "Scrub the Toliet.",
                 "priority": 1,
                 "complete": false,
                 "assignees": [
@@ -24,6 +24,7 @@
             {
                 "title": "Clean Mirror",
                 "priority": 2,
+                "desc": "",
                 "complete": false,
                 "assignees": [
                     "Garrett"
@@ -32,7 +33,21 @@
             },
             {
                 "title": "Scrub Bathtub",
-                "desc": "clean the tub",
+                "desc": "Clean the tub. Duh.",
+                "priority": 3,
+                "complete": false,
+                "dueDate": "04/21/2023"
+            },
+            {
+                "title": "Swifer the floor.",
+                "desc": "",
+                "priority": 3,
+                "complete": false,
+                "dueDate": "04/21/2023"
+            },
+            {
+                "title": "Empty trash can.",
+                "desc": "",
                 "priority": 3,
                 "complete": false,
                 "dueDate": "04/21/2023"
@@ -42,13 +57,14 @@
     {
         "_id": "642fa2c9bc3eb07e98aa8a13",
         "title": "Clean Kitchen",
-        "desc": "Make it spotless",
+        "desc": "Make it spotless. Or else.",
         "priority": 2,
         "complete": false,
         "assignees": [
             "Joe"
         ],
         "createdBy": "642f8b9361968c78806c0e73",
+        "dueDate": "04/21/2023",
         "subTasks": [
             {
                 "title": "Clean Counter",
@@ -71,6 +87,16 @@
                 "priority": 3,
                 "complete": true,
                 "assignees": ["Garrett"]
+            },
+            {
+                "title": "Clean stovetop",
+                "priority": 3,
+                "complete": false
+            },
+            {
+                "title": "Empty dishwasher.",
+                "priority": 3,
+                "complete": false
             }
         ]
     },
@@ -80,19 +106,26 @@
         "priority": 3,
         "complete": false,
         "createdBy": "642f8b9361968c78806c0e73",
-        "dueDate": "",
+        "dueDate": "04/21/2023",
         "subTasks": [
             {
-                "title": "Dust",
+                "title": "Dust the room.",
                 "desc": "",
                 "priority": 1,
                 "complete": false,
                 "dueDate": "04/21/2023"
             },
             {
-                "title": "Vacuum",
+                "title": "Vacuum AFTER dusting.",
                 "desc": "",
                 "priority": 2,
+                "complete": false,
+                "dueDate": "04/21/2023"
+            },
+            {
+                "title": "Swifer the floor AFTER Vacuuming.",
+                "desc": "",
+                "priority": 3,
                 "complete": false,
                 "dueDate": "04/21/2023"
             }
