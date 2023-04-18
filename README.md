@@ -39,6 +39,12 @@ Whether using the official web app or a local version, the site is used the same
 
 - You can edit tasks and subtasks by clicking or tapping on them.
 
+- Here is a screenshot of the working application:
+
+![TaskMaster](./client/public/assets/images/TaskMaster-Homepage.png)
+
+- Here is a link to the deployed application: https://sal-task-master.herokuapp.com/login
+
 # Credits
 
 This project is a collaboration between four junior web developers:
