@@ -8,7 +8,6 @@ const listSchema = new Schema(
       trim: true,
     },
     tasks: [
-      // Remember to call a .populate whenever you actually want to use these.
       {
         type: Schema.Types.ObjectId,
         ref: "Task",

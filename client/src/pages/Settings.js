@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import Auth from "../utils/auth";
 
+  //If the users is not logged in it will redirect them to the login page.
 const Settings = () => {
     if (!Auth.loggedIn()) {
         return (

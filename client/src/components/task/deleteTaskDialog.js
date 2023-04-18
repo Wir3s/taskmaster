@@ -14,18 +14,15 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { GET_ME_LISTS } from "../utils/queries";
+import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
-import { REMOVE_TASK } from "../utils/mutations";
+import { REMOVE_TASK } from "../../utils/mutations";
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
 export default function DeleteTaskDialog(props) {
-  console.log(props);
   const [open, setOpen] = React.useState(false);
-
   const [removeTaskId, setTaskId] = React.useState("");
-
-  const [removeTask, { error, loading, data, refetch }] = useMutation(
+  const [removeTask, { error, loading, refetch }] = useMutation(
     REMOVE_TASK,
     { variables: { removeTaskId }, refetchQueries: [{ query: GET_ME_LISTS }] }
   );
@@ -36,6 +33,8 @@ export default function DeleteTaskDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+    //This this the function that is triggered when the user opts to remove a task.
   const RemoveTask = async () => {
     if (
       (await document.getElementById("deleteConfirm").value) !== props.taskName
@@ -50,7 +49,6 @@ export default function DeleteTaskDialog(props) {
     if (error) return <p>Error deleting the Task.</p>;
     setTaskId(props.taskId);
     removeTask(removeTaskId);
-
     handleClose();
     refetch();
   };

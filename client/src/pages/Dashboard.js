@@ -2,27 +2,13 @@ import React, { useState } from "react";
 import Auth from "../utils/auth";
 import { Navigate } from "react-router-dom";
 import { Paper, Grid } from "@mui/material";
-
 import SubTasks from "../components/subTasks";
 import TaskList from "../components/taskList";
-
-import ListContext from "../components/listContext";
-
-import ActiveUserContext from "../components/activeUserContext";
+import ListContext from "../components/context/listContext";
+import ActiveUserContext from "../components/context/activeUserContext";
 import { useQuery } from "@apollo/client";
 import { GET_ME_LISTS } from "../utils/queries";
-
-import NewListDialog from "../components/newListDialog";
-
-const styles = {
-  header: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: "30px",
-  },
-
-};
+import NewListDialog from "../components/list/newListDialog";
 
 const Dashboard = () => {
   const [activeList, setData] = useState("default");
@@ -30,6 +16,7 @@ const Dashboard = () => {
 
   const { loading, error, data } = useQuery(GET_ME_LISTS);
 
+  //If the users is not logged in it will redirect them to the login page.
   if (!Auth.loggedIn()) {
     return (
       <div>
@@ -44,22 +31,12 @@ const Dashboard = () => {
 
   const activeUserDetails = data;
 
-  console.log(activeUserDetails);
-
   if (activeUser === "None") {
     setUser(activeUserDetails.me._id);
   }
 
   return (
     <ActiveUserContext.Provider value={{ activeUser, setUser }}>
-      <header style={styles.header}>
-        {/* <div>
-          <div>Welcome {activeUserDetails.me.username}</div>
-          <div>DATE</div>
-        </div>
-        <div>Settings BTN</div> */}
-      </header>
-
       {/* YOUR TASK LIST */}
       <Grid component="section">
         <Grid id="tasklistHeaderContainer"

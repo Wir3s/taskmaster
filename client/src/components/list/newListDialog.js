@@ -14,21 +14,19 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import { GET_ME_LISTS } from "../utils/queries";
+import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
-import { CREATE_LIST } from "../utils/mutations";
-
-import ActiveUserContext from "./activeUserContext";
+import { CREATE_LIST } from "../../utils/mutations";
+import ActiveUserContext from "../context/activeUserContext";
 import InputLabel from '@mui/material/InputLabel';
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
+// This creates the new list Dialog modal
 export default function FormDialog() {
   const { activeUser } = useContext(ActiveUserContext);
   const [open, setOpen] = React.useState(false);
-
   const [listName, setListName] = React.useState("");
   const [userId, setUserId] = React.useState("");
-
   const [createList, { error, loading, refetch }] = useMutation(CREATE_LIST, {
     variables: { listName, userId },
     refetchQueries: [{ query: GET_ME_LISTS }],
@@ -42,20 +40,15 @@ export default function FormDialog() {
     setOpen(false);
   };
 
+  //This is the function that is triggered when the user opts to create the new list.
   const CreateNewList = async () => {
-    console.log("in create list");
     setListName(await document.getElementById("listName").value);
 
     setUserId(activeUser);
-    console.log("set the vars");
 
-    console.log("after mutation");
     if (loading) return <p>Creating List...</p>;
     if (error) return <p>Error creating your tasks list</p>;
-    console.log("after ifs");
 
-    console.log(document.getElementById("listName").value);
-    console.log(listName);
     createList(listName, userId);
     handleClose();
     refetch();

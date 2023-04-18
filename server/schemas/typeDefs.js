@@ -86,11 +86,6 @@ const typeDefs = gql`
       complete: Boolean
       dueDate: String
     ): Task
-    # updateTaskTitle(id: ID!, title: String!): Task
-    # updateTaskDesc(id: ID!, desc: String!): Task
-    # updateTaskPriority(id: ID!, priority: Int!): Task
-    # updateTaskComplete(id: ID!, complete: Boolean!): Task
-    # updateTaskDueDate(id: ID!, dueDate: String!): Task
 
     # SUBTASKS
     addSubTask(

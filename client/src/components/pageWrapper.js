@@ -6,9 +6,8 @@ const style = {
   marginTop: "2vh",
 
 };
-
+//This applies a background color and margin for the whole document.
 export default function PageWrapper(props) {
-  console.log(props);
   return (
     <Container>
       <Box sx={style}>

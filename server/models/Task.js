@@ -28,6 +28,7 @@ const taskSchema = new Schema(
         type: String
       },
     ],
+    //Subtask is an object within the task model.
     subTasks: [{
       title: {
         type: String,
@@ -61,9 +62,6 @@ const taskSchema = new Schema(
       default: Date.now,
     },
     dueDate: String,
-
-    // Uncomment for repeated tasks
-    // repeatInterval: Number, // In hours? set to 0 for non-repeating?
   },
   {
     toJSON: {

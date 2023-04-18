@@ -5,18 +5,16 @@ import { Button, TextField } from '@mui/material';
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
-const Signup = (props) => {
+const Signup = () => {
   const [formState, setFormState] = useState({
     username: "",
     email: "",
     password: "",
   });
 
-  const [addUser, { error, data }] = useMutation(ADD_USER);
-
+  const [addUser, { data }] = useMutation(ADD_USER);
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setFormState({
       ...formState,
       [name]: value,
@@ -25,8 +23,7 @@ const Signup = (props) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(data);
-    console.log({ data });
+
     try {
       const { data } = await addUser({
         variables: { ...formState },

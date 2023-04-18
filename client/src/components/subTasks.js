@@ -15,46 +15,15 @@ import {
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
-import DeleteTaskDialog from "./deleteTaskDialog";
-import DeleteSubTaskDialog from "./deleteSubTaskDialog";
-
+import DeleteTaskDialog from "./task/deleteTaskDialog";
+import DeleteSubTaskDialog from "./subTask/deleteSubTaskDialog";
 import { useQuery } from "@apollo/client";
 import { GET_SINGLE_LIST } from "../utils/queries";
-
-import NewTaskModal from "./newTaskModal";
-import UpdateTaskModal from "./updateTaskModal";
-import NewSubTaskModal from "./newSubTaskModal";
-import UpdateSubTaskModal from "./updateSubTaskModal";
-
-import ListContext from "./listContext";
-
-// const headers = [
-//   {
-//     headerText: "Hide / Show Subtask",
-//     headerId: 1,
-//   },
-//   {
-//     headerText: "Details",
-//     headerId: 2,
-//   },
-//   {
-//     headerText: "Priority",
-//     headerId: 3,
-//   },
-//   {
-//     headerText: "Task Name",
-//     headerId: 4,
-//   },
-//   {
-//     headerText: "Due Date",
-//     headerId: 5,
-//   },
-//   {
-//     headerText: "Actions",
-//     headerId: 6,
-//   }
-// ]
+import NewTaskModal from "./task/newTaskModal";
+import UpdateTaskModal from "./task/updateTaskModal";
+import NewSubTaskModal from "./subTask/newSubTaskModal";
+import UpdateSubTaskModal from "./subTask/updateSubTaskModal";
+import ListContext from "./context/listContext";
 
 const styles = {
   header: {
@@ -69,6 +38,7 @@ const styles = {
   },
 };
 
+//Definign the color that will be displayed for the priority dot that is rendered on the page.
 function renderSubTaskColor(priority) {
     switch (priority) {
       case 4: return "#ffe9ec";
@@ -79,27 +49,20 @@ function renderSubTaskColor(priority) {
   }
 }
 
+//This is the fucntion that controls the tasks and subtasks that are being rendered on the page.
 export default function SubTasks() {
-  const { activeList, setData } = useContext(ListContext);
+  const { activeList } = useContext(ListContext);
   const id = activeList; // This is the list ID
   const { loading, error, data } = useQuery(GET_SINGLE_LIST, {
     variables: { id },
   });
   const listData = data?.list;
 
- 
-  const [open, setOpen] = React.useState(listData && listData.tasks ? listData.tasks.map(() => false) : []);
-
-
+   const [open, setOpen] = React.useState(listData && listData.tasks ? listData.tasks.map(() => false) : []);
 
   if (loading) return <p>Loading...</p>;
   if (error)
     return <p>No List has been select, please choose one from above.</p>;
-
- 
- 
-
-  console.log(listData);
 
   return (
     <Container>
@@ -143,9 +106,9 @@ export default function SubTasks() {
             </TableRow>
           </TableHead>
           <TableBody id="taskTable">
+{/* ------------------------ TASK SECTION ------------------------ */}
             {listData.tasks.map((row) => (
               <React.Fragment key={row._id}>
-{/* ------------------------ TASK SECTION ------------------------ */}
                 <TableRow id="rowTaskList" sx={{
                   "& > *": { borderBottom: "unset", }}}>
                   <TableCell id="rowDetail" align="left">

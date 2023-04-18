@@ -9,13 +9,12 @@ import {
   IconButton,
   TextField,
 } from "@mui/material";
-
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { GET_ME_LISTS } from "../utils/queries";
+import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
-import { ADD_SUBTASK } from "../utils/mutations";
-
+import { ADD_TASK } from "../../utils/mutations";
+import ListContext from "../context/listContext";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -32,52 +31,42 @@ const style = {
   p: 4,
 };
 
-export default function NewTaskModal(props) {
+// This creates the new task modal
+export default function NewTaskModal() {
+  const { activeList } = useContext(ListContext);
   const [open, setOpen] = React.useState(false);
-  const activeTask = props.subTaskID;
-  console.log(activeTask);
+
   // Use Mutation State Variables
-  const [taskId, setTaskId] = React.useState("unset");
+  const [addTaskId, setAddListId] = React.useState("");
   const [title, setTitle] = React.useState("");
-  const [desc, setDesc] = React.useState("");
   const [priority, setPriority] = React.useState(5);
+  const [desc, setDesc] = React.useState("");
   const [complete, setComplete] = React.useState("");
-
-  if (taskId === "unset") {
-    setTaskId(props.subTaskID);
-  }
-
-  const [AddSubTask, { error, loading, data, refetch }] = useMutation(
-    ADD_SUBTASK,
-    {
-      variables: { taskId, title, desc, priority, complete },
-      refetchQueries: [{ query: GET_ME_LISTS }],
-    }
-  );
+  const [dueDate, setDueDate] = React.useState("");
+  const [AddTask, { error, refetch }] = useMutation(ADD_TASK, {
+    variables: { title, complete, desc, priority, dueDate, addTaskId },
+    refetchQueries: [{ query: GET_ME_LISTS }],
+  });
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   const handleChange = (event) => {
     const update = parseInt(event.target.value);
     setPriority(update);
   };
 
-  const AddNewSubTask = async () => {
-    // NEED TO CREATE THE SAVE TASK FUNCTION
-    console.log(activeTask);
-    setTaskId(await activeTask);
-    console.log(taskId);
-
-    setTitle(await document.getElementById("subTaskTitle").value);
+    //This this the function that is triggered when the user opts to create the new task.
+  const AddNewTask = async () => {
+    setAddListId(await activeList);
+    setTitle(await document.getElementById("taskTitle").value);
     setPriority(parseInt(await priority));
-    setDesc(await document.getElementById("subTaskDescription").value);
+    setDesc(await document.getElementById("taskDescription").value);
+    setDueDate(await document.getElementById("taskDueDate").value);
     setComplete(false);
 
     if (error) return console.log(error);
 
-    AddSubTask(taskId, title, desc, priority, complete);
-
+    AddTask(title, complete, desc, priority, dueDate, addTaskId);
     handleClose();
     refetch();
   };
@@ -91,7 +80,7 @@ export default function NewTaskModal(props) {
         size="small"
         onClick={handleOpen}
       >
-        New SubTask
+        New Task
       </Button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -110,24 +99,25 @@ export default function NewTaskModal(props) {
           <Box sx={style} id="modal">
             <Box id="modalHeader">
               <Typography id="newListModal" variant="h6" component="h2">
-                Create a new SubTask
+                Create a new task
               </Typography>
-              <IconButton aria-label="close" onClick={handleClose} id="111111">
+              <IconButton aria-label="close" onClick={handleClose}>
                 <CloseBTN />
               </IconButton>
             </Box>
-            <InputLabel>Task Title (Required)</InputLabel>
             <Box component="form">
+              <InputLabel>Task Title (Required)</InputLabel>
               <TextField
                 autoFocus
                 required
-                id="subTaskTitle"
+                id="taskTitle"
                 fullWidth
               />
+
               <InputLabel>Priority (Required)</InputLabel>
               <Select
-                id="subTaskpriority"
-                name="subTaskPriority"
+                id="taskPriority"
+                name="taskPriority"
                 type="number"
                 defaultValue='5'
                 onChange={handleChange}
@@ -139,23 +129,24 @@ export default function NewTaskModal(props) {
                 <MenuItem value={4}>4</MenuItem>
                 <MenuItem value={5}>5</MenuItem>
               </Select>
+              <InputLabel>Due Date</InputLabel>
+              <TextField id="taskDueDate" fullWidth />
               <InputLabel>Description</InputLabel>
-              <TextField
-                id="subTaskDescription"
-                fullWidth
-              />
+              <TextField id="taskDescription" fullWidth />
             </Box>
             <Box id="modalFooter">
               <Button sx={{ marginTop: 3 }}
                 onClick={handleClose}
                 color="secondary"
                 variant="contained"
-              >Cancel</Button>
+              >Cancel
+              </Button>
               <Button sx={{ marginTop: 3 }}
-                onClick={AddNewSubTask}
+                onClick={AddNewTask}
                 color="secondary"
-                variant="contained"
-              >Create</Button>
+                variant="contained">
+                Create
+              </Button>
             </Box>
           </Box>
         </Fade>

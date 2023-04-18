@@ -13,10 +13,9 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
-import { GET_ME_LISTS } from "../utils/queries";
+import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
-import { UPDATE_SUB_TASK } from "../utils/mutations";
-
+import { UPDATE_TASK } from "../../utils/mutations";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -33,30 +32,30 @@ const style = {
   p: 4,
 };
 
+// This creates the Update Task Dialog modal
 export default function UpdateTaskModal(props) {
   const [open, setOpen] = React.useState(false);
-  console.log(props);
+
   const [updateForm, setUpdateForm] = useState({
-    taskId: props.taskID,
-    subTaskId: props.subTaskId,
-    title: props.subTaskName,
-    desc: props.subTaskDesc,
-    priority: props.subTaskPriority,
+    updateTaskId: props.taskId,
+    title: props.taskName,
+    desc: props.taskDesc,
+    priority: props.taskPriority,
     complete: false,
+    dueDate: props.taskDueDate,
   });
 
-  console.log(updateForm);
-  const [updateTask, { error, data, loading, refetch }] =
-    useMutation(UPDATE_SUB_TASK);
+  const [updateTask, { refetch }] =
+    useMutation(UPDATE_TASK);
   const mutationResponse = async (event) => {
     await updateTask({
       variables: {
-        taskId: updateForm.taskId,
-        subTaskId: updateForm.subTaskId,
+        updateTaskId: updateForm.updateTaskId,
         title: updateForm.title,
         desc: updateForm.desc,
         priority: ~~updateForm.priority,
         complete: updateForm.complete,
+        dueDate: updateForm.dueDate,
       },
       refetchQueries: [{ query: GET_ME_LISTS }],
     });
@@ -64,10 +63,8 @@ export default function UpdateTaskModal(props) {
     refetch();
   };
   const handleFormSubmit = (event) => {
-    console.log("in handleform submit");
     event.preventDefault();
 
-    console.log(updateForm);
     mutationResponse();
     handleClose();
   };
@@ -93,9 +90,15 @@ export default function UpdateTaskModal(props) {
 
   return (
     <div>
-      <BootstrapTooltip title="View & Update Details" placement="top-start">
+      <BootstrapTooltip
+        id="buttonContainer"
+        title="View & Update Details"
+        placement="top-start"
+        style={{
+          display: "flex",
+        }}
+      >
         <Button onClick={handleOpen} style={{
-          padding: 0,
           minWidth: 0,
         }}>🔍</Button></BootstrapTooltip>
       <Modal
@@ -115,29 +118,27 @@ export default function UpdateTaskModal(props) {
           <Box sx={style} id="modal">
             <Box id="modalHeader">
               <Typography id="newListModal" variant="h6" component="h2">
-                Update SubTask - {props.subTaskName}
+                Update Task - {props.taskName}
               </Typography>
-              <IconButton aria-label="close" onClick={handleClose} >
+              <IconButton aria-label="close" onClick={handleClose}>
                 <CloseBTN />
               </IconButton>
             </Box>
             <Box>
               <form onSubmit={handleFormSubmit}>
-                <InputLabel>SubTask Title (Required)</InputLabel>
+                <InputLabel>Task Title (Required)</InputLabel>
                 <TextField
                   required
                   name="title"
-                  id="subTaskTitle"
-                  //   label="SubTask Title"
+                  id="taskTitle"
                   defaultValue={updateForm.title}
                   onChange={handleChange}
                   fullWidth
                 />
                 <InputLabel>Priority (Required)</InputLabel>
                 <Select
-                  id="subTaskpriority"
+                  id="taskpriority"
                   name="priority"
-                  label="Priority"
                   value={updateForm.priority}
                   defaultValue={5}
                   type="number"
@@ -150,9 +151,17 @@ export default function UpdateTaskModal(props) {
                   <MenuItem value={4}>4</MenuItem>
                   <MenuItem value={5}>5</MenuItem>
                 </Select>
+                <InputLabel>Due Date</InputLabel>
+                <TextField
+                  id="taskDueDate"
+                  name="dueDate"
+                  defaultValue={updateForm.dueDate}
+                  onChange={handleChange}
+                  fullWidth
+                />
                 <InputLabel>Description</InputLabel>
                 <TextField
-                  id="subTaskDescription"
+                  id="taskDescription"
                   name="desc"
                   defaultValue={updateForm.desc}
                   onChange={handleChange}
@@ -160,12 +169,15 @@ export default function UpdateTaskModal(props) {
                 />
                 <Box id="modalFooter">
                   <Button sx={{ marginTop: 3 }}
-                    type="submit"
+                    onClick={handleClose}
                     color="secondary"
                     variant="contained"
-                  >
-                    Save Changes
+                  >Cancel
                   </Button>
+                  <Button sx={{ marginTop: 3 }}
+                    type="submit"
+                    color="secondary"
+                    variant="contained">Save Changes</Button>
                 </Box>
               </form>
             </Box>

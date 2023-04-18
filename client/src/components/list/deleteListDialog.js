@@ -14,17 +14,16 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { GET_ME_LISTS } from "../utils/queries";
+import { GET_ME_LISTS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
-import { REMOVE_LIST } from "../utils/mutations";
+import { REMOVE_LIST } from "../../utils/mutations";
 import CloseBTN from "@mui/icons-material/CancelPresentationRounded";
 
+// This creates the delete list Dialog modal
 export default function DeleteListDialog(props) {
   const [open, setOpen] = React.useState(false);
-
   const [removeListId, setListId] = React.useState("");
-
-  const [removeList, { error, loading, data, refetch }] = useMutation(
+  const [removeList, { error, loading, refetch }] = useMutation(
     REMOVE_LIST,
     { variables: { removeListId }, refetchQueries: [{ query: GET_ME_LISTS }] }
   );
@@ -37,9 +36,8 @@ export default function DeleteListDialog(props) {
     setOpen(false);
   };
 
+    //This is the function that is triggered when the user opts to delete a list.
   const DeleteList = async () => {
-    console.log("in delete list");
-
     if (
       (await document.getElementById("deleteConfirm").value) !== props.listName
     ) {
@@ -48,22 +46,11 @@ export default function DeleteListDialog(props) {
         "Name does not match, unable to delete";
       return;
     }
-    console.log("delete list after if");
 
-    //Setting userId for use in mutation
-    console.log(props.listId);
-
-    console.log("set all vars for mutation");
-
-    console.log("after mutation");
     if (loading) return <p>Deleting the list name...</p>;
     if (error) return <p>Error deleting the lists.</p>;
-    console.log("after ifs");
-    console.log(props.listId);
     setListId(props.listId);
-    console.log(removeListId);
     removeList(removeListId);
-
     handleClose();
     refetch();
   };

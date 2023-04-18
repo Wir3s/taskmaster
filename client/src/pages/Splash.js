@@ -4,6 +4,7 @@ import { Transition } from "react-transition-group";
 import { Grid, Button } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
 
+// Defining the fade in timeers
 const duration1 = 1000;
 const duration2 = 3000;
 const duration3 = 4000;
@@ -34,7 +35,7 @@ const transitionStyles = {
   exited: { opacity: 0 },
 };
 
-const Splash = ({ in: inProp }) => {
+const Splash = () => {
   const [visibility, setVisibility] = useState(false);
   const [showText, setShowText] = useState(false);
   const nodeRef = useRef(null);
@@ -47,7 +48,6 @@ const Splash = ({ in: inProp }) => {
   }, []);
 
   const handleClick = () => {
-    console.log(visibility);
     return visibility === false ? setVisibility(true) : setVisibility(false);
   };
 
