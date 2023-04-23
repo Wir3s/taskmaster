@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Button, Grid } from "@mui/material";
+import { AppBar, Toolbar, Button, Grid, ButtonGroup } from "@mui/material";
 import Auth from "../utils/auth";
 
 export default function Header() {
@@ -10,9 +10,11 @@ export default function Header() {
 
   const displayDesktop = () => {
     return (
-      <Toolbar style={{
-        padding: '1vh'
-      }}>
+      <Toolbar
+        style={{
+          padding: "1vh",
+        }}
+      >
         <Grid
           container
           direction="row"
@@ -21,33 +23,44 @@ export default function Header() {
           component="span"
         >
           <Grid item>
-            <Button href="/" style={{margin: 0, padding: 0}}>
-                <img
-                  src="assets/images/tmlogo.png"
-                  alt="TaskMaster Logo"
-                  width="100"
-                  className="logo"
-                  style={{
-                    paddingTop: '1vh',
-                    paddingBottom: '1vh',
-                  }}
-                />
+            <Button href="/" style={{ margin: 0, padding: 0 }}>
+              <img
+                src="assets/images/tmlogo.png"
+                alt="TaskMaster Logo"
+                width="100"
+                className="logo"
+                style={{
+                  paddingTop: "1vh",
+                  paddingBottom: "1vh",
+                }}
+              />
             </Button>
           </Grid>
-          <Grid item style={{
-            position: "absolute",
-            textAlign: "center",
-            width: "100%"
-          }}>
+          <Grid
+            item
+            style={{
+              position: "absolute",
+              textAlign: "center",
+              width: "100%",
+            }}
+          >
             <h1 id="taskMasterTitle">TASKMASTER</h1>
           </Grid>
+
           <Grid item>
             {
               // render logout button if logged in
               Auth.loggedIn() && (
+              <ButtonGroup variant="text"> 
+                <Button id="settingsBtn" color="inherit">
+                Settings
+                </Button>
+              
+             
                 <Button id="headerLogoutBtn" color="inherit" onClick={logout}>
                   Logout
                 </Button>
+              </ButtonGroup> 
               )
             }
           </Grid>
@@ -58,7 +71,9 @@ export default function Header() {
 
   return (
     <header>
-      <AppBar color="secondary" position='static'>{displayDesktop()}</AppBar>
+      <AppBar color="secondary" position="static">
+        {displayDesktop()}
+      </AppBar>
     </header>
   );
 }
