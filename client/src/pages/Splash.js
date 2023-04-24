@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Transition } from "react-transition-group";
 import { Grid, Button } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
+import Auth from "../utils/auth";
 
 // Defining the fade in timeers
 const duration1 = 1000;
@@ -176,6 +177,23 @@ const Splash = () => {
         </Grid>
         <Grid item component="section">
           <div>
+            {(Auth.loggedIn()) ? (
+              <Link to="/dashboard">
+              <Button
+              disableElevation
+              variant="contained"
+              color="secondary"
+              size="large"
+              style={{
+              marginTop: "2vh",
+              marginBottom: "4vh",
+                    }}
+              startIcon={<LoginIcon />}
+              >
+              Head to the dashboard!
+              </Button>
+              </Link>
+            ) : (
             <Link to="/login">
               <Button
                 disableElevation
@@ -191,6 +209,7 @@ const Splash = () => {
                 Login or Signup with us!
               </Button>
             </Link>
+            )}
           </div>
         </Grid>
       </Grid>
