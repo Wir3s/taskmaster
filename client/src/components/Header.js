@@ -51,7 +51,7 @@ export default function Header() {
             {
               // render logout button if logged in
               Auth.loggedIn() && (
-              <ButtonGroup variant="text"> 
+              <ButtonGroup variant="outline"> 
                 <Button id="settingsBtn" color="inherit">
                 Settings
                 </Button>
