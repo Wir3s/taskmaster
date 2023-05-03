@@ -70,6 +70,12 @@ const resolvers = {
 
     // Until error handling on front, addUser automatically creates a list and task for a new user.
     addUser: async (parent, { email, username, password, listName, title }) => {
+      // Check if email address already exists in the database
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        throw new Error('This email address is already registered');
+      }
+      // Create new user
       const user = await User.create({ email, username, password });
       const token = signToken(user);
       const list = await List.create({ listName: "My First List" });
