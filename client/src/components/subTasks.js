@@ -14,7 +14,7 @@ import {
   Container,
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import DeleteTaskDialog from "./task/deleteTaskDialog";
 import DeleteSubTaskDialog from "./subTask/deleteSubTaskDialog";
 import { useQuery } from "@apollo/client";
@@ -122,10 +122,10 @@ export default function SubTasks() {
                         setOpen(newOpen);
                       }}
                     >
-                      {open ? (
-                        <KeyboardArrowUpIcon />
-                      ) : (
+                      {open[listData.tasks.indexOf(row)] ? (
                         <KeyboardArrowDownIcon />
+                      ) : (
+                        <KeyboardArrowRightIcon />
                       )}
                     </IconButton>
                   </TableCell>
