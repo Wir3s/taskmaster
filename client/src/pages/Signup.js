@@ -32,6 +32,11 @@ const Signup = () => {
       Auth.login(data.addUser.token);
     } catch (error) {
       console.error(error);
+      if (error.message.includes("This email address is already")) {
+        alert("This email address already exists, please login or use a different email address!");
+      }  else {
+        alert("An error occurred while creating an account. Please try again.");
+      }
     }
 
     setFormState({
