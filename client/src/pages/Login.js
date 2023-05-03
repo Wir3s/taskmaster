@@ -32,7 +32,7 @@ const Login = () => {
       if (error.message.includes("No user with this email")) {
         alert("This email address is not registered. Please sign up!");
       } else if (error.message.includes("Incorrect password")) {
-        alert("The password is incorrect");
+        alert("The password is incorrect. Begone Hacker.");
       } else {
         alert("An error occurred while logging in. Please try again.");
       }
